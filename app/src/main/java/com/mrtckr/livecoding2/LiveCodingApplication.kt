@@ -5,6 +5,4 @@ import dagger.hilt.android.HiltAndroidApp
 import javax.inject.Inject
 
 @HiltAndroidApp
-class LiveCodingApplication @Inject constructor(): Application() {
-
-}
+class LiveCodingApplication @Inject constructor() : Application()

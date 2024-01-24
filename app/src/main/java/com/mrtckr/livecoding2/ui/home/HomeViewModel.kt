@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mrtckr.livecoding.domain.entity.ResultData
-import com.mrtckr.livecoding.domain.entity.Weather
+import com.mrtckr.livecoding.domain.entity.WeatherData
 import com.mrtckr.livecoding.domain.usecase.GetWeatherByNameUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -20,31 +20,31 @@ class HomeViewModel @Inject constructor(
     private val getWeatherByName: GetWeatherByNameUseCase
 ) : ViewModel() {
 
-    private val _weatherData: MutableStateFlow<ResultData<Weather>> =
+    private val _weatherDataData: MutableStateFlow<ResultData<WeatherData>> =
         MutableStateFlow(ResultData.Loading())
 
     @VisibleForTesting
-    internal val weatherData: StateFlow<ResultData<Weather>> = _weatherData
+    internal val weatherData: StateFlow<ResultData<WeatherData>> = _weatherDataData
 
-    private val _capitalWeatherData: MutableStateFlow<ResultData<Weather>> =
+    private val _capitalWeatherDataData: MutableStateFlow<ResultData<WeatherData>> =
         MutableStateFlow(ResultData.Loading())
 
     @VisibleForTesting
-    internal val capitalWeatherData: StateFlow<ResultData<Weather>> = _capitalWeatherData
+    internal val capitalWeatherDataData: StateFlow<ResultData<WeatherData>> = _capitalWeatherDataData
 
-    private val _weatherDataLiveData: MutableLiveData<ResultData<Weather>> = MutableLiveData()
+    private val _weatherDataDataLiveData: MutableLiveData<ResultData<WeatherData>> = MutableLiveData()
 
     @VisibleForTesting
-    internal val weatherDataLiveData: LiveData<ResultData<Weather>> = _weatherDataLiveData
+    internal val weatherDataDataLiveData: LiveData<ResultData<WeatherData>> = _weatherDataDataLiveData
 
-    val combinedWeatherFlow = weatherData.combine(capitalWeatherData) { weather, capitalWeather ->
+    val combinedWeatherFlow = weatherData.combine(capitalWeatherDataData) { weather, capitalWeather ->
         Pair(weather, capitalWeather)
     }
 
     fun getWeatherData(cityName: String) {
         viewModelScope.launch {
-            getWeatherByName.invoke(cityName).collect {
-                _weatherData.value = it
+            getWeatherByName(cityName).collect {
+                _weatherDataData.value = it
             }
         }
     }
@@ -52,7 +52,7 @@ class HomeViewModel @Inject constructor(
     fun getCapitalWeatherData(name: String) {
         viewModelScope.launch {
             getWeatherByName.invoke(name).collect {
-                _capitalWeatherData.value = it
+                _capitalWeatherDataData.value = it
             }
         }
     }
@@ -60,7 +60,7 @@ class HomeViewModel @Inject constructor(
     fun getSecondCityWeatherData(name: String) {
         viewModelScope.launch {
             getWeatherByName.invoke(name).collect {
-                _weatherDataLiveData.postValue(it)
+                _weatherDataDataLiveData.postValue(it)
             }
         }
     }

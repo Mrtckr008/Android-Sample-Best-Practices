@@ -1,14 +1,30 @@
 package com.mrtckr.livecoding2.ui.home.adapter
 
 import androidx.recyclerview.widget.DiffUtil
-import com.mrtckr.livecoding.domain.entity.Weather
+import com.mrtckr.livecoding.domain.entity.WeatherData
 
-object WeatherDiffCallback : DiffUtil.ItemCallback<Weather>() {
-    override fun areItemsTheSame(oldItem: Weather, newItem: Weather): Boolean {
-        return oldItem.cityName == newItem.cityName
+object WeatherDiffCallback : DiffUtil.ItemCallback<Any>() {
+    override fun areItemsTheSame(oldItem: Any, newItem: Any): Boolean {
+        return when (newItem) {
+            is WeatherData -> {
+                (oldItem as? WeatherData)?.cityName == newItem.cityName
+            }
+
+            else -> {
+                newItem == oldItem
+            }
+        }
     }
 
-    override fun areContentsTheSame(oldItem: Weather, newItem: Weather): Boolean {
-        return oldItem == newItem
+    override fun areContentsTheSame(oldItem: Any, newItem: Any): Boolean {
+        return when (newItem) {
+            is WeatherData -> {
+                (oldItem as? WeatherData) == newItem
+            }
+
+            else -> {
+                (newItem as? String) == (oldItem as? String)
+            }
+        }
     }
 }

@@ -11,16 +11,18 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mrtckr.livecoding.domain.entity.ResultData
-import com.mrtckr.livecoding.domain.entity.Weather
+import com.mrtckr.livecoding.domain.entity.WeatherData
 import com.mrtckr.livecoding2.databinding.FragmentHomeBinding
 import com.mrtckr.livecoding2.ui.home.adapter.WeatherAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import java.util.ArrayList
 import javax.inject.Inject
 
 private const val EDIT_TEXT_CONTENT = "editTextContent"
+private const val CITY1 = "Istanbul"
+private const val CITY2 = "Berlin"
+private const val CITY3 = "London"
 
 @AndroidEntryPoint
 class HomeFragment @Inject constructor() : Fragment() {
@@ -32,9 +34,7 @@ class HomeFragment @Inject constructor() : Fragment() {
     private val binding get() = _binding!!
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
@@ -42,13 +42,14 @@ class HomeFragment @Inject constructor() : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupUI()
         observeData()
     }
 
     private fun observeData() {
-        viewModel.getWeatherData("istanbul")
-        viewModel.getCapitalWeatherData("berlin")
-        viewModel.getSecondCityWeatherData("vienna")
+        viewModel.getWeatherData(CITY1)
+        viewModel.getCapitalWeatherData(CITY2)
+        viewModel.getSecondCityWeatherData(CITY3)
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -58,14 +59,16 @@ class HomeFragment @Inject constructor() : Fragment() {
             }
         }
 
-        viewModel.weatherDataLiveData.observe(viewLifecycleOwner) {
-            when(it) {
+        viewModel.weatherDataDataLiveData.observe(viewLifecycleOwner) {
+            when (it) {
                 is ResultData.Success -> {
                     //TODO: UI
                 }
+
                 is ResultData.Error -> {
 
                 }
+
                 is ResultData.Loading -> {
 
                 }
@@ -132,40 +135,47 @@ class HomeFragment @Inject constructor() : Fragment() {
          */
     }
 
-    private fun setupUI(weatherData: ResultData<Weather>, capitalWeatherData: ResultData<Weather>) {
-        val allWeatherList: ArrayList<Weather> = arrayListOf()
-        when (weatherData) {
-            is ResultData.Success -> {
-                allWeatherList.add(weatherData.data)
-            }
-
-            is ResultData.Error -> {
-                val exception = weatherData.exception
-            }
-
-            is ResultData.Loading -> {
-
-            }
-        }
-
-        when (capitalWeatherData) {
-            is ResultData.Success -> {
-                allWeatherList.add(capitalWeatherData.data)
-            }
-
-            is ResultData.Error -> {
-                val exception = capitalWeatherData.exception
-            }
-
-            is ResultData.Loading -> {
-
-            }
-        }
-        weatherAdapter = WeatherAdapter(allWeatherList)
+    private fun setupUI() {
+        weatherAdapter = WeatherAdapter()
         binding.weatherRecyclerView.apply {
             adapter = weatherAdapter
             layoutManager = LinearLayoutManager(context)
         }
+    }
+
+    private fun setupUI(weatherData: ResultData<WeatherData>, capitalWeatherDataData: ResultData<WeatherData>) {
+        val allWeatherListData: ArrayList<WeatherData> = arrayListOf()
+        when (weatherData) {
+            is ResultData.Success -> {
+                allWeatherListData.add(weatherData.data)
+            }
+
+            is ResultData.Error -> {
+                val exception = weatherData.exception
+                // TODO:
+            }
+
+            is ResultData.Loading -> {
+                // TODO:
+            }
+        }
+
+        when (capitalWeatherDataData) {
+            is ResultData.Success -> {
+                allWeatherListData.add(capitalWeatherDataData.data)
+            }
+
+            is ResultData.Error -> {
+                val exception = capitalWeatherDataData.exception
+                // TODO:
+            }
+
+            is ResultData.Loading -> {
+                // TODO:
+            }
+        }
+
+        weatherAdapter.setWeatherData(allWeatherListData)
     }
 
     override fun onDestroyView() {
@@ -175,15 +185,13 @@ class HomeFragment @Inject constructor() : Fragment() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-
         outState.putString(EDIT_TEXT_CONTENT, binding.editText.text.toString())
     }
 
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
         super.onViewStateRestored(savedInstanceState)
-
-        savedInstanceState?.getString(EDIT_TEXT_CONTENT)?.let { content ->
-            binding.editText.setText(content)
+        with(savedInstanceState?.getString(EDIT_TEXT_CONTENT)) {
+            binding.editText.setText(this)
         }
     }
 }

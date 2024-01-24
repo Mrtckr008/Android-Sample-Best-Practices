@@ -1,0 +1,149 @@
+[versions]
+androidxCore = "1.10.1"
+androidxAppcompat = "1.6.1"
+googleMaterial = "1.9.0"
+androidxConstraintLayout = "2.1.4"
+androidxLifecycle = "2.7.0"
+androidxComposeMaterial3 = "1.1.2"
+daggerHiltAndroidCompiler = "2.50"
+androidxNavigation = "2.6.0"
+junit = "4.13.2"
+androidxTestJunit = "1.1.5"
+androidxEspressoCore = "3.5.1"
+daggerHilt = "2.50"
+hiltCommon = "1.1.0"
+hiltNavigationFragment = "1.1.0"
+hiltWork = "1.1.0"
+workRuntimeKtx = "2.7.1"
+mockitoCore = "5.7.0"
+mockitoInline = "4.10.0"
+mockitoKotlin = "5.2.1"
+kotlinxCoroutinesTest = "1.7.3"
+androidxCoreTesting = "2.2.0"
+compose = "1.6.0"
+navigationCompose = "2.7.6"
+exoplayer = "2.19.1"
+lifecycleViewModelCompose = "2.7.0"
+javaxInject = "1"
+composeNavHilt = "1.1.0"
+retrofit = "2.9.0"
+gson = "2.10"
+
+gradle = "8.2.1"
+kotlin-gradle = "1.9.22"
+kotlin-kapt = "8.2"
+hiltPlugin = "2.44"
+org-jetbrains-kotlin-jvm = "1.9.22"
+
+[libraries]
+
+androidxCoreKtx = { module = "androidx.core:core-ktx", version.ref = "androidxCore" }
+androidxAppcompat = { module = "androidx.appcompat:appcompat", version.ref = "androidxAppcompat" }
+googleMaterial = { module = "com.google.android.material:material", version.ref = "googleMaterial" }
+androidxConstraintLayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "androidxConstraintLayout" }
+androidxLifecycleLivedataKtx = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "androidxLifecycle" }
+androidxLifecycleViewmodelKtx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "androidxLifecycle" }
+androidxComposeMaterial3 = { module = "androidx.compose.material3:material3", version.ref = "androidxComposeMaterial3" }
+daggerHiltAndroidCompiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "daggerHiltAndroidCompiler" }
+androidxNavigationFragmentKtx = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "androidxNavigation" }
+androidxNavigationUiKtx = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "androidxNavigation" }
+junit = { module = "junit:junit", version.ref = "junit" }
+androidxTestJunit = { module = "androidx.test.ext:junit", version.ref = "androidxTestJunit" }
+androidxEspressoCore = { module = "androidx.test.espresso:espresso-core", version.ref = "androidxEspressoCore" }
+daggerHiltAndroid = { module = "com.google.dagger:hilt-android", version.ref = "daggerHilt" }
+hiltCommon = { module = "androidx.hilt:hilt-common", version.ref = "hiltCommon" }
+hiltNavigationFragment = { module = "androidx.hilt:hilt-navigation-fragment", version.ref = "hiltNavigationFragment" }
+hiltWork = { module = "androidx.hilt:hilt-work", version.ref = "hiltWork" }
+workRuntimeKtx = { module = "androidx.work:work-runtime-ktx", version.ref = "workRuntimeKtx" }
+mockitoCore = { module = "org.mockito:mockito-core", version.ref = "mockitoCore" }
+mockitoInline = { module = "org.mockito:mockito-inline", version.ref = "mockitoInline" }
+mockitoKotlin = { module = "org.mockito.kotlin:mockito-kotlin", version.ref = "mockitoKotlin" }
+kotlinxCoroutinesTest = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinxCoroutinesTest" }
+androidxCoreTesting = { module = "androidx.arch.core:core-testing", version.ref = "androidxCoreTesting" }
+hiltCompiler = { module = "com.google.dagger:hilt-compiler", version.ref = "daggerHilt" }
+composeUi = { module = "androidx.compose.ui:ui", version.ref = "compose" }
+composeUiTooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
+hiltNavigationCompose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "composeNavHilt" }
+composeFoundation = { module = "androidx.compose.foundation:foundation", version.ref = "compose" }
+composeMaterial = { module = "androidx.compose.material:material", version.ref = "compose" }
+composeMaterialIconsCore = { module = "androidx.compose.material:material-icons-core", version.ref = "compose" }
+composeMaterialIconsExtended = { module = "androidx.compose.material:material-icons-extended", version.ref = "compose" }
+navigationCompose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
+composeLiveData = { module = "androidx.compose.runtime:runtime-livedata", version.ref = "compose" }
+lifecycleViewModelCompose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycleViewModelCompose" }
+composeUiTestJunit4 = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "compose" }
+exoplayer = { module = "com.google.android.exoplayer:exoplayer", version.ref = "exoplayer" }
+javaxInject = { module = "javax.inject:javax.inject", version.ref = "javaxInject" }
+retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
+retrofitConverterGson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
+retrofitGson = { module = "com.google.code.gson:gson", version.ref = "gson" }
+
+[bundles]
+androidxCore = [
+    "androidxCoreKtx",
+    "androidxAppcompat",
+    "googleMaterial",
+    "androidxConstraintLayout"
+]
+lifecycle = [
+    "androidxLifecycleLivedataKtx",
+    "androidxLifecycleViewmodelKtx"
+]
+navigation = [
+    "androidxNavigationFragmentKtx",
+    "androidxNavigationUiKtx"
+]
+hilt = [
+    "daggerHiltAndroid",
+    "hiltCommon",
+    "hiltNavigationFragment",
+    "hiltWork"
+]
+hiltKapt = [
+    "daggerHiltAndroidCompiler",
+    "hiltCompiler"
+]
+retrofit = [
+    "retrofit",
+    "retrofitConverterGson",
+    "retrofitGson"
+]
+compose = [
+    "androidxComposeMaterial3",
+    "composeUi",
+    "composeUiTooling",
+    "composeFoundation",
+    "composeMaterial",
+    "composeMaterialIconsCore",
+    "composeMaterialIconsExtended",
+    "hiltNavigationCompose"
+]
+testing = [
+    "junit",
+    "androidxTestJunit",
+    "androidxEspressoCore",
+    "mockitoCore",
+    "mockitoInline",
+    "mockitoKotlin",
+    "kotlinxCoroutinesTest",
+    "androidxCoreTesting",
+    "composeUiTestJunit4"
+]
+otherLibraries = [
+    "workRuntimeKtx",
+    "exoplayer",
+    "javaxInject"
+]
+composeAdditional = [
+"navigationCompose",
+"composeLiveData",
+"lifecycleViewModelCompose"
+]
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "gradle" }
+android-library = { id = "com.android.library", version.ref = "gradle" }
+hilt = { id = "com.google.dagger.hilt.android", version.ref = "hiltPlugin" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin-gradle" }
+kotlin-kapt = { id = "kotlin-kapt", version.ref = "kotlin-kapt" }
+

@@ -38,12 +38,4 @@ internal object Provider {
     @Singleton
     fun gson(): Gson = GsonBuilder().create()
 
-    @Provides
-    fun provideIWeatherData(weatherService: WeatherService): IWeatherData =
-        WeatherDataSource(weatherApi = weatherService)
-
-    @Provides
-    fun provideWeatherTransaction(weatherDataSource: IWeatherData): WeatherTransaction =
-        WeatherDataSourceImpl(weatherDataSource)
-
 }
