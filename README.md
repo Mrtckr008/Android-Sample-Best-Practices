@@ -1,6 +1,6 @@
 ## Comprehensive Android Development Guide: Clean architecture, MVVM, Jetpack Libraries (LiveData, StateFlow, Retrofit, Hilt, Coroutine, Compose and more)
 
-Welcome to our project repository, where we dive deep into the intricacies of Android development with a focus on LiveData, MutableLiveData, combining data streams, and utilizing Retrofit for network operations. This project serves not only as a real-world application but also as an extensive resource for learning and understanding the application of modern development practices in Android.
+Welcome to our project repository, where we dive deep into the intricacies of Android development with a focus on Jetpack Libraries. This project serves not a real-world application it serves as an extensive resource for learning and understanding the application of modern development practices, libraries and structures in Android.
 
 ### Key Features and Learning Outcomes:
 
