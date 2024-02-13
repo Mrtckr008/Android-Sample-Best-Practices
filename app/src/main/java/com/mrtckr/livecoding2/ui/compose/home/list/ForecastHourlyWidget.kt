@@ -21,36 +21,32 @@ import androidx.compose.ui.layout.boundsInRoot
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
-import com.mrtckr.livecoding.domain.entity.ResultData
 import com.mrtckr.livecoding.domain.entity.WeatherData
 import com.mrtckr.livecoding2.R
 import com.mrtckr.livecoding2.ui.compose.extensions.pxToDp
 
 @Composable
 fun ForecastHourlyWidget(
-    weatherData: ResultData<WeatherData>,
-    scrollableWidgetBounds: MutableState<Float?>,
-    context: Context
+    weatherData: WeatherData, scrollableWidgetBounds: MutableState<Float?>, context: Context
 ) {
-    Box(
-        modifier = Modifier
-            .padding(dimensionResource(id = R.dimen.normal_padding))
-            .clip(RoundedCornerShape(dimensionResource(id = R.dimen.widgets_corner_shape_value)))
-            .background(MaterialTheme.colors.onSurface)
-            .fillMaxWidth()
-            .height(dimensionResource(id = R.dimen.hourly_forecast_widget_min_height))
-            .onGloballyPositioned { coordinates ->
-                val toDp = pxToDp(context, coordinates.boundsInRoot().top)
-                scrollableWidgetBounds.value = toDp
-            }
-    ) {
+    Box(modifier = Modifier
+        .padding(dimensionResource(id = R.dimen.normal_padding))
+        .clip(RoundedCornerShape(dimensionResource(id = R.dimen.widgets_corner_shape_value)))
+        .background(MaterialTheme.colors.onSurface)
+        .fillMaxWidth()
+        .height(dimensionResource(id = R.dimen.hourly_forecast_widget_min_height))
+        .onGloballyPositioned { coordinates ->
+            val toDp = pxToDp(context, coordinates.boundsInRoot().top)
+            scrollableWidgetBounds.value = toDp
+        }) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .wrapContentHeight()
         ) {
             Text(
-                text = stringResource(R.string.hourly_forecast_widget_title), modifier = Modifier
+                text = stringResource(R.string.hourly_forecast_widget_title),
+                modifier = Modifier
                     .fillMaxWidth()
                     .wrapContentHeight()
                     .padding(dimensionResource(id = R.dimen.normal_padding))

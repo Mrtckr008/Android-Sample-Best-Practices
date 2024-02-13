@@ -17,3 +17,5 @@ rootProject.name = "LiveCoding2"
 include(":app")
 include(":data")
 include(":domain")
+include(":network")
+include(":common")

@@ -13,12 +13,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.dimensionResource
-import com.mrtckr.livecoding.domain.entity.ResultData
 import com.mrtckr.livecoding.domain.entity.WeatherData
 import com.mrtckr.livecoding2.R
 
 @Composable
-fun WeatherInformationBox(weatherData: ResultData<WeatherData>) {
+fun WeatherInformationBox(weatherData: WeatherData) {
     Column {
         Row(
             modifier = Modifier
@@ -26,7 +25,7 @@ fun WeatherInformationBox(weatherData: ResultData<WeatherData>) {
                 .fillMaxWidth()
         ) {
             UVIndexBox(
-                (weatherData as? ResultData.Success)?.data?.uvIndex,
+                weatherData.uvIndex,
                 Modifier
                     .padding(dimensionResource(id = R.dimen.normal_margin))
                     .weight(1f)
@@ -36,7 +35,7 @@ fun WeatherInformationBox(weatherData: ResultData<WeatherData>) {
                     .padding(dimensionResource(id = R.dimen.normal_padding))
             )
             RainfallForecastBox(
-                (weatherData as? ResultData.Success)?.data?.rainfallForecast,
+                weatherData.rainfallForecast,
                 Modifier
                     .padding(dimensionResource(id = R.dimen.normal_padding))
                     .weight(1f)
@@ -52,7 +51,7 @@ fun WeatherInformationBox(weatherData: ResultData<WeatherData>) {
                 .fillMaxWidth()
         ) {
             FeltTemperature(
-                (weatherData as? ResultData.Success)?.data?.feltTemperature,
+                weatherData.feltTemperature,
                 modifier = Modifier
                     .padding(dimensionResource(id = R.dimen.normal_padding))
                     .weight(1f)
@@ -63,7 +62,7 @@ fun WeatherInformationBox(weatherData: ResultData<WeatherData>) {
             )
 
             VisibleDistanceBox(
-                viewingDistance = (weatherData as? ResultData.Success)?.data?.viewingDistance,
+                viewingDistance = weatherData.viewingDistance,
                 modifier = Modifier
                     .padding(dimensionResource(id = R.dimen.normal_padding))
                     .weight(1f)

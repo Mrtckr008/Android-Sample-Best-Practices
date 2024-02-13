@@ -17,7 +17,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
 import com.mrtckr.livecoding.domain.entity.OverlapCurrentInformationWidget
-import com.mrtckr.livecoding.domain.entity.ResultData
 import com.mrtckr.livecoding.domain.entity.WeatherData
 import com.mrtckr.livecoding2.R
 import com.mrtckr.livecoding2.ui.compose.extensions.Constants.CURRENT_INFORMATION_WIDGET_TRANSLATION_Y
@@ -26,86 +25,80 @@ import com.mrtckr.livecoding2.ui.compose.extensions.Constants.VISIBLE_ALPHA
 
 @Composable
 fun CurrentInformationWidget(
-    weatherData: ResultData<WeatherData>,
-    overlapCurrentInformationWidget: OverlapCurrentInformationWidget
+    weatherData: WeatherData, overlapCurrentInformationWidget: OverlapCurrentInformationWidget
 ) {
 
-    val alphaAnimation by animateFloatAsState(
+    val temperatureDescriptionAlphaAnimation by animateFloatAsState(
         targetValue = if (overlapCurrentInformationWidget.overlapTemperature) VISIBLE_ALPHA else INVISIBLE_ALPHA,
         animationSpec = tween(durationMillis = CURRENT_INFORMATION_WIDGET_TRANSLATION_Y),
         label = ""
     )
 
-    val alphaAnimation2 by animateFloatAsState(
+    val descriptionAlphaAnimation by animateFloatAsState(
         targetValue = if (overlapCurrentInformationWidget.overlapDescription) VISIBLE_ALPHA else INVISIBLE_ALPHA,
         animationSpec = tween(durationMillis = CURRENT_INFORMATION_WIDGET_TRANSLATION_Y),
         label = ""
     )
 
-    when (weatherData) {
-        is ResultData.Success -> {
-            val temperatureMin = weatherData.data.temperatureMin
-            val temperatureMax = weatherData.data.temperatureMax
-            val temperature = weatherData.data.temperature
-            val description = weatherData.data.description
+    val temperatureMin = weatherData.temperatureMin
+    val temperatureMax = weatherData.temperatureMax
+    val temperature = weatherData.temperature
+    val description = weatherData.description
 
-            Column {
-                Text(
-                    text = weatherData.data.cityName,
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier
-                        .wrapContentHeight()
-                        .fillMaxWidth(),
-                    fontSize = dimensionResource(id = R.dimen.xxlarge_text).value.sp
-                )
-                AnimatedVisibility(visible = overlapCurrentInformationWidget.overlapCityName) {
-                    Text(
-                        text = stringResource(R.string.temperature, weatherData.data.temperature),
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .wrapContentHeight(),
-                        textAlign = TextAlign.Center,
-                        fontSize = dimensionResource(id = R.dimen.current_information_animated_title_text_size).value.sp
-                    )
-                }
-                AnimatedVisibility(visible = !overlapCurrentInformationWidget.overlapCityName) {
-                    Text(
-                        text = stringResource(
-                            id = R.string.collapsed_current_information, temperature, description
-                        ),
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .wrapContentHeight()
-                            .padding(bottom = dimensionResource(id = R.dimen.current_information_animated_description_bottom_padding)),
-                        textAlign = TextAlign.Center,
-                        fontSize = dimensionResource(id = R.dimen.current_information_animated_description_text_size).value.sp
-                    )
-                }
-
-                Text(
-                    text = weatherData.data.description,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .wrapContentHeight()
-                        .alpha(alphaAnimation2),
-                    textAlign = TextAlign.Center,
-                    fontSize = dimensionResource(id = R.dimen.large_text).value.sp
-                )
-
-                Text(
-                    text = stringResource(
-                        id = R.string.temperature_range, temperatureMin, temperatureMax
-                    ),
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .wrapContentHeight()
-                        .alpha(alphaAnimation),
-                    textAlign = TextAlign.Center,
-                    fontSize = dimensionResource(id = R.dimen.large_text).value.sp
-                )
-            }
+    Column {
+        Text(
+            text = weatherData.cityName,
+            textAlign = TextAlign.Center,
+            modifier = Modifier
+                .wrapContentHeight()
+                .fillMaxWidth(),
+            fontSize = dimensionResource(id = R.dimen.xxlarge_text).value.sp
+        )
+        AnimatedVisibility(visible = overlapCurrentInformationWidget.overlapCityName) {
+            Text(
+                text = stringResource(R.string.temperature, weatherData.temperature),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .wrapContentHeight(),
+                textAlign = TextAlign.Center,
+                fontSize = dimensionResource(id = R.dimen.current_information_animated_title_text_size).value.sp
+            )
+        }
+        AnimatedVisibility(visible = !overlapCurrentInformationWidget.overlapCityName) {
+            Text(
+                text = stringResource(
+                    id = R.string.collapsed_current_information, temperature, description
+                ),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .wrapContentHeight()
+                    .padding(bottom = dimensionResource(id = R.dimen.current_information_animated_description_bottom_padding)),
+                textAlign = TextAlign.Center,
+                fontSize = dimensionResource(id = R.dimen.current_information_animated_description_text_size).value.sp
+            )
         }
 
-        else -> {}
+        Text(
+            text = weatherData.description,
+            modifier = Modifier
+                .fillMaxWidth()
+                .wrapContentHeight()
+                .alpha(descriptionAlphaAnimation),
+            textAlign = TextAlign.Center,
+            fontSize = dimensionResource(id = R.dimen.large_text).value.sp
+        )
+
+        Text(
+            text = stringResource(
+                id = R.string.temperature_range, temperatureMin, temperatureMax
+            ),
+            modifier = Modifier
+                .fillMaxWidth()
+                .wrapContentHeight()
+                .alpha(temperatureDescriptionAlphaAnimation),
+            textAlign = TextAlign.Center,
+            fontSize = dimensionResource(id = R.dimen.large_text).value.sp
+        )
     }
+
 }

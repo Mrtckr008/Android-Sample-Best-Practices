@@ -20,6 +20,7 @@ import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
+import org.mockito.Mockito.mock
 import org.mockito.Mockito.`when`
 import org.mockito.MockitoAnnotations
 import retrofit2.Response
@@ -35,7 +36,7 @@ class WeatherDataDataSourceTest {
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        weatherDataSource = WeatherDataSource(weatherApi)
+        weatherDataSource = WeatherDataSource(weatherApi, mock(), mock(), mock())
     }
 
     @Test

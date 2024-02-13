@@ -1,5 +1,8 @@
 package com.mrtckr.livecoding.data.model
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class WeatherEntity(
     val description: String,
     val forecast: List<ForecastEntity>,

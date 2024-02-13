@@ -3,11 +3,13 @@ package com.mrtckr.livecoding.data.mapper
 
 import com.mrtckr.livecoding.data.datasource.WeatherDataDataSourceTest.Companion.mockForecastData
 import com.mrtckr.livecoding.data.datasource.WeatherDataDataSourceTest.Companion.mockWeatherData
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
 class WeatherDataMappingTest {
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun `mapWeatherEntityToWeather maps correctly`() {
         val forecastEntities = mockForecastData

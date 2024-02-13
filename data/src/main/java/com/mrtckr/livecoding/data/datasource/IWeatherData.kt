@@ -6,4 +6,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface IWeatherData {
     suspend fun getWeatherByName(cityName: String): Flow<ResultData<WeatherEntity>>
+
+    suspend fun getWeatherLocalDataByName(cityName: String): WeatherEntity
 }

@@ -34,6 +34,8 @@ kotlin-gradle = "1.9.22"
 kotlin-kapt = "8.2"
 hiltPlugin = "2.44"
 org-jetbrains-kotlin-jvm = "1.9.22"
+composeLifecycle = "2.7.0"
+kotlinxSerializationJson = "1.6.0"
 
 [libraries]
 
@@ -77,17 +79,22 @@ javaxInject = { module = "javax.inject:javax.inject", version.ref = "javaxInject
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 retrofitConverterGson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
 retrofitGson = { module = "com.google.code.gson:gson", version.ref = "gson" }
+composeLifecycle = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "composeLifecycle" }
+ktxLifecycle = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "composeLifecycle" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
+
 
 [bundles]
 androidxCore = [
     "androidxCoreKtx",
     "androidxAppcompat",
     "googleMaterial",
-    "androidxConstraintLayout"
+    "androidxConstraintLayout",
 ]
 lifecycle = [
     "androidxLifecycleLivedataKtx",
-    "androidxLifecycleViewmodelKtx"
+    "androidxLifecycleViewmodelKtx",
+    "ktxLifecycle"
 ]
 navigation = [
     "androidxNavigationFragmentKtx",
@@ -116,7 +123,8 @@ compose = [
     "composeMaterial",
     "composeMaterialIconsCore",
     "composeMaterialIconsExtended",
-    "hiltNavigationCompose"
+    "hiltNavigationCompose",
+    "composeLifecycle"
 ]
 testing = [
     "junit",
@@ -146,4 +154,5 @@ android-library = { id = "com.android.library", version.ref = "gradle" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hiltPlugin" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin-gradle" }
 kotlin-kapt = { id = "kotlin-kapt", version.ref = "kotlin-kapt" }
+plugin-serializaton = { id = "plugin.serialization", version.ref = "kotlinxSerializationJson"}
 

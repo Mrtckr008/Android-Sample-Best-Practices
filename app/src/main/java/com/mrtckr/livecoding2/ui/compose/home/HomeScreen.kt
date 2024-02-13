@@ -1,7 +1,9 @@
 package com.mrtckr.livecoding2.ui.compose.home
 
+import android.content.Context
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -13,9 +15,8 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -25,7 +26,9 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.mrtckr.livecoding.domain.entity.OverlapCurrentInformationWidget
+import com.mrtckr.livecoding.domain.entity.WeatherData
 import com.mrtckr.livecoding2.R
 import com.mrtckr.livecoding2.ui.compose.extensions.Constants
 import com.mrtckr.livecoding2.ui.compose.extensions.Constants.SCROLLABLE_WIDGET_TOP_POINT
@@ -42,14 +45,26 @@ private const val sampleCityName = "Istanbul"
 @Preview
 @Composable
 fun HomeScreen(viewModel: HomeComposeViewModel = hiltViewModel()) {
-    LaunchedEffect(Unit) {
-        viewModel.getWeatherData(sampleCityName)
-    }
-    val weatherData = viewModel.weatherData.collectAsState().value
+
+    val weatherUIState by viewModel.weatherState.collectAsStateWithLifecycle()
+
     val scrollState = rememberScrollState()
 
     val context = LocalContext.current
 
+    when (val weatherData = weatherUIState) {
+        is WeatherDataUiState.Success -> WeatherScreen(
+            weatherData = weatherData.weatherData, scrollState = scrollState, context = context
+        )
+
+        is WeatherDataUiState.Loading -> {
+            LoadingScreen()
+        }
+    }
+}
+
+@Composable
+fun WeatherScreen(weatherData: WeatherData, scrollState: ScrollState, context: Context) {
     val scrollableWidgetBounds = remember { mutableStateOf<Float?>(null) }
     val forecastWidgetLowerPartBounds = remember { mutableStateOf<Float?>(null) }
     val weatherMapLowerPartBounds = remember { mutableStateOf<Float?>(null) }
@@ -68,6 +83,7 @@ fun HomeScreen(viewModel: HomeComposeViewModel = hiltViewModel()) {
 
     Box(modifier = Modifier.fillMaxSize()) {
         VideoPlayerBackground(videoResId = R.raw.sunny_background)
+
         Box(
             Modifier
                 .padding(top = dimensionResource(id = R.dimen.parent_screen_top_padding))
@@ -107,6 +123,12 @@ fun HomeScreen(viewModel: HomeComposeViewModel = hiltViewModel()) {
         }
     }
 }
+
+@Composable
+fun LoadingScreen() {
+
+}
+
 
 @Composable
 fun calculateCurrentInformationWidgetTranslationY(shouldMoveUp: MutableState<Boolean>): Float {

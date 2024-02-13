@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.hilt)
     id(libs.plugins.kotlin.kapt.get().pluginId)
+
 }
 
 android {
@@ -54,11 +55,13 @@ dependencies {
     implementation(libs.bundles.navigation)
     implementation(libs.bundles.hilt)
     implementation(libs.bundles.otherLibraries)
+    implementation(libs.bundles.retrofit)
     kapt(libs.bundles.hiltKapt)
     annotationProcessor(libs.hiltCompiler)
     debugImplementation(libs.composeUiTooling)
     testImplementation(libs.bundles.testing)
     androidTestImplementation(libs.bundles.testing)
+
 
     implementation(project(":domain"))
     implementation(project(":data"))

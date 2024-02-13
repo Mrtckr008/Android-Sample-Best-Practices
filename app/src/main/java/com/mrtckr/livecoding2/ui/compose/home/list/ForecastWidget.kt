@@ -29,7 +29,6 @@ import androidx.compose.ui.layout.boundsInRoot
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
-import com.mrtckr.livecoding.domain.entity.ResultData
 import com.mrtckr.livecoding.domain.entity.WeatherData
 import com.mrtckr.livecoding2.R
 import com.mrtckr.livecoding2.ui.compose.extensions.Constants
@@ -37,7 +36,7 @@ import com.mrtckr.livecoding2.ui.compose.extensions.pxToDp
 
 @Composable
 fun ForecastWidget(
-    weatherData: ResultData<WeatherData>,
+    weatherData: WeatherData,
     forecastWidgetLowerPartBounds: MutableState<Float?>,
     context: Context
 ) {

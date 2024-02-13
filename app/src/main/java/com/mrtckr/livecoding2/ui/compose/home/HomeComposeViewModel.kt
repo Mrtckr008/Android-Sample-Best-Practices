@@ -6,16 +6,21 @@ import androidx.lifecycle.viewModelScope
 import com.mrtckr.livecoding.domain.entity.ResultData
 import com.mrtckr.livecoding.domain.entity.WeatherData
 import com.mrtckr.livecoding.domain.usecase.GetWeatherByNameUseCase
+import com.mrtckr.livecoding.domain.usecase.GetWeatherMockDataUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import org.jetbrains.annotations.VisibleForTesting
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeComposeViewModel @Inject constructor(
-    private val getWeatherByName: GetWeatherByNameUseCase
+    private val getWeatherByName: GetWeatherByNameUseCase,
+    private val getWeatherMockDataUseCase: GetWeatherMockDataUseCase,
 ) : ViewModel() {
 
     private val _weatherDataData: MutableStateFlow<ResultData<WeatherData>> =
@@ -28,17 +33,18 @@ class HomeComposeViewModel @Inject constructor(
         MutableStateFlow(ResultData.Loading())
 
     @VisibleForTesting
-    internal val capitalWeatherDataData: StateFlow<ResultData<WeatherData>> = _capitalWeatherDataData
+    internal val capitalWeatherDataData: StateFlow<ResultData<WeatherData>> =
+        _capitalWeatherDataData
 
-    private val _weatherDataDataLiveData: MutableLiveData<ResultData<WeatherData>> = MutableLiveData()
+    private val _weatherDataDataLiveData: MutableLiveData<ResultData<WeatherData>> =
+        MutableLiveData()
 
-    fun getWeatherData(cityName: String) {
-        viewModelScope.launch {
-            getWeatherByName(cityName).collect {
-                _weatherDataData.value = it
-            }
-        }
-    }
+    val weatherState: StateFlow<WeatherDataUiState> =
+        getWeatherMockDataUseCase("Istanbul").map(WeatherDataUiState::Success).stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5_000),
+            initialValue = WeatherDataUiState.Loading
+        )
 
     fun getCapitalWeatherData(name: String) {
         viewModelScope.launch {

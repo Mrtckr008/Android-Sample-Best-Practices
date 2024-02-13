@@ -14,7 +14,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import com.mrtckr.livecoding.domain.entity.ForecastHours
-import com.mrtckr.livecoding.domain.entity.ResultData
 import com.mrtckr.livecoding.domain.entity.WeatherData
 import com.mrtckr.livecoding2.R
 import com.mrtckr.livecoding2.ui.compose.extensions.Constants
@@ -62,22 +61,10 @@ fun ForecastHourlyItem(weatherItem: ForecastHours) {
 }
 
 @Composable
-fun ForecastHourlyList(weatherData: ResultData<WeatherData>) {
-    when (weatherData) {
-        is ResultData.Success -> {
-            LazyRow {
-                items(weatherData.data.forecast.size) { index ->
-                    ForecastHourlyItem(weatherData.data.forecastHours[index])
-                }
-            }
-        }
-
-        is ResultData.Loading -> {
-
-        }
-
-        is ResultData.Error -> {
-
+fun ForecastHourlyList(weatherData: WeatherData) {
+    LazyRow {
+        items(weatherData.forecast.size) { index ->
+            ForecastHourlyItem(weatherData.forecastHours[index])
         }
     }
 }

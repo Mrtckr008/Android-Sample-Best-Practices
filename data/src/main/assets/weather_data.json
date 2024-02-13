@@ -1,0 +1,196 @@
+{
+  "description": "Cloudy",
+  "forecast": [
+    {
+      "day": "Today",
+      "temperatureMax": 12,
+      "temperatureMin": 0,
+      "weatherStatus": "CLOUDY"
+    },
+    {
+      "day": "Friday",
+      "temperatureMax": 5,
+      "temperatureMin": -1,
+      "weatherStatus": "SNOWY"
+    },
+    {
+      "day": "Saturday",
+      "temperatureMax": 3,
+      "temperatureMin": -6,
+      "weatherStatus": "SNOWY"
+    },
+    {
+      "day": "Sunday",
+      "temperatureMax": 5,
+      "temperatureMin": 2,
+      "weatherStatus": "CLOUDY"
+    },
+    {
+      "day": "Monday",
+      "temperatureMax": 7,
+      "temperatureMin": 3,
+      "weatherStatus": "RAINY"
+    },
+    {
+      "day": "Tuesday",
+      "temperatureMax": 10,
+      "temperatureMin": 4,
+      "weatherStatus": "CLOUDY"
+    },
+    {
+      "day": "Wednesday",
+      "temperatureMax": 15,
+      "temperatureMin": 8,
+      "weatherStatus": "SUNNY"
+    },
+    {
+      "day": "Thursday",
+      "temperatureMax": 14,
+      "temperatureMin": 5,
+      "weatherStatus": "SUNNY"
+    },
+    {
+      "day": "Friday",
+      "temperatureMax": 9,
+      "temperatureMin": 2,
+      "weatherStatus": "CLOUDY"
+    },
+    {
+      "day": "Saturday",
+      "temperatureMax": 5,
+      "temperatureMin": 2,
+      "weatherStatus": "CLOUDY"
+    },
+    {
+      "day": "Sunday",
+      "temperatureMax": 7,
+      "temperatureMin": 3,
+      "weatherStatus": "RAINY"
+    },
+    {
+      "day": "Monday",
+      "temperatureMax": 7,
+      "temperatureMin": 3,
+      "weatherStatus": "RAINY"
+    },
+    {
+      "day": "Tuesday",
+      "temperatureMax": -1,
+      "temperatureMin": -7,
+      "weatherStatus": "SNOWY"
+    },
+    {
+      "day": "Wednesday",
+      "temperatureMax": -3,
+      "temperatureMin": -10,
+      "weatherStatus": "SNOWY"
+    },
+    {
+      "day": "Thursday",
+      "temperatureMax": -2,
+      "temperatureMin": -9,
+      "weatherStatus": "SNOWY"
+    }
+  ],
+  "temperature": 8,
+  "temperatureMax": 12,
+  "temperatureMin": 0,
+  "uvIndex": {
+    "indexPoint": 0,
+    "status": "Low\nFor rest of the day"
+  },
+  "rainfallForecast": {
+    "index": "0 mm",
+    "description": "In the last 24 hours\nNo rain is expected in the next 10 days."
+  },
+  "feltTemperature": {
+    "degree": 2,
+    "description": "The wind feels colder"
+  },
+  "forecastHours": [
+    {
+      "hour": "14",
+      "temperature": 8,
+      "weatherStatus": "CLOUDY"
+    },
+    {
+      "hour": "15",
+      "temperature": 8,
+      "weatherStatus": "CLOUDY"
+    },
+    {
+      "hour": "16",
+      "temperature": 7,
+      "weatherStatus": "CLOUDY"
+    },
+    {
+      "hour": "17",
+      "temperature": 7,
+      "weatherStatus": "RAINY"
+    },
+    {
+      "hour": "18",
+      "temperature": 6,
+      "weatherStatus": "RAINY"
+    },
+    {
+      "hour": "19",
+      "temperature": 5,
+      "weatherStatus": "RAINY"
+    },
+    {
+      "hour": "20",
+      "temperature": 5,
+      "weatherStatus": "CLOUDY"
+    },
+    {
+      "hour": "21",
+      "temperature": 4,
+      "weatherStatus": "RAINY"
+    },
+    {
+      "hour": "22",
+      "temperature": 3,
+      "weatherStatus": "CLOUDY"
+    },
+    {
+      "hour": "23",
+      "temperature": 2,
+      "weatherStatus": "CLOUDY"
+    },
+    {
+      "hour": "00",
+      "temperature": 0,
+      "weatherStatus": "CLOUDY"
+    },
+    {
+      "hour": "01",
+      "temperature": -2,
+      "weatherStatus": "SNOWY"
+    },
+    {
+      "hour": "02",
+      "temperature": -3,
+      "weatherStatus": "SNOWY"
+    },
+    {
+      "hour": "03",
+      "temperature": -3,
+      "weatherStatus": "SNOWY"
+    },
+    {
+      "hour": "04",
+      "temperature": -5,
+      "weatherStatus": "SNOWY"
+    },
+    {
+      "hour": "05",
+      "temperature": -4,
+      "weatherStatus": "SNOWY"
+    }
+  ],
+  "viewingDistance": {
+    "visibleDistance": "25 km",
+    "description": "It's clear now"
+  }
+}
