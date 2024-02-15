@@ -28,4 +28,5 @@ dependencies {
     kapt(libs.bundles.hiltKapt)
     annotationProcessor(libs.hiltCompiler)
     testImplementation(libs.bundles.testing)
+    androidTestImplementation(libs.bundles.testing)
 }

@@ -20,4 +20,5 @@ dependencies {
     implementation(libs.androidxAppcompat)
     implementation(libs.javaxInject)
     testImplementation(libs.bundles.testing)
+    androidTestImplementation(libs.bundles.testing)
 }

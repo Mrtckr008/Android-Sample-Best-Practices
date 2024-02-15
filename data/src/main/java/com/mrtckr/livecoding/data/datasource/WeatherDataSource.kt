@@ -6,6 +6,7 @@ import com.mrtckr.livecoding.data.model.WeatherEntity
 import com.mrtckr.livecoding.data.retrofit.WeatherService
 import com.mrtckr.livecoding.domain.entity.ResultData
 import com.mrtckr.network.JvmUnitTestFakeAssetManager
+import com.mrtckr.network.fake.FakeAssetManager
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
@@ -21,7 +22,7 @@ import javax.inject.Inject
 class WeatherDataSource @Inject constructor(
     private val weatherApi: WeatherService,
     private val networkJson: Json,
-    private val assets: com.mrtckr.network.fake.FakeAssetManager = JvmUnitTestFakeAssetManager,
+    private val assets: FakeAssetManager = JvmUnitTestFakeAssetManager,
     @Dispatcher(AppDispatchers.IO) private val ioDispatcher: CoroutineDispatcher,
 ) : IWeatherData {
 

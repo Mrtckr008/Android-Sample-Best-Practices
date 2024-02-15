@@ -24,7 +24,6 @@ import com.mrtckr.livecoding2.R
 import com.mrtckr.livecoding2.ui.compose.extensions.Constants
 import com.mrtckr.livecoding2.ui.compose.extensions.GradientLineBar
 
-
 @Composable
 fun UVIndexBox(uvIndex: UVIndex?, modifier: Modifier) {
     Column(modifier) {

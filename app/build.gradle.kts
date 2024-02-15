@@ -62,7 +62,6 @@ dependencies {
     testImplementation(libs.bundles.testing)
     androidTestImplementation(libs.bundles.testing)
 
-
     implementation(project(":domain"))
     implementation(project(":data"))
 }

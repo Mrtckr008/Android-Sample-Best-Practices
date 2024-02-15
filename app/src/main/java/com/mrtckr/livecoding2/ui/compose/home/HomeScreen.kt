@@ -60,6 +60,8 @@ fun HomeScreen(viewModel: HomeComposeViewModel = hiltViewModel()) {
         is WeatherDataUiState.Loading -> {
             LoadingScreen()
         }
+
+        else -> {}
     }
 }
 
