@@ -9,7 +9,10 @@ plugins {
 android {
     namespace = "com.mrtckr.network"
     compileSdk = 34
-
+    defaultConfig {
+        minSdk = 24
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -19,6 +22,11 @@ android {
     }
     hilt {
         enableAggregatingTask = true
+    }
+    testOptions {
+        unitTests {
+            isIncludeAndroidResources = true
+        }
     }
 }
 

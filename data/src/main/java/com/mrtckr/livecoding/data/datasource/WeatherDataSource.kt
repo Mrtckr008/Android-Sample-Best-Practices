@@ -2,10 +2,9 @@ package com.mrtckr.livecoding.data.datasource
 
 import com.mrtckr.common.network.AppDispatchers
 import com.mrtckr.common.network.Dispatcher
-import com.mrtckr.livecoding.data.model.WeatherEntity
-import com.mrtckr.livecoding.data.retrofit.WeatherService
+import com.mrtckr.livecoding.data.api.WeatherApiService
+import com.mrtckr.livecoding.data.model.weather.WeatherEntity
 import com.mrtckr.livecoding.domain.entity.ResultData
-import com.mrtckr.network.JvmUnitTestFakeAssetManager
 import com.mrtckr.network.fake.FakeAssetManager
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
@@ -20,11 +19,11 @@ import java.io.IOException
 import javax.inject.Inject
 
 class WeatherDataSource @Inject constructor(
-    private val weatherApi: WeatherService,
+    private val weatherApi: WeatherApiService,
     private val networkJson: Json,
-    private val assets: FakeAssetManager = JvmUnitTestFakeAssetManager,
+    private val assets: FakeAssetManager,
     @Dispatcher(AppDispatchers.IO) private val ioDispatcher: CoroutineDispatcher,
-) : IWeatherData {
+) : WeatherService {
 
     override suspend fun getWeatherByName(cityName: String): Flow<ResultData<WeatherEntity>> =
         flow {

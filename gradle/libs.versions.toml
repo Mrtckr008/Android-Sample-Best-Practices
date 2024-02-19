@@ -28,7 +28,6 @@ javaxInject = "1"
 composeNavHilt = "1.1.0"
 retrofit = "2.9.0"
 gson = "2.10"
-
 gradle = "8.2.1"
 kotlin-gradle = "1.9.22"
 kotlin-kapt = "8.2"
@@ -36,6 +35,7 @@ hiltPlugin = "2.44"
 org-jetbrains-kotlin-jvm = "1.9.22"
 composeLifecycle = "2.7.0"
 kotlinxSerializationJson = "1.6.0"
+turbine = "1.0.0"
 
 [libraries]
 
@@ -82,7 +82,7 @@ retrofitGson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 composeLifecycle = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "composeLifecycle" }
 ktxLifecycle = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "composeLifecycle" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
-
+turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine" }
 
 [bundles]
 androidxCore = [
@@ -135,7 +135,8 @@ testing = [
     "mockitoKotlin",
     "kotlinxCoroutinesTest",
     "androidxCoreTesting",
-    "composeUiTestJunit4"
+    "composeUiTestJunit4",
+    "turbine"
 ]
 otherLibraries = [
     "workRuntimeKtx",

@@ -1,18 +1,20 @@
 package com.mrtckr.livecoding.data.datasource
 
-import com.mrtckr.livecoding.data.model.FeltTemperatureEntity
-import com.mrtckr.livecoding.data.model.ForecastEntity
-import com.mrtckr.livecoding.data.model.ForecastHoursEntity
-import com.mrtckr.livecoding.data.model.RainfallForecastEntity
-import com.mrtckr.livecoding.data.model.UVIndexEntity
-import com.mrtckr.livecoding.data.model.ViewingDistanceEntity
-import com.mrtckr.livecoding.data.model.WeatherEntity
-import com.mrtckr.livecoding.data.retrofit.WeatherService
+import com.mrtckr.livecoding.data.api.WeatherApiService
+import com.mrtckr.livecoding.data.model.weather.FeltTemperatureEntity
+import com.mrtckr.livecoding.data.model.weather.ForecastEntity
+import com.mrtckr.livecoding.data.model.weather.ForecastHoursEntity
+import com.mrtckr.livecoding.data.model.weather.RainfallForecastEntity
+import com.mrtckr.livecoding.data.model.weather.UVIndexEntity
+import com.mrtckr.livecoding.data.model.weather.ViewingDistanceEntity
+import com.mrtckr.livecoding.data.model.weather.WeatherEntity
 import com.mrtckr.livecoding.domain.entity.ResultData
 import com.mrtckr.livecoding.domain.entity.WeatherStatus
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.runBlockingTest
+import kotlinx.serialization.json.Json
 import okhttp3.MediaType
 import okhttp3.ResponseBody
 import org.junit.Assert.assertEquals
@@ -29,14 +31,21 @@ import retrofit2.Response
 class WeatherDataDataSourceTest {
 
     @Mock
-    private lateinit var weatherApi: WeatherService
+    private lateinit var weatherApi: WeatherApiService
 
     private lateinit var weatherDataSource: WeatherDataSource
+
+    private val testDispatcher = StandardTestDispatcher()
 
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        weatherDataSource = WeatherDataSource(weatherApi, mock(), mock(), mock())
+        weatherDataSource = WeatherDataSource(
+            weatherApi = weatherApi,
+            networkJson = Json { ignoreUnknownKeys = true },
+            assets = mock(),
+            testDispatcher
+        )
     }
 
     @Test

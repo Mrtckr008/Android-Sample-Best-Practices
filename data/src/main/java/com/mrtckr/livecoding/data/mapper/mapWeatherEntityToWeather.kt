@@ -1,8 +1,8 @@
 package com.mrtckr.livecoding.data.mapper
 
-import com.mrtckr.livecoding.data.model.ForecastEntity
-import com.mrtckr.livecoding.data.model.ForecastHoursEntity
-import com.mrtckr.livecoding.data.model.WeatherEntity
+import com.mrtckr.livecoding.data.model.weather.ForecastEntity
+import com.mrtckr.livecoding.data.model.weather.ForecastHoursEntity
+import com.mrtckr.livecoding.data.model.weather.WeatherEntity
 import com.mrtckr.livecoding.domain.entity.FeltTemperature
 import com.mrtckr.livecoding.domain.entity.Forecast
 import com.mrtckr.livecoding.domain.entity.ForecastHours
@@ -23,7 +23,8 @@ fun mapWeatherEntityToWeather(weatherEntity: WeatherEntity, cityName: String): W
             description = weatherEntity.viewingDistance.description
         ),
         rainfallForecast = RainfallForecast(
-            index = weatherEntity.rainfallForecast.index, description = weatherEntity.rainfallForecast.description
+            index = weatherEntity.rainfallForecast.index,
+            description = weatherEntity.rainfallForecast.description
         ),
         feltTemperature = FeltTemperature(
             degree = weatherEntity.feltTemperature.degree,

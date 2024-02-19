@@ -9,7 +9,7 @@ import com.mrtckr.livecoding.domain.entity.UVIndex
 import com.mrtckr.livecoding.domain.entity.ViewingDistance
 import com.mrtckr.livecoding.domain.entity.WeatherData
 import com.mrtckr.livecoding.domain.entity.WeatherStatus
-import com.mrtckr.livecoding.domain.repository.WeatherTransaction
+import com.mrtckr.livecoding.domain.repository.WeatherRepository
 import junit.framework.TestCase.assertEquals
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
@@ -27,7 +27,7 @@ import org.mockito.junit.MockitoJUnitRunner
 class GetWeatherByNameUseCaseTestData {
 
     @Mock
-    private lateinit var weatherTransaction: WeatherTransaction
+    private lateinit var weatherTransaction: WeatherRepository
 
     private lateinit var getWeatherByNameUseCase: GetWeatherByNameUseCase
 
@@ -66,7 +66,7 @@ class GetWeatherByNameUseCaseTestData {
 
     companion object {
 
-        val mockForecastData = arrayListOf(
+        private val mockForecastData = arrayListOf(
             Forecast(
                 day = "Today",
                 temperatureMax = 12,

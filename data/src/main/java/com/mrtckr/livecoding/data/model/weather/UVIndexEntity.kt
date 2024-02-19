@@ -1,0 +1,9 @@
+package com.mrtckr.livecoding.data.model.weather
+
+import kotlinx.serialization.Serializable
+
+@Serializable
+data class UVIndexEntity(
+    val indexPoint: Int,
+    val status: String,
+)

@@ -2,13 +2,6 @@ package com.mrtckr.livecoding2.ui.home
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
-import com.mrtckr.livecoding.data.model.FeltTemperatureEntity
-import com.mrtckr.livecoding.data.model.ForecastEntity
-import com.mrtckr.livecoding.data.model.ForecastHoursEntity
-import com.mrtckr.livecoding.data.model.RainfallForecastEntity
-import com.mrtckr.livecoding.data.model.UVIndexEntity
-import com.mrtckr.livecoding.data.model.ViewingDistanceEntity
-import com.mrtckr.livecoding.data.model.WeatherEntity
 import com.mrtckr.livecoding.domain.entity.FeltTemperature
 import com.mrtckr.livecoding.domain.entity.Forecast
 import com.mrtckr.livecoding.domain.entity.ForecastHours
