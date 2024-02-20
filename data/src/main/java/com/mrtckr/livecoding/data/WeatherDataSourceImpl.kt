@@ -18,6 +18,7 @@ class WeatherDataSourceImpl @Inject constructor(
     private val iWeatherData: WeatherService,
     @Dispatcher(AppDispatchers.IO) private val ioDispatcher: CoroutineDispatcher,
 ) : WeatherRepository {
+
     override suspend fun getWeatherByName(name: String): Flow<ResultData<WeatherData>> {
         return iWeatherData.getWeatherByName(name).map { resultData ->
             when (resultData) {
@@ -28,7 +29,7 @@ class WeatherDataSourceImpl @Inject constructor(
                 )
 
                 is ResultData.Error -> ResultData.Error(resultData.exception)
-                is ResultData.Loading -> ResultData.Loading()
+                else ->  ResultData.Loading()
             }
         }.flowOn(ioDispatcher)
     }

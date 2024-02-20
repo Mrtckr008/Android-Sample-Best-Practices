@@ -12,5 +12,4 @@ class GetUserDataUseCase @Inject constructor(
     operator fun invoke(): Flow<User> {
         return userTransaction.getUserData()
     }
-
 }

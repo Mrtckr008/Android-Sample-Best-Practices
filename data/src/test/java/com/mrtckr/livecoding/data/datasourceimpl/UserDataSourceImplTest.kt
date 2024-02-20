@@ -1,6 +1,7 @@
-package com.mrtckr.livecoding.data
+package com.mrtckr.livecoding.data.datasourceimpl
 
 import app.cash.turbine.test
+import com.mrtckr.livecoding.data.UserDataSourceImpl
 import com.mrtckr.livecoding.data.datasource.UserService
 import com.mrtckr.livecoding.data.model.musicplayer.user.FavoriteEntity
 import com.mrtckr.livecoding.data.model.musicplayer.user.UserEntity
