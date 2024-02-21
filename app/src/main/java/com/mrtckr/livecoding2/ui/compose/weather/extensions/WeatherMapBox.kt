@@ -1,6 +1,5 @@
 package com.mrtckr.livecoding2.ui.compose.weather.extensions
 
-import android.content.Context
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -26,13 +25,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.boundsInRoot
 import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.mrtckr.livecoding2.R
 
 @Composable
-fun WeatherMapBox(weatherMapLowerPartBounds: MutableState<Float?>, context: Context) {
+fun WeatherMapBox(weatherMapLowerPartBounds: MutableState<Float?>) {
+    val context = LocalContext.current
     Box(modifier = Modifier
         .padding(dimensionResource(id = R.dimen.normal_padding))
         .clip(RoundedCornerShape(dimensionResource(id = R.dimen.widgets_corner_shape_value)))

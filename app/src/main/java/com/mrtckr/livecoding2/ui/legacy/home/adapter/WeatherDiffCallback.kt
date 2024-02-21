@@ -1,4 +1,4 @@
-package com.mrtckr.livecoding2.ui.home.adapter
+package com.mrtckr.livecoding2.ui.legacy.home.adapter
 
 import androidx.recyclerview.widget.DiffUtil
 import com.mrtckr.livecoding.domain.entity.WeatherData

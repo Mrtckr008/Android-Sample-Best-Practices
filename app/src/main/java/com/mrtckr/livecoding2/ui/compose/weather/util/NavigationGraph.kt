@@ -1,4 +1,4 @@
-package com.mrtckr.livecoding2.ui.compose.weather.main
+package com.mrtckr.livecoding2.ui.compose.weather.util
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController

@@ -1,4 +1,4 @@
-package com.mrtckr.livecoding2.ui.notifications
+package com.mrtckr.livecoding2.ui.legacy.notifications
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

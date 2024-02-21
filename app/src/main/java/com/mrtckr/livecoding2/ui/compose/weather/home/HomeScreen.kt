@@ -23,6 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -45,28 +46,31 @@ private const val sampleCityName = "Istanbul"
 @Preview
 @Composable
 fun HomeScreen(viewModel: HomeComposeViewModel = hiltViewModel()) {
+    Box(modifier = Modifier.fillMaxSize()) {
+        VideoPlayerBackground(videoResId = R.raw.sunny_background)
 
-    val weatherUIState by viewModel.weatherState.collectAsStateWithLifecycle()
+        val weatherUIState by viewModel.weatherState.collectAsStateWithLifecycle()
 
-    val scrollState = rememberScrollState()
+        val context = LocalContext.current
 
-    val context = LocalContext.current
+        when (val weatherData = weatherUIState) {
+            is WeatherDataUiState.Success -> WeatherScreen(
+                weatherData = weatherData.weatherData, context = context
+            )
 
-    when (val weatherData = weatherUIState) {
-        is WeatherDataUiState.Success -> WeatherScreen(
-            weatherData = weatherData.weatherData, scrollState = scrollState, context = context
-        )
+            is WeatherDataUiState.Loading -> {
 
-        is WeatherDataUiState.Loading -> {
-            LoadingScreen()
+            }
         }
-
-        else -> {}
     }
 }
 
 @Composable
-fun WeatherScreen(weatherData: WeatherData, scrollState: ScrollState, context: Context) {
+fun WeatherScreen(
+    weatherData: WeatherData,
+    context: Context,
+    scrollState: ScrollState = rememberScrollState()
+) {
     val scrollableWidgetBounds = remember { mutableStateOf<Float?>(null) }
     val forecastWidgetLowerPartBounds = remember { mutableStateOf<Float?>(null) }
     val weatherMapLowerPartBounds = remember { mutableStateOf<Float?>(null) }
@@ -82,55 +86,46 @@ fun WeatherScreen(weatherData: WeatherData, scrollState: ScrollState, context: C
         calculateCurrentInformationWidgetTranslationY(shouldMoveUp)
     val currentInformationWidgetAlphaAnimation =
         calculateCurrentInformationWidgetAlphaAnimation(scrollableWidgetTopPoint)
+    Box(
+        Modifier
+            .padding(top = dimensionResource(id = R.dimen.parent_screen_top_padding))
+            .fillMaxWidth()
+            .wrapContentHeight()
+            .graphicsLayer {
+                translationY = currentInformationWidgetTranslationY
+            }) {
+        shouldMoveUp.value = scrollableWidgetTopPoint < SCROLLABLE_WIDGET_TOP_POINT
+        CurrentInformationWidget(weatherData, overlapCurrentInformationWidget)
+        SectionTabBarTitle(
+            currentInformationWidgetAlphaAnimation,
+            weatherMapTop,
+            forecastTop,
+            scrollableWidgetTopPoint
+        )
+    }
 
-    Box(modifier = Modifier.fillMaxSize()) {
-        VideoPlayerBackground(videoResId = R.raw.sunny_background)
-
-        Box(
-            Modifier
-                .padding(top = dimensionResource(id = R.dimen.parent_screen_top_padding))
-                .fillMaxWidth()
-                .wrapContentHeight()
-                .graphicsLayer {
-                    translationY = currentInformationWidgetTranslationY
-                }) {
-            shouldMoveUp.value = scrollableWidgetTopPoint < SCROLLABLE_WIDGET_TOP_POINT
-            CurrentInformationWidget(weatherData, overlapCurrentInformationWidget)
-            SectionTabBarTitle(
-                currentInformationWidgetAlphaAnimation,
-                weatherMapTop,
-                forecastTop,
-                scrollableWidgetTopPoint
-            )
-        }
-
-        Box(
-            Modifier
-                .padding(top = dimensionResource(id = R.dimen.scrollable_bar_top_padding))
-                .fillMaxWidth()
-                .wrapContentHeight()
-                .verticalScroll(scrollState)
-        ) {
-            Column {
-                Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.scrollable_bar_top_space)))
-                ForecastHourlyWidget(weatherData, scrollableWidgetBounds, context)
-                Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.forecast_widgets_between_space)))
-                ForecastWidget(weatherData, forecastWidgetLowerPartBounds, context)
-                Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.weekly_forecast_and_map_between_space)))
-                WeatherMapBox(weatherMapLowerPartBounds, context)
-                WeatherInformationBox(weatherData)
-                BottomToolbar(cityName = sampleCityName)
-                Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.parent_widget_bottom_space)))
-            }
+    Box(
+        Modifier
+            .padding(top = dimensionResource(id = R.dimen.scrollable_bar_top_padding))
+            .fillMaxWidth()
+            .wrapContentHeight()
+            .verticalScroll(scrollState)
+            .testTag("ScrollableWidgetsBox")
+    ) {
+        Column {
+            Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.scrollable_bar_top_space)))
+            ForecastHourlyWidget(weatherData, scrollableWidgetBounds, context)
+            Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.forecast_widgets_between_space)))
+            ForecastWidget(weatherData, forecastWidgetLowerPartBounds, context)
+            Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.weekly_forecast_and_map_between_space)))
+            WeatherMapBox(weatherMapLowerPartBounds)
+            WeatherInformationBox(weatherData)
+            BottomToolbar(cityName = sampleCityName)
+            Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.parent_widget_bottom_space)))
         }
     }
-}
-
-@Composable
-fun LoadingScreen() {
 
 }
-
 
 @Composable
 fun calculateCurrentInformationWidgetTranslationY(shouldMoveUp: MutableState<Boolean>): Float {

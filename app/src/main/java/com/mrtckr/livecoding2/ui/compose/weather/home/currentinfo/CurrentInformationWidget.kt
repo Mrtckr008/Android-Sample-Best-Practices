@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -83,7 +84,8 @@ fun CurrentInformationWidget(
             modifier = Modifier
                 .fillMaxWidth()
                 .wrapContentHeight()
-                .alpha(descriptionAlphaAnimation),
+                .alpha(descriptionAlphaAnimation)
+                .testTag("ExpandedDescriptionText"),
             textAlign = TextAlign.Center,
             fontSize = dimensionResource(id = R.dimen.large_text).value.sp
         )
@@ -95,7 +97,8 @@ fun CurrentInformationWidget(
             modifier = Modifier
                 .fillMaxWidth()
                 .wrapContentHeight()
-                .alpha(temperatureDescriptionAlphaAnimation),
+                .alpha(temperatureDescriptionAlphaAnimation)
+                .testTag("CollapsedDescriptionText"),
             textAlign = TextAlign.Center,
             fontSize = dimensionResource(id = R.dimen.large_text).value.sp
         )

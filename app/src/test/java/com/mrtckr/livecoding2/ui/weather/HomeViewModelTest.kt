@@ -1,4 +1,4 @@
-package com.mrtckr.livecoding2.ui.home
+package com.mrtckr.livecoding2.ui.weather
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
@@ -13,6 +13,7 @@ import com.mrtckr.livecoding.domain.entity.WeatherData
 import com.mrtckr.livecoding.domain.entity.WeatherStatus
 import com.mrtckr.livecoding.domain.usecase.GetWeatherByNameUseCase
 import com.mrtckr.livecoding2.MainCoroutineRule
+import com.mrtckr.livecoding2.ui.legacy.home.HomeViewModel
 import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.assertTrue
 import kotlinx.coroutines.ExperimentalCoroutinesApi

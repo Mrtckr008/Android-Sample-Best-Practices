@@ -8,6 +8,7 @@ import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.viewinterop.AndroidView
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
@@ -17,7 +18,7 @@ import com.google.android.exoplayer2.ui.PlayerView
 import com.google.android.exoplayer2.upstream.RawResourceDataSource
 
 @Composable
-fun VideoPlayerBackground(@RawRes videoResId: Int, modifier: Modifier = Modifier) {
+fun VideoPlayerBackground(@RawRes videoResId: Int) {
     val context = LocalContext.current
     val exoPlayer = remember {
         ExoPlayer.Builder(context).build().also { player ->
@@ -43,6 +44,6 @@ fun VideoPlayerBackground(@RawRes videoResId: Int, modifier: Modifier = Modifier
                 useController = false
                 layoutParams = FrameLayout.LayoutParams(MATCH_PARENT, MATCH_PARENT)
             }
-        }, modifier = modifier
+        }, modifier = Modifier.testTag("VideoPlayerBackground")
     )
 }

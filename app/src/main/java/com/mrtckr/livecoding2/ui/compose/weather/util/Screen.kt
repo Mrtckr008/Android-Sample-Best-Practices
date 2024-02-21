@@ -1,4 +1,4 @@
-package com.mrtckr.livecoding2.ui.compose.weather.main
+package com.mrtckr.livecoding2.ui.compose.weather.util
 
 import androidx.annotation.StringRes
 import androidx.compose.material.icons.Icons

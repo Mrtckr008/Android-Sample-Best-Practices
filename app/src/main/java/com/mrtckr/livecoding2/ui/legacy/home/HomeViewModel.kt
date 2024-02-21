@@ -1,4 +1,4 @@
-package com.mrtckr.livecoding2.ui.home
+package com.mrtckr.livecoding2.ui.legacy.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -30,16 +30,20 @@ class HomeViewModel @Inject constructor(
         MutableStateFlow(ResultData.Loading())
 
     @VisibleForTesting
-    internal val capitalWeatherDataData: StateFlow<ResultData<WeatherData>> = _capitalWeatherDataData
+    internal val capitalWeatherDataData: StateFlow<ResultData<WeatherData>> =
+        _capitalWeatherDataData
 
-    private val _weatherDataDataLiveData: MutableLiveData<ResultData<WeatherData>> = MutableLiveData()
+    private val _weatherDataDataLiveData: MutableLiveData<ResultData<WeatherData>> =
+        MutableLiveData()
 
     @VisibleForTesting
-    internal val weatherDataDataLiveData: LiveData<ResultData<WeatherData>> = _weatherDataDataLiveData
+    internal val weatherDataDataLiveData: LiveData<ResultData<WeatherData>> =
+        _weatherDataDataLiveData
 
-    val combinedWeatherFlow = weatherData.combine(capitalWeatherDataData) { weather, capitalWeather ->
-        Pair(weather, capitalWeather)
-    }
+    val combinedWeatherFlow =
+        weatherData.combine(capitalWeatherDataData) { weather, capitalWeather ->
+            Pair(weather, capitalWeather)
+        }
 
     fun getWeatherData(cityName: String) {
         viewModelScope.launch {

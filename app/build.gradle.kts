@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.hilt)
     id(libs.plugins.kotlin.kapt.get().pluginId)
+    alias(libs.plugins.paparazzi)
 }
 
 android {
@@ -63,9 +64,12 @@ dependencies {
     kapt(libs.bundles.hiltKapt)
     annotationProcessor(libs.hiltCompiler)
     debugImplementation(libs.composeUiTooling)
+    debugImplementation(libs.androidx.compose.ui.testManifest)
     testImplementation(libs.bundles.testing)
     androidTestImplementation(libs.bundles.testing)
 
     implementation(project(":domain"))
     implementation(project(":data"))
 }
+
+apply(from = "guava-fix.gradle")

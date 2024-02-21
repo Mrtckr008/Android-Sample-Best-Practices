@@ -1,4 +1,4 @@
-package com.mrtckr.livecoding2.ui.home
+package com.mrtckr.livecoding2.ui.legacy.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.mrtckr.livecoding.domain.entity.ResultData
 import com.mrtckr.livecoding.domain.entity.WeatherData
 import com.mrtckr.livecoding2.databinding.FragmentHomeBinding
-import com.mrtckr.livecoding2.ui.home.adapter.WeatherAdapter
+import com.mrtckr.livecoding2.ui.legacy.home.adapter.WeatherAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -143,7 +143,10 @@ class HomeFragment @Inject constructor() : Fragment() {
         }
     }
 
-    private fun setupUI(weatherData: ResultData<WeatherData>, capitalWeatherDataData: ResultData<WeatherData>) {
+    private fun setupUI(
+        weatherData: ResultData<WeatherData>,
+        capitalWeatherDataData: ResultData<WeatherData>
+    ) {
         val allWeatherListData: ArrayList<WeatherData> = arrayListOf()
         when (weatherData) {
             is ResultData.Success -> {

@@ -5,7 +5,7 @@
     <string name="forecast_weeks">2 Week Forecast</string>
     <string name="hourly_forecast">Hourly Forecast</string>
     <string name="temperature_range">L:%1$s° H:%2$s°</string>
-    <string name="collapsed_current_information" translatable="false">%1$s°| %2$s</string>
+    <string name="collapsed_current_information" translatable="false">%1$s° | %2$s</string>
 
     <string name="title_weather">Weather</string>
     <string name="title_dashboard" translatable="false">Dashboard</string>
@@ -14,7 +14,7 @@
     <string name="uv_index">UV INDEX</string>
     <string name="rest_of_the_day">Rest of the day</string>
     <string name="rain">RAIN</string>
-    <string name="felt_tempareture">Felt Tempareture</string>
+    <string name="felt_tempareture">Felt Temperature</string>
     <string name="open_with_map">Open on Map</string>
     <string name="weather">%1$s Weather</string>
     <string name="privacy_information">More about weather data and map data</string>

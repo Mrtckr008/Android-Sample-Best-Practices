@@ -1,4 +1,4 @@
-package com.mrtckr.livecoding2.ui.dashboard
+package com.mrtckr.livecoding2.ui.legacy.dashboard
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

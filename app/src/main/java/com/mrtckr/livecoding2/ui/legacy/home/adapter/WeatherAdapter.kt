@@ -1,8 +1,7 @@
-package com.mrtckr.livecoding2.ui.home.adapter
+package com.mrtckr.livecoding2.ui.legacy.home.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.compose.ui.res.stringResource
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.mrtckr.livecoding.domain.entity.WeatherData
@@ -48,7 +47,10 @@ class WeatherAdapter : ListAdapter<Any, RecyclerView.ViewHolder>(WeatherDiffCall
 
         fun bind(weatherDataItem: WeatherData) {
             binding.cityName.text = weatherDataItem.cityName
-            binding.temperature.text = itemView.context.getString(R.string.temperature, weatherDataItem.temperature.toString())
+            binding.temperature.text = itemView.context.getString(
+                R.string.temperature,
+                weatherDataItem.temperature.toString()
+            )
         }
     }
 
