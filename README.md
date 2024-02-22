@@ -1,4 +1,4 @@
-## Comprehensive Android Development Guide: Clean architecture, MVVM, Jetpack Libraries (LiveData, StateFlow, Retrofit, Hilt, Coroutine, Compose and more)
+## Comprehensive Android Development Guide: Clean architecture, MVVM, UI & Unit & Screenshot Test, Jetpack Libraries (LiveData, StateFlow, Retrofit, Hilt, Coroutine, Compose and more)
 
 Welcome to our project repository, where we dive deep into the intricacies of Android development with a focus on Jetpack Libraries. This project serves not a real-world application it serves as an extensive resource for learning and understanding the application of modern development practices, unit test & ui test & screenshot test, jetpack libraries and best practice structures in Android.
 
