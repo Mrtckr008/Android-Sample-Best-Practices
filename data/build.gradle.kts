@@ -11,6 +11,7 @@ plugins {
 android {
     namespace = "com.mrtckr.livecoding.data"
     compileSdk = 34
+
     defaultConfig {
         minSdk = 24
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"

@@ -1,4 +1,4 @@
-package com.mrtckr.livecoding2.ui.compose.weather.home.list
+package com.mrtckr.livecoding2.ui.compose.weather.widgets.list
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.Divider
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -17,12 +18,15 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import com.mrtckr.livecoding.domain.entity.Forecast
 import com.mrtckr.livecoding.domain.entity.WeatherData
+import com.mrtckr.livecoding.domain.entity.WeatherStatus
 import com.mrtckr.livecoding2.R
 import com.mrtckr.livecoding2.ui.compose.weather.extensions.Constants
 import com.mrtckr.livecoding2.ui.compose.weather.extensions.IconByStatus
 import com.mrtckr.livecoding2.ui.compose.weather.extensions.TemperatureBarChart
+import com.mrtckr.livecoding2.ui.compose.weather.util.MyAppTheme
 
 @Composable
 fun ForecastDailyItem(weatherItem: Forecast) {
@@ -94,4 +98,19 @@ private fun calculateWeatherBarFilledFraction(weatherItem: Forecast): Pair<Float
     val maxTemperatureBarFilledValue =
         (weatherItem.temperatureMax.toFloat() - minRangeOfTemperature) / (maxRangeOfTemperature - minRangeOfTemperature)
     return minTemperatureBarFilledValue to maxTemperatureBarFilledValue
+}
+
+@Preview(apiLevel = 31, fontScale = 1.9f)
+@Composable
+fun ForecastDailyItemAPI31AndBiggerSystemFontPreview() {
+    MyAppTheme {
+        Surface {
+            ForecastDailyItem(Forecast(
+                day = "Thursday",
+                temperatureMax = -2,
+                temperatureMin = -9,
+                weatherStatus = WeatherStatus.SNOWY
+            ))
+        }
+    }
 }

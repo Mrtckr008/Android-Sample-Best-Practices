@@ -1,10 +1,11 @@
-package com.mrtckr.livecoding2.ui.compose.weather.home.list
+package com.mrtckr.livecoding2.ui.compose.weather.widgets.list
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.material.Divider
+import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -13,11 +14,15 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.Wallpapers
 import com.mrtckr.livecoding.domain.entity.ForecastHours
 import com.mrtckr.livecoding.domain.entity.WeatherData
+import com.mrtckr.livecoding.domain.entity.WeatherStatus
 import com.mrtckr.livecoding2.R
 import com.mrtckr.livecoding2.ui.compose.weather.extensions.Constants
 import com.mrtckr.livecoding2.ui.compose.weather.extensions.IconByStatus
+import com.mrtckr.livecoding2.ui.compose.weather.util.MyAppTheme
 
 @Composable
 fun ForecastHourlyItem(weatherItem: ForecastHours) {
@@ -65,6 +70,20 @@ fun ForecastHourlyList(weatherData: WeatherData) {
     LazyRow {
         items(weatherData.forecast.size) { index ->
             ForecastHourlyItem(weatherData.forecastHours[index])
+        }
+    }
+}
+
+@Preview(wallpaper = Wallpapers.NONE, device = "id:Nexus S")
+@Composable
+fun ForecastHourlyItemSmallDevicePreview() {
+    MyAppTheme {
+        Surface {
+            ForecastHourlyItem(
+                ForecastHours(
+                    "23", 12, WeatherStatus.SUNNY
+                )
+            )
         }
     }
 }

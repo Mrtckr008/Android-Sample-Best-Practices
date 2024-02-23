@@ -2,6 +2,9 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
+      <entry key="NavigationTest">
+        <State />
+      </entry>
       <entry key="WeatherScreenTest">
         <State />
       </entry>
@@ -20,9 +23,6 @@
           </targetSelectedWithDropDown>
           <timeTargetWasSelectedWithDropDown value="2024-02-19T09:21:38.090290Z" />
         </State>
-      </entry>
-      <entry key="weatherScreen_ShouldDisplayVideoBackgroundWithTag()">
-        <State />
       </entry>
     </value>
   </component>

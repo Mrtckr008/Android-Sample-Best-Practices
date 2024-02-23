@@ -1,8 +1,8 @@
 package com.mrtckr.livecoding.data.mapper
 
 
-import com.mrtckr.livecoding.data.datasource.WeatherDataDataSourceTest.Companion.mockForecastData
-import com.mrtckr.livecoding.data.datasource.WeatherDataDataSourceTest.Companion.mockWeatherData
+import com.mrtckr.livecoding.data.testing.mockForecastData
+import com.mrtckr.livecoding.data.testing.mockWeatherData
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.Assert.assertEquals
 import org.junit.Test

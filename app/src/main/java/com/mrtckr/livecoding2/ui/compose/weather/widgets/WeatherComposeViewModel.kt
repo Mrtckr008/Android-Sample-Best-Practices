@@ -1,4 +1,4 @@
-package com.mrtckr.livecoding2.ui.compose.weather.home
+package com.mrtckr.livecoding2.ui.compose.weather.widgets
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeComposeViewModel @Inject constructor(
+class WeatherComposeViewModel @Inject constructor(
     getWeatherMockDataUseCase: GetWeatherMockDataUseCase,
 ) : ViewModel() {
 

@@ -1,4 +1,4 @@
-package com.mrtckr.livecoding2.ui.compose.weather.home.box
+package com.mrtckr.livecoding2.ui.compose.weather.widgets.box
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column

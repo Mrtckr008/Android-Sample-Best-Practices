@@ -1,7 +1,6 @@
 package com.mrtckr.livecoding.data.datasourceimpl
 
 import com.mrtckr.livecoding.data.WeatherDataSourceImpl
-import com.mrtckr.livecoding.data.datasource.WeatherDataDataSourceTest.Companion.mockWeatherData
 import com.mrtckr.livecoding.data.datasource.WeatherService
 import com.mrtckr.livecoding.data.model.weather.FeltTemperatureEntity
 import com.mrtckr.livecoding.data.model.weather.ForecastEntity
@@ -10,6 +9,7 @@ import com.mrtckr.livecoding.data.model.weather.RainfallForecastEntity
 import com.mrtckr.livecoding.data.model.weather.UVIndexEntity
 import com.mrtckr.livecoding.data.model.weather.ViewingDistanceEntity
 import com.mrtckr.livecoding.data.model.weather.WeatherEntity
+import com.mrtckr.livecoding.data.testing.mockWeatherData
 import com.mrtckr.livecoding.domain.entity.ResultData
 import com.mrtckr.livecoding.domain.entity.WeatherData
 import com.mrtckr.livecoding.domain.entity.WeatherStatus

@@ -1,4 +1,4 @@
-package com.mrtckr.livecoding2.ui.compose.weather.home.bottominfo
+package com.mrtckr.livecoding2.ui.compose.weather.widgets.bottominfo
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -20,9 +20,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import com.mrtckr.livecoding2.R
 import com.mrtckr.livecoding2.ui.compose.weather.extensions.WeatherDataPrivacyInformation
+import com.mrtckr.livecoding2.ui.compose.weather.util.MyAppTheme
 
 @Composable
 fun BottomToolbar(cityName: String) {
@@ -74,5 +76,13 @@ fun BottomToolbar(cityName: String) {
         Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.small_spacer_size)))
 
         WeatherDataPrivacyInformation()
+    }
+}
+
+@Preview(device = "spec:width=1280dp,height=800dp,dpi=240")
+@Composable
+fun BottomToolbarPreview() {
+    MyAppTheme {
+        BottomToolbar("Istanbul")
     }
 }

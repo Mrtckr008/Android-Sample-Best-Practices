@@ -3,12 +3,11 @@ package com.mrtckr.livecoding.domain.usecase
 import com.mrtckr.livecoding.domain.entity.WeatherData
 import com.mrtckr.livecoding.domain.entity.user.User
 import com.mrtckr.livecoding.domain.repository.WeatherRepository
-import com.mrtckr.livecoding.domain.usecase.GetWeatherByNameUseCaseTestData.Companion.mockWeatherData
+import com.mrtckr.livecoding.domain.testing.mockWeatherData
 import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.assertTrue
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.test.runBlockingTest
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Test
@@ -32,7 +31,7 @@ class GetWeatherMockDataUseCaseTestData {
     }
 
     @Test
-    fun `invoke returns success result when repository call is successfully`() = runBlockingTest {
+    fun `invoke returns success result when repository call is successfully`() = runTest {
         val cityName = "Istanbul"
         val expectedResult = mockWeatherData
 
