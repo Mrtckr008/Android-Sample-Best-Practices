@@ -12,13 +12,16 @@ import javax.inject.Inject
 
 @HiltViewModel
 class WeatherComposeViewModel @Inject constructor(
-    getWeatherMockDataUseCase: GetWeatherMockDataUseCase,
+    private val getWeatherMockDataUseCase: GetWeatherMockDataUseCase,
 ) : ViewModel() {
 
-    val weatherState: StateFlow<WeatherDataUiState> =
-        getWeatherMockDataUseCase("Istanbul").map(WeatherDataUiState::Success).stateIn(
-            scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(5_000),
-            initialValue = WeatherDataUiState.Loading
-        )
+    fun getWeatherState(cityName: String): StateFlow<WeatherDataUiState> {
+        return getWeatherMockDataUseCase(cityName).map { weatherData ->
+                WeatherDataUiState.Success(weatherData)
+            }.stateIn(
+                scope = viewModelScope,
+                started = SharingStarted.WhileSubscribed(5_000),
+                initialValue = WeatherDataUiState.Loading
+            )
+    }
 }

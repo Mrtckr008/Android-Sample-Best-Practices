@@ -58,7 +58,7 @@ fun WeatherScreen(viewModel: WeatherComposeViewModel = hiltViewModel()) {
     Box(modifier = Modifier.fillMaxSize()) {
         VideoPlayerBackground(videoResId = R.raw.sunny_background)
 
-        val weatherUIState by viewModel.weatherState.collectAsStateWithLifecycle()
+        val weatherUIState by viewModel.getWeatherState("Istanbul").collectAsStateWithLifecycle()
 
         val context = LocalContext.current
 
