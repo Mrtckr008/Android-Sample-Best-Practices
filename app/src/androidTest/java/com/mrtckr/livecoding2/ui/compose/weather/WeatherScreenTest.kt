@@ -11,7 +11,7 @@ import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollTo
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.mrtckr.livecoding.domain.testing.mockWeatherData
-import com.mrtckr.livecoding2.ui.compose.weather.widgets.WeatherScreenBox
+import com.mrtckr.livecoding2.ui.compose.weather.widgets.WeatherScreen
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -25,7 +25,7 @@ class WeatherScreenTest {
     @Test
     fun weatherScreen_ShouldDisplayWeatherData_WhenGivenValidWeatherData() {
         composeTestRule.setContent {
-            WeatherScreenBox(weatherData = mockWeatherData, context = LocalContext.current)
+            WeatherScreen(weatherData = mockWeatherData, context = LocalContext.current)
         }
 
         composeTestRule.onNodeWithText("Istanbul").assertExists()
@@ -35,7 +35,7 @@ class WeatherScreenTest {
     @Test
     fun weatherScreen_ShouldBeScrollable() {
         composeTestRule.setContent {
-            WeatherScreenBox(weatherData = mockWeatherData, context = LocalContext.current)
+            WeatherScreen(weatherData = mockWeatherData, context = LocalContext.current)
         }
 
         composeTestRule.onNodeWithText("The wind feels colder").performScrollTo()
@@ -45,7 +45,7 @@ class WeatherScreenTest {
     @Test
     fun weatherScreen_ShouldDisplayExpandedDescriptionTextWithTag() {
         composeTestRule.setContent {
-            WeatherScreenBox(weatherData = mockWeatherData, context = LocalContext.current)
+            WeatherScreen(weatherData = mockWeatherData, context = LocalContext.current)
         }
 
         // Note: It's example to figure it out what is onNodeWithTag for.
@@ -59,7 +59,7 @@ class WeatherScreenTest {
     @Test
     fun weatherScreen_ShouldDisplayNecessaryWidgetsAfterScrollToBottom() {
         composeTestRule.setContent {
-            WeatherScreenBox(weatherData = mockWeatherData, context = LocalContext.current)
+            WeatherScreen(weatherData = mockWeatherData, context = LocalContext.current)
         }
 
         composeTestRule.onNodeWithText("Hourly Forecast").assertIsDisplayed()
@@ -72,7 +72,7 @@ class WeatherScreenTest {
     @Test
     fun weatherScreen_ShouldScrollAnimationExecute_AfterScrolls() {
         composeTestRule.setContent {
-            WeatherScreenBox(weatherData = mockWeatherData, context = LocalContext.current)
+            WeatherScreen(weatherData = mockWeatherData, context = LocalContext.current)
         }
 
         composeTestRule.onNodeWithText("Cloudy").assertIsDisplayed()

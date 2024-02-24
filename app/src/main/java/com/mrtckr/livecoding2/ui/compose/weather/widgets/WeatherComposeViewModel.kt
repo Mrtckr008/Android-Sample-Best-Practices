@@ -4,10 +4,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mrtckr.livecoding.domain.usecase.GetWeatherMockDataUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -15,13 +16,16 @@ class WeatherComposeViewModel @Inject constructor(
     private val getWeatherMockDataUseCase: GetWeatherMockDataUseCase,
 ) : ViewModel() {
 
-    fun getWeatherState(cityName: String): StateFlow<WeatherDataUiState> {
-        return getWeatherMockDataUseCase(cityName).map { weatherData ->
-                WeatherDataUiState.Success(weatherData)
-            }.stateIn(
-                scope = viewModelScope,
-                started = SharingStarted.WhileSubscribed(5_000),
-                initialValue = WeatherDataUiState.Loading
-            )
+    private val _weatherState = MutableStateFlow<WeatherDataUiState>(WeatherDataUiState.Loading)
+    val weatherState: StateFlow<WeatherDataUiState> = _weatherState.asStateFlow()
+
+    fun updateWeatherState(cityName: String) {
+        viewModelScope.launch {
+            getWeatherMockDataUseCase(cityName)
+                .map(WeatherDataUiState::Success)
+                .collect { weatherData ->
+                    _weatherState.value = weatherData
+                }
+        }
     }
 }

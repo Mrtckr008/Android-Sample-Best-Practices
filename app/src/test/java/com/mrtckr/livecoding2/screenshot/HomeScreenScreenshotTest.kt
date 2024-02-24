@@ -15,7 +15,7 @@ import com.mrtckr.livecoding2.ui.compose.weather.extensions.WeatherDataPrivacyIn
 import com.mrtckr.livecoding2.ui.compose.weather.extensions.WeatherMapBox
 import com.mrtckr.livecoding2.ui.compose.weather.util.MyAppTheme
 import com.mrtckr.livecoding2.ui.compose.weather.widgets.SectionTabBarTitle
-import com.mrtckr.livecoding2.ui.compose.weather.widgets.WeatherScreenBox
+import com.mrtckr.livecoding2.ui.compose.weather.widgets.WeatherScreen
 import com.mrtckr.livecoding2.ui.compose.weather.widgets.bottominfo.BottomToolbar
 import com.mrtckr.livecoding2.ui.compose.weather.widgets.box.WeatherInformationBox
 import com.mrtckr.livecoding2.ui.compose.weather.widgets.currentinfo.CurrentInformationWidget
@@ -41,7 +41,7 @@ class HomeScreenScreenshotTest {
                     scrollState.scrollTo(scrollState.maxValue)
                 }
 
-                WeatherScreenBox(mockWeatherData, LocalContext.current, scrollState)
+                WeatherScreen(mockWeatherData, LocalContext.current, scrollState)
             }
         }
     }

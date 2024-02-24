@@ -9,6 +9,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.test.resetMain
+import kotlinx.coroutines.test.runBlockingTest
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
 import org.junit.After
@@ -43,13 +44,14 @@ class WeatherComposeViewModelTest {
     }
 
     @Test
-    fun `getWeatherState emits Success state with correct data`() = runTest {
+    fun `getWeatherState emits Success state with correct data`() = runBlockingTest() {
         val cityName = "Istanbul"
         val mockWeatherData = mockWeatherData
 
         `when`(getWeatherMockDataUseCase(cityName)).thenReturn(flow { emit(mockWeatherData) })
 
-        val weatherStateFlow = viewModel.getWeatherState(cityName)
+        viewModel.updateWeatherState("Istanbul")
+        val weatherStateFlow = viewModel.weatherState
 
         weatherStateFlow.test {
             val emission = awaitItem()
@@ -59,7 +61,7 @@ class WeatherComposeViewModelTest {
     }
 
     @Test
-    fun `getWeatherState emits Loading state initially`() = runTest {
-        assertEquals(WeatherDataUiState.Loading, viewModel.getWeatherState("Barcelona").value)
+    fun `getWeatherState emits Loading state initially`() = runBlockingTest {
+        assertEquals(WeatherDataUiState.Loading, viewModel.weatherState.value)
     }
 }

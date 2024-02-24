@@ -153,6 +153,7 @@
                 <map>
                   <entry key="Duration" value="90" />
                   <entry key="Pixel_3a_API_32" value="120" />
+                  <entry key="Pixel_6_Pro_API_34" value="120" />
                   <entry key="Tests" value="360" />
                 </map>
               </option>

@@ -16,7 +16,9 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -52,18 +54,21 @@ import com.mrtckr.livecoding2.ui.compose.weather.widgets.list.ForecastWidget
 
 private const val sampleCityName = "Istanbul"
 
-@Preview
 @Composable
-fun WeatherScreen(viewModel: WeatherComposeViewModel = hiltViewModel()) {
+fun WeatherScreenRoute(viewModel: WeatherComposeViewModel = hiltViewModel()) {
     Box(modifier = Modifier.fillMaxSize()) {
         VideoPlayerBackground(videoResId = R.raw.sunny_background)
 
-        val weatherUIState by viewModel.getWeatherState("Istanbul").collectAsStateWithLifecycle()
+        LaunchedEffect(Unit) {
+            viewModel.updateWeatherState(sampleCityName)
+        }
+
+        val weatherUIState by viewModel.weatherState.collectAsStateWithLifecycle()
 
         val context = LocalContext.current
 
         when (val weatherData = weatherUIState) {
-            is WeatherDataUiState.Success -> WeatherScreenBox(
+            is WeatherDataUiState.Success -> WeatherScreen(
                 weatherData = weatherData.weatherData, context = context
             )
 
@@ -75,7 +80,7 @@ fun WeatherScreen(viewModel: WeatherComposeViewModel = hiltViewModel()) {
 }
 
 @Composable
-fun WeatherScreenBox(
+fun WeatherScreen(
     weatherData: WeatherData, context: Context, scrollState: ScrollState = rememberScrollState()
 ) {
     val scrollableWidgetBounds = remember { mutableStateOf<Float?>(null) }
@@ -131,7 +136,6 @@ fun WeatherScreenBox(
             Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.parent_widget_bottom_space)))
         }
     }
-
 }
 
 @Composable
@@ -168,7 +172,7 @@ fun calculateOverlap(scrollableWidgetTopPoint: Float): OverlapCurrentInformation
 fun WeatherTabletPreviewLargestSystemFontScreen() {
     MyAppTheme {
         Surface {
-            WeatherScreenBox(
+            WeatherScreen(
                 weatherData = WeatherData(
                     cityName = "Istanbul", "Cloudy", forecast = arrayListOf(
                         Forecast(
