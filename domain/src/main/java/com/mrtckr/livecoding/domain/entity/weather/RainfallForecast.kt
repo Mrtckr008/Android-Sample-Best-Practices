@@ -1,4 +1,4 @@
-package com.mrtckr.livecoding.domain.entity
+package com.mrtckr.livecoding.domain.entity.weather
 
 data class RainfallForecast(
     val index: String,

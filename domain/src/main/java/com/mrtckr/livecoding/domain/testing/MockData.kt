@@ -1,13 +1,13 @@
 package com.mrtckr.livecoding.domain.testing
 
-import com.mrtckr.livecoding.domain.entity.FeltTemperature
-import com.mrtckr.livecoding.domain.entity.Forecast
-import com.mrtckr.livecoding.domain.entity.ForecastHours
-import com.mrtckr.livecoding.domain.entity.RainfallForecast
-import com.mrtckr.livecoding.domain.entity.UVIndex
-import com.mrtckr.livecoding.domain.entity.ViewingDistance
-import com.mrtckr.livecoding.domain.entity.WeatherData
-import com.mrtckr.livecoding.domain.entity.WeatherStatus
+import com.mrtckr.livecoding.domain.entity.weather.FeltTemperature
+import com.mrtckr.livecoding.domain.entity.weather.Forecast
+import com.mrtckr.livecoding.domain.entity.weather.ForecastHours
+import com.mrtckr.livecoding.domain.entity.weather.RainfallForecast
+import com.mrtckr.livecoding.domain.entity.weather.UVIndex
+import com.mrtckr.livecoding.domain.entity.weather.ViewingDistance
+import com.mrtckr.livecoding.domain.entity.weather.WeatherData
+import com.mrtckr.livecoding.domain.entity.weather.WeatherStatus
 
 
 private val mockForecastData = arrayListOf(

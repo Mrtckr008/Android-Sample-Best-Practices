@@ -7,7 +7,7 @@ import com.mrtckr.livecoding.data.model.weather.RainfallForecastEntity
 import com.mrtckr.livecoding.data.model.weather.UVIndexEntity
 import com.mrtckr.livecoding.data.model.weather.ViewingDistanceEntity
 import com.mrtckr.livecoding.data.model.weather.WeatherEntity
-import com.mrtckr.livecoding.domain.entity.WeatherStatus
+import com.mrtckr.livecoding.domain.entity.weather.WeatherStatus
 
 val mockForecastData = arrayListOf(
     ForecastEntity(

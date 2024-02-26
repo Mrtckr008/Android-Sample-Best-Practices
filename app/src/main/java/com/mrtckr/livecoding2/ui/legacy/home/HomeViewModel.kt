@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mrtckr.livecoding.domain.entity.ResultData
-import com.mrtckr.livecoding.domain.entity.WeatherData
+import com.mrtckr.livecoding.domain.entity.weather.WeatherData
 import com.mrtckr.livecoding.domain.usecase.GetWeatherByNameUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

@@ -1,6 +1,6 @@
 package com.mrtckr.livecoding.domain.usecase
 
-import com.mrtckr.livecoding.domain.entity.WeatherData
+import com.mrtckr.livecoding.domain.entity.weather.WeatherData
 import com.mrtckr.livecoding.domain.entity.user.User
 import com.mrtckr.livecoding.domain.repository.WeatherRepository
 import com.mrtckr.livecoding.domain.testing.mockWeatherData

@@ -29,7 +29,7 @@ import androidx.compose.ui.layout.boundsInRoot
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
-import com.mrtckr.livecoding.domain.entity.WeatherData
+import com.mrtckr.livecoding.domain.entity.weather.WeatherData
 import com.mrtckr.livecoding2.R
 import com.mrtckr.livecoding2.ui.compose.weather.extensions.Constants
 import com.mrtckr.livecoding2.ui.compose.weather.extensions.pxToDp

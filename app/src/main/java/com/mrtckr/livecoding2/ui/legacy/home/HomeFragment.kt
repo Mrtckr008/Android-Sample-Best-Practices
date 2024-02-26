@@ -11,7 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mrtckr.livecoding.domain.entity.ResultData
-import com.mrtckr.livecoding.domain.entity.WeatherData
+import com.mrtckr.livecoding.domain.entity.weather.WeatherData
 import com.mrtckr.livecoding2.databinding.FragmentHomeBinding
 import com.mrtckr.livecoding2.ui.legacy.home.adapter.WeatherAdapter
 import dagger.hilt.android.AndroidEntryPoint

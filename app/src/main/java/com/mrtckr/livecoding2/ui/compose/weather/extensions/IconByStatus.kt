@@ -12,7 +12,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
-import com.mrtckr.livecoding.domain.entity.WeatherStatus
+import com.mrtckr.livecoding.domain.entity.weather.WeatherStatus
 import com.mrtckr.livecoding2.R
 
 @Composable

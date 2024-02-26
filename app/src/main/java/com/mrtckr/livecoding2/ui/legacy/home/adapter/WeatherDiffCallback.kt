@@ -1,7 +1,7 @@
 package com.mrtckr.livecoding2.ui.legacy.home.adapter
 
 import androidx.recyclerview.widget.DiffUtil
-import com.mrtckr.livecoding.domain.entity.WeatherData
+import com.mrtckr.livecoding.domain.entity.weather.WeatherData
 
 object WeatherDiffCallback : DiffUtil.ItemCallback<Any>() {
     override fun areItemsTheSame(oldItem: Any, newItem: Any): Boolean {

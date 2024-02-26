@@ -11,8 +11,8 @@ import com.mrtckr.livecoding.data.model.weather.ViewingDistanceEntity
 import com.mrtckr.livecoding.data.model.weather.WeatherEntity
 import com.mrtckr.livecoding.data.testing.mockWeatherData
 import com.mrtckr.livecoding.domain.entity.ResultData
-import com.mrtckr.livecoding.domain.entity.WeatherData
-import com.mrtckr.livecoding.domain.entity.WeatherStatus
+import com.mrtckr.livecoding.domain.entity.weather.WeatherData
+import com.mrtckr.livecoding.domain.entity.weather.WeatherStatus
 import junit.framework.TestCase.assertEquals
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow

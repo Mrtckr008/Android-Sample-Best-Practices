@@ -2,7 +2,7 @@ package com.mrtckr.livecoding.data.api
 
 import com.mrtckr.livecoding.data.model.weather.ForecastEntity
 import com.mrtckr.livecoding.data.model.weather.WeatherEntity
-import com.mrtckr.livecoding.domain.entity.WeatherData
+import com.mrtckr.livecoding.domain.entity.weather.WeatherData
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.DELETE

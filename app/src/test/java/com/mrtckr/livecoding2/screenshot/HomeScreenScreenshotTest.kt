@@ -7,7 +7,7 @@ import androidx.compose.ui.platform.LocalContext
 import app.cash.paparazzi.DeviceConfig
 import app.cash.paparazzi.Paparazzi
 import com.android.ide.common.rendering.api.SessionParams
-import com.mrtckr.livecoding.domain.entity.OverlapCurrentInformationWidget
+import com.mrtckr.livecoding.domain.entity.weather.OverlapCurrentInformationWidget
 import com.mrtckr.livecoding.domain.testing.mockWeatherData
 import com.mrtckr.livecoding2.ui.compose.weather.extensions.GradientLineBar
 import com.mrtckr.livecoding2.ui.compose.weather.extensions.TemperatureBarChart

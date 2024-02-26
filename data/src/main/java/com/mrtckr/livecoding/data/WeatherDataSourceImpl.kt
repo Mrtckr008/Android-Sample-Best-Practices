@@ -5,7 +5,7 @@ import com.mrtckr.common.network.Dispatcher
 import com.mrtckr.livecoding.data.datasource.WeatherService
 import com.mrtckr.livecoding.data.mapper.mapWeatherEntityToWeather
 import com.mrtckr.livecoding.domain.entity.ResultData
-import com.mrtckr.livecoding.domain.entity.WeatherData
+import com.mrtckr.livecoding.domain.entity.weather.WeatherData
 import com.mrtckr.livecoding.domain.repository.WeatherRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
