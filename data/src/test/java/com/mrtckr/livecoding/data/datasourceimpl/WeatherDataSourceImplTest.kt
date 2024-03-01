@@ -1,7 +1,7 @@
 package com.mrtckr.livecoding.data.datasourceimpl
 
 import com.mrtckr.livecoding.data.WeatherDataSourceImpl
-import com.mrtckr.livecoding.data.datasource.WeatherService
+import com.mrtckr.livecoding.data.datasource.weather.WeatherService
 import com.mrtckr.livecoding.data.model.weather.FeltTemperatureEntity
 import com.mrtckr.livecoding.data.model.weather.ForecastEntity
 import com.mrtckr.livecoding.data.model.weather.ForecastHoursEntity

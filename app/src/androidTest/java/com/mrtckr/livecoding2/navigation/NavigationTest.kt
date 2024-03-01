@@ -22,8 +22,8 @@ class NavigationTest {
     @Test
     fun navigateToDashboardAndBack() {
         composeTestRule.apply {
-            onNodeWithText("Dashboard").performClick()
-            onNodeWithTag("Music Player").assertExists()
+            onNodeWithText("Music Player").performClick()
+            onNodeWithTag("MusicPlayerSurface").assertExists()
 
             onNodeWithText("Weather").performClick()
             onNodeWithText("Istanbul").assertExists()
@@ -33,8 +33,8 @@ class NavigationTest {
     @Test(expected = NoActivityResumedException::class)
     fun navigateToDashboardAndBackAndQuitApp() {
         composeTestRule.apply {
-            onNodeWithText("Dashboard").performClick()
-            onNodeWithTag("Music Player").assertExists()
+            onNodeWithText("Music Player").performClick()
+            onNodeWithTag("MusicPlayerSurface").assertExists()
 
             onNodeWithText("Weather").performClick()
             onNodeWithText("Istanbul").assertExists()

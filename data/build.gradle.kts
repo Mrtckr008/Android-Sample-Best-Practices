@@ -49,7 +49,7 @@ dependencies {
     implementation(libs.androidxAppcompat)
     implementation(libs.bundles.retrofit)
     implementation(libs.bundles.hilt)
-    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.bundles.datastore)
     kapt(libs.bundles.hiltKapt)
     annotationProcessor(libs.hiltCompiler)
     testImplementation(libs.bundles.testing)

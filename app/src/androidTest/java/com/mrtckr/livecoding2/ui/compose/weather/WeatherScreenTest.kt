@@ -47,12 +47,6 @@ class WeatherScreenTest {
         composeTestRule.setContent {
             WeatherScreen(weatherData = mockWeatherData, context = LocalContext.current)
         }
-
-        // Note: It's example to figure it out what is onNodeWithTag for.
-        // Checking for video playback in a unit test might not be straightforward.
-        // You might need to use a custom VideoPlayerBackground composable that exposes
-        // some state for testing, or you could check for the existence of the video player
-        // component and its resource ID.
         composeTestRule.onNodeWithTag("ExpandedDescriptionText").assertExists()
     }
 

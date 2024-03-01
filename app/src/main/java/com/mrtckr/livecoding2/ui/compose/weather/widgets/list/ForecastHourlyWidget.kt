@@ -9,9 +9,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Divider
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Modifier
@@ -23,7 +23,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import com.mrtckr.livecoding.domain.entity.weather.WeatherData
 import com.mrtckr.livecoding2.R
-import com.mrtckr.livecoding2.ui.compose.weather.extensions.pxToDp
+import com.mrtckr.livecoding2.ui.compose.util.pxToDp
 
 @Composable
 fun ForecastHourlyWidget(
@@ -32,7 +32,7 @@ fun ForecastHourlyWidget(
     Box(modifier = Modifier
         .padding(dimensionResource(id = R.dimen.normal_padding))
         .clip(RoundedCornerShape(dimensionResource(id = R.dimen.widgets_corner_shape_value)))
-        .background(MaterialTheme.colors.onSurface)
+        .background(MaterialTheme.colorScheme.onSurface)
         .fillMaxWidth()
         .height(dimensionResource(id = R.dimen.hourly_forecast_widget_min_height))
         .onGloballyPositioned { coordinates ->
@@ -51,10 +51,8 @@ fun ForecastHourlyWidget(
                     .wrapContentHeight()
                     .padding(dimensionResource(id = R.dimen.normal_padding))
             )
-            Divider(
-                color = Color.Gray,
-                thickness = dimensionResource(id = R.dimen.divider_height),
-                startIndent = dimensionResource(id = R.dimen.normal_padding)
+            HorizontalDivider(
+                thickness = dimensionResource(id = R.dimen.divider_height), color = Color.Gray
             )
 
             ForecastHourlyList(weatherData = weatherData)

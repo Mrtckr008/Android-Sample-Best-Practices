@@ -6,13 +6,13 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CalendarMonth
 import androidx.compose.material.icons.filled.Umbrella
 import androidx.compose.material.icons.filled.WatchLater
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -22,7 +22,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import com.mrtckr.livecoding2.R
-import com.mrtckr.livecoding2.ui.compose.weather.extensions.Constants
+import com.mrtckr.livecoding2.ui.compose.util.Constants
 
 @Composable
 fun SectionTabBarTitle(
@@ -45,7 +45,7 @@ fun SectionTabBarTitle(
                     topEnd = dimensionResource(id = R.dimen.widgets_corner_shape_value)
                 )
             )
-            .background(MaterialTheme.colors.onSurface)
+            .background(MaterialTheme.colorScheme.onSurface)
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,

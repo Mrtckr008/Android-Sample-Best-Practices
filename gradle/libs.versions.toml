@@ -1,6 +1,8 @@
 [versions]
 androidxCore = "1.12.0"
 androidxAppcompat = "1.6.1"
+coilCompose = "2.5.0"
+datastore = "1.0.0"
 googleMaterial = "1.11.0"
 androidxConstraintLayout = "2.1.4"
 androidxLifecycle = "2.7.0"
@@ -14,6 +16,8 @@ daggerHilt = "2.50"
 hiltCommon = "1.1.0"
 hiltNavigationFragment = "1.1.0"
 hiltWork = "1.1.0"
+kotlinxCollectionsImmutable = "0.3.5"
+mockk-mockk = "1.12.0"
 workRuntimeKtx = "2.9.0"
 mockitoCore = "5.7.0"
 mockitoInline = "4.10.0"
@@ -41,8 +45,10 @@ paparazzi = "1.3.1"
 
 [libraries]
 
+androidx-datastore = { module = "androidx.datastore:datastore", version.ref = "datastore" }
 androidxCoreKtx = { module = "androidx.core:core-ktx", version.ref = "androidxCore" }
 androidxAppcompat = { module = "androidx.appcompat:appcompat", version.ref = "androidxAppcompat" }
+coilCompose = { module = "io.coil-kt:coil-compose", version.ref = "coilCompose" }
 googleMaterial = { module = "com.google.android.material:material", version.ref = "googleMaterial" }
 androidxConstraintLayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "androidxConstraintLayout" }
 androidxLifecycleLivedataKtx = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "androidxLifecycle" }
@@ -58,6 +64,8 @@ daggerHiltAndroid = { module = "com.google.dagger:hilt-android", version.ref = "
 hiltCommon = { module = "androidx.hilt:hilt-common", version.ref = "hiltCommon" }
 hiltNavigationFragment = { module = "androidx.hilt:hilt-navigation-fragment", version.ref = "hiltNavigationFragment" }
 hiltWork = { module = "androidx.hilt:hilt-work", version.ref = "hiltWork" }
+kotlinx-collections-immutable = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version.ref = "kotlinxCollectionsImmutable" }
+mockk-mockk = { module = "io.mockk:mockk", version.ref = "mockk-mockk" }
 workRuntimeKtx = { module = "androidx.work:work-runtime-ktx", version.ref = "workRuntimeKtx" }
 mockitoCore = { module = "org.mockito:mockito-core", version.ref = "mockitoCore" }
 mockitoInline = { module = "org.mockito:mockito-inline", version.ref = "mockitoInline" }
@@ -89,38 +97,26 @@ hilt-android-testing = { group = "com.google.dagger", name = "hilt-android-testi
 androidx-compose-ui-testManifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 
 [bundles]
-androidxCore = [
-    "androidxCoreKtx",
+androidxCore = ["androidxCoreKtx",
     "androidxAppcompat",
     "googleMaterial",
     "androidxConstraintLayout",
 ]
-lifecycle = [
-    "androidxLifecycleLivedataKtx",
+lifecycle = ["androidxLifecycleLivedataKtx",
     "androidxLifecycleViewmodelKtx",
-    "ktxLifecycle"
-]
-navigation = [
-    "androidxNavigationFragmentKtx",
-    "androidxNavigationUiKtx"
-]
-hilt = [
-    "daggerHiltAndroid",
+    "ktxLifecycle"]
+navigation = ["androidxNavigationFragmentKtx",
+    "androidxNavigationUiKtx"]
+hilt = ["daggerHiltAndroid",
     "hiltCommon",
     "hiltNavigationFragment",
-    "hiltWork"
-]
-hiltKapt = [
-    "daggerHiltAndroidCompiler",
-    "hiltCompiler"
-]
-retrofit = [
-    "retrofit",
+    "hiltWork"]
+hiltKapt = ["daggerHiltAndroidCompiler",
+    "hiltCompiler"]
+retrofit = ["retrofit",
     "retrofitConverterGson",
-    "retrofitGson"
-]
-compose = [
-    "androidxComposeMaterial3",
+    "retrofitGson"]
+compose = ["androidxComposeMaterial3",
     "composeUi",
     "composeUiTooling",
     "composeFoundation",
@@ -128,10 +124,9 @@ compose = [
     "composeMaterialIconsCore",
     "composeMaterialIconsExtended",
     "hiltNavigationCompose",
-    "composeLifecycle"
-]
-testing = [
-    "junit",
+    "composeLifecycle",
+    "coilCompose"]
+testing = ["junit",
     "androidxTestJunit",
     "androidxEspressoCore",
     "mockitoCore",
@@ -141,18 +136,17 @@ testing = [
     "androidxCoreTesting",
     "composeUiTestJunit4",
     "turbine",
-    "hilt-android-testing"
-]
-otherLibraries = [
-    "workRuntimeKtx",
+    "hilt-android-testing",
+    "mockk-mockk"]
+otherLibraries = ["workRuntimeKtx",
     "exoplayer",
-    "javaxInject"
-]
-composeAdditional = [
-"navigationCompose",
-"composeLiveData",
-"lifecycleViewModelCompose"
-]
+    "javaxInject"]
+composeAdditional = ["navigationCompose",
+    "composeLiveData",
+    "lifecycleViewModelCompose"]
+datastore = ["androidx-datastore",
+    "kotlinx-serialization-json",
+    "kotlinx-collections-immutable"]
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "gradle" }
@@ -160,6 +154,6 @@ android-library = { id = "com.android.library", version.ref = "gradle" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hiltPlugin" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin-gradle" }
 kotlin-kapt = { id = "kotlin-kapt", version.ref = "kotlin-kapt" }
-plugin-serializaton = { id = "plugin.serialization", version.ref = "kotlinxSerializationJson"}
-jetbrains-plugin-serializaton = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "jetbrainsSerialization"}
+plugin-serializaton = { id = "plugin.serialization", version.ref = "kotlinxSerializationJson" }
+jetbrains-plugin-serializaton = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "jetbrainsSerialization" }
 paparazzi = { id = "app.cash.paparazzi", version.ref = "paparazzi" }

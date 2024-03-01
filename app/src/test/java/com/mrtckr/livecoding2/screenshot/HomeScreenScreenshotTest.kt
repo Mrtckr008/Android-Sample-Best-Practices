@@ -9,11 +9,11 @@ import app.cash.paparazzi.Paparazzi
 import com.android.ide.common.rendering.api.SessionParams
 import com.mrtckr.livecoding.domain.entity.weather.OverlapCurrentInformationWidget
 import com.mrtckr.livecoding.domain.testing.mockWeatherData
+import com.mrtckr.livecoding2.ui.compose.util.MyAppTheme
 import com.mrtckr.livecoding2.ui.compose.weather.extensions.GradientLineBar
 import com.mrtckr.livecoding2.ui.compose.weather.extensions.TemperatureBarChart
 import com.mrtckr.livecoding2.ui.compose.weather.extensions.WeatherDataPrivacyInformation
 import com.mrtckr.livecoding2.ui.compose.weather.extensions.WeatherMapBox
-import com.mrtckr.livecoding2.ui.compose.weather.util.MyAppTheme
 import com.mrtckr.livecoding2.ui.compose.weather.widgets.SectionTabBarTitle
 import com.mrtckr.livecoding2.ui.compose.weather.widgets.WeatherScreen
 import com.mrtckr.livecoding2.ui.compose.weather.widgets.bottominfo.BottomToolbar
@@ -22,7 +22,6 @@ import com.mrtckr.livecoding2.ui.compose.weather.widgets.currentinfo.CurrentInfo
 import kotlinx.coroutines.runBlocking
 import org.junit.Rule
 import org.junit.Test
-
 
 class HomeScreenScreenshotTest {
 

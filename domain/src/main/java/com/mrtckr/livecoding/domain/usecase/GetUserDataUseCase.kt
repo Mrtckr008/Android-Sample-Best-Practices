@@ -5,7 +5,7 @@ import com.mrtckr.livecoding.domain.repository.UserRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class GetUserDataUseCase @Inject constructor(
+open class GetUserDataUseCase @Inject constructor(
     private val userTransaction: UserRepository
 ) {
 

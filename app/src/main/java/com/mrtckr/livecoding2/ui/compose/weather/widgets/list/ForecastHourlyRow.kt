@@ -4,9 +4,9 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.material.Divider
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -20,9 +20,9 @@ import com.mrtckr.livecoding.domain.entity.weather.ForecastHours
 import com.mrtckr.livecoding.domain.entity.weather.WeatherData
 import com.mrtckr.livecoding.domain.entity.weather.WeatherStatus
 import com.mrtckr.livecoding2.R
-import com.mrtckr.livecoding2.ui.compose.weather.extensions.Constants
+import com.mrtckr.livecoding2.ui.compose.util.Constants
+import com.mrtckr.livecoding2.ui.compose.util.MyAppTheme
 import com.mrtckr.livecoding2.ui.compose.weather.extensions.IconByStatus
-import com.mrtckr.livecoding2.ui.compose.weather.util.MyAppTheme
 
 @Composable
 fun ForecastHourlyItem(weatherItem: ForecastHours) {
@@ -55,13 +55,12 @@ fun ForecastHourlyItem(weatherItem: ForecastHours) {
         )
     }
 
-    Divider(
+    HorizontalDivider(
         Modifier
             .alpha(Constants.FORECAST_DIVIDER_ALPHA)
             .padding(dimensionResource(id = R.dimen.big_normal_padding)),
-        color = Color.Gray,
         thickness = dimensionResource(id = R.dimen.divider_height),
-        startIndent = dimensionResource(id = R.dimen.normal_padding)
+        color = Color.Gray
     )
 }
 

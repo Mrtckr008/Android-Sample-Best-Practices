@@ -2,7 +2,7 @@ package com.mrtckr.livecoding.data
 
 import com.mrtckr.common.network.AppDispatchers
 import com.mrtckr.common.network.Dispatcher
-import com.mrtckr.livecoding.data.datasource.WeatherService
+import com.mrtckr.livecoding.data.datasource.weather.WeatherService
 import com.mrtckr.livecoding.data.mapper.mapWeatherEntityToWeather
 import com.mrtckr.livecoding.domain.entity.ResultData
 import com.mrtckr.livecoding.domain.entity.weather.WeatherData
@@ -29,7 +29,7 @@ class WeatherDataSourceImpl @Inject constructor(
                 )
 
                 is ResultData.Error -> ResultData.Error(resultData.exception)
-                else ->  ResultData.Loading()
+                else -> ResultData.Loading()
             }
         }.flowOn(ioDispatcher)
     }

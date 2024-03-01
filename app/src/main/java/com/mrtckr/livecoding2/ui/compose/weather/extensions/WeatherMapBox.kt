@@ -13,11 +13,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Umbrella
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
@@ -30,6 +30,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.mrtckr.livecoding2.R
+import com.mrtckr.livecoding2.ui.compose.util.pxToDp
 
 @Composable
 fun WeatherMapBox(weatherMapLowerPartBounds: MutableState<Float?>) {
@@ -39,7 +40,7 @@ fun WeatherMapBox(weatherMapLowerPartBounds: MutableState<Float?>) {
         .clip(RoundedCornerShape(dimensionResource(id = R.dimen.widgets_corner_shape_value)))
         .fillMaxWidth()
         .height(dimensionResource(id = R.dimen.weather_map_box_map_size))
-        .background(MaterialTheme.colors.onSurface)
+        .background(MaterialTheme.colorScheme.onSurface)
         .onGloballyPositioned { coordinates ->
             val toDp = pxToDp(context, coordinates.boundsInRoot().top)
             weatherMapLowerPartBounds.value = toDp

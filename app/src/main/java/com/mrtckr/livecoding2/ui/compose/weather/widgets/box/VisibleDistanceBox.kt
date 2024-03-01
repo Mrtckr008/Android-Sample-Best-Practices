@@ -8,12 +8,12 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.RemoveRedEye
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -27,8 +27,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import com.mrtckr.livecoding.domain.entity.weather.ViewingDistance
 import com.mrtckr.livecoding2.R
-import com.mrtckr.livecoding2.ui.compose.weather.extensions.Constants.INFORMATION_BOX_ALPHA
-import com.mrtckr.livecoding2.ui.compose.weather.util.MyAppTheme
+import com.mrtckr.livecoding2.ui.compose.util.Constants.INFORMATION_BOX_ALPHA
+import com.mrtckr.livecoding2.ui.compose.util.MyAppTheme
 
 @Composable
 fun VisibleDistanceBox(viewingDistance: ViewingDistance?, modifier: Modifier = Modifier) {
@@ -90,7 +90,7 @@ fun VisibleDistanceBoxPreview() {
                     .padding(dimensionResource(id = R.dimen.normal_padding))
                     .clip(RoundedCornerShape(dimensionResource(id = R.dimen.weather_information_box_corner_shape)))
                     .height(dimensionResource(id = R.dimen.weather_information_box_height))
-                    .background(MaterialTheme.colors.onSurface)
+                    .background(MaterialTheme.colorScheme.onSurface)
                     .padding(dimensionResource(id = R.dimen.normal_padding))
             )
         }

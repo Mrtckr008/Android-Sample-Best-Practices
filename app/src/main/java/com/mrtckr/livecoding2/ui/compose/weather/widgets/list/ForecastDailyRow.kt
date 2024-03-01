@@ -7,10 +7,10 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.material.Divider
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -23,10 +23,10 @@ import com.mrtckr.livecoding.domain.entity.weather.Forecast
 import com.mrtckr.livecoding.domain.entity.weather.WeatherData
 import com.mrtckr.livecoding.domain.entity.weather.WeatherStatus
 import com.mrtckr.livecoding2.R
-import com.mrtckr.livecoding2.ui.compose.weather.extensions.Constants
+import com.mrtckr.livecoding2.ui.compose.util.Constants
+import com.mrtckr.livecoding2.ui.compose.util.MyAppTheme
 import com.mrtckr.livecoding2.ui.compose.weather.extensions.IconByStatus
 import com.mrtckr.livecoding2.ui.compose.weather.extensions.TemperatureBarChart
-import com.mrtckr.livecoding2.ui.compose.weather.util.MyAppTheme
 
 @Composable
 fun ForecastDailyItem(weatherItem: Forecast) {
@@ -54,7 +54,7 @@ fun ForecastDailyItem(weatherItem: Forecast) {
 
         TemperatureBarChart(
             fillColor = Color.Cyan,
-            emptyColor = MaterialTheme.colors.onSurface,
+            emptyColor = MaterialTheme.colorScheme.onSurface,
             modifier = Modifier
                 .padding(horizontal = dimensionResource(id = R.dimen.normal_padding))
                 .height(dimensionResource(id = R.dimen.forecast_daily_chart_height))
@@ -71,13 +71,12 @@ fun ForecastDailyItem(weatherItem: Forecast) {
         )
     }
 
-    Divider(
+    HorizontalDivider(
         Modifier
             .alpha(Constants.FORECAST_DIVIDER_ALPHA)
             .padding(dimensionResource(id = R.dimen.big_normal_padding)),
-        color = Color.Gray,
         thickness = dimensionResource(id = R.dimen.divider_height),
-        startIndent = dimensionResource(id = R.dimen.normal_padding)
+        color = Color.Gray
     )
 }
 
@@ -107,11 +106,11 @@ fun ForecastDailyItemAPI31AndBiggerSystemFontPreview() {
         Surface {
             ForecastDailyItem(
                 Forecast(
-                day = "Thursday",
-                temperatureMax = -2,
-                temperatureMin = -9,
-                weatherStatus = WeatherStatus.SNOWY
-            )
+                    day = "Thursday",
+                    temperatureMax = -2,
+                    temperatureMin = -9,
+                    weatherStatus = WeatherStatus.SNOWY
+                )
             )
         }
     }

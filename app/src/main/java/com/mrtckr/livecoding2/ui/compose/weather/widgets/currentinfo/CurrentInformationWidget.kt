@@ -7,8 +7,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -26,10 +26,10 @@ import com.mrtckr.livecoding.domain.entity.weather.UVIndex
 import com.mrtckr.livecoding.domain.entity.weather.ViewingDistance
 import com.mrtckr.livecoding.domain.entity.weather.WeatherData
 import com.mrtckr.livecoding2.R
-import com.mrtckr.livecoding2.ui.compose.weather.extensions.Constants.CURRENT_INFORMATION_WIDGET_TRANSLATION_Y
-import com.mrtckr.livecoding2.ui.compose.weather.extensions.Constants.INVISIBLE_ALPHA
-import com.mrtckr.livecoding2.ui.compose.weather.extensions.Constants.VISIBLE_ALPHA
-import com.mrtckr.livecoding2.ui.compose.weather.util.MyAppTheme
+import com.mrtckr.livecoding2.ui.compose.util.Constants.CURRENT_INFORMATION_WIDGET_TRANSLATION_Y
+import com.mrtckr.livecoding2.ui.compose.util.Constants.INVISIBLE_ALPHA
+import com.mrtckr.livecoding2.ui.compose.util.Constants.VISIBLE_ALPHA
+import com.mrtckr.livecoding2.ui.compose.util.MyAppTheme
 
 @Composable
 fun CurrentInformationWidget(

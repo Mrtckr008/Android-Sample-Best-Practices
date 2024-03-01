@@ -8,7 +8,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.MaterialTheme
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -31,7 +31,7 @@ fun WeatherInformationBox(weatherData: WeatherData) {
                     .weight(1f)
                     .height(dimensionResource(id = R.dimen.weather_information_box_height))
                     .clip(RoundedCornerShape(dimensionResource(id = R.dimen.weather_information_box_corner_shape)))
-                    .background(MaterialTheme.colors.onSurface)
+                    .background(MaterialTheme.colorScheme.onSurface)
                     .padding(dimensionResource(id = R.dimen.normal_padding))
             )
             RainfallForecastBox(
@@ -41,7 +41,7 @@ fun WeatherInformationBox(weatherData: WeatherData) {
                     .weight(1f)
                     .clip(RoundedCornerShape(dimensionResource(id = R.dimen.weather_information_box_corner_shape)))
                     .height(dimensionResource(id = R.dimen.weather_information_box_height))
-                    .background(MaterialTheme.colors.onSurface)
+                    .background(MaterialTheme.colorScheme.onSurface)
                     .padding(dimensionResource(id = R.dimen.normal_padding))
             )
         }
@@ -56,7 +56,7 @@ fun WeatherInformationBox(weatherData: WeatherData) {
                     .padding(dimensionResource(id = R.dimen.normal_padding))
                     .weight(1f)
                     .clip(RoundedCornerShape(dimensionResource(id = R.dimen.weather_information_box_corner_shape)))
-                    .background(MaterialTheme.colors.onSurface)
+                    .background(MaterialTheme.colorScheme.onSurface)
                     .height(dimensionResource(id = R.dimen.weather_information_box_height))
                     .padding(dimensionResource(id = R.dimen.normal_padding))
             )
@@ -68,7 +68,7 @@ fun WeatherInformationBox(weatherData: WeatherData) {
                     .weight(1f)
                     .clip(RoundedCornerShape(dimensionResource(id = R.dimen.weather_information_box_corner_shape)))
                     .height(dimensionResource(id = R.dimen.weather_information_box_height))
-                    .background(MaterialTheme.colors.onSurface)
+                    .background(MaterialTheme.colorScheme.onSurface)
                     .padding(dimensionResource(id = R.dimen.normal_padding))
             )
         }

@@ -2,7 +2,7 @@ package com.mrtckr.livecoding.data
 
 import com.mrtckr.common.network.AppDispatchers
 import com.mrtckr.common.network.Dispatcher
-import com.mrtckr.livecoding.data.datasource.UserService
+import com.mrtckr.livecoding.data.datasource.user.UserService
 import com.mrtckr.livecoding.domain.entity.user.FavoriteList
 import com.mrtckr.livecoding.domain.entity.user.User
 import com.mrtckr.livecoding.domain.repository.UserRepository

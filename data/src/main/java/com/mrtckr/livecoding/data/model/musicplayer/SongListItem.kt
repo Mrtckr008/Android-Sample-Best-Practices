@@ -1,0 +1,12 @@
+package com.mrtckr.livecoding.data.model.musicplayer
+
+import kotlinx.serialization.Serializable
+
+@Serializable
+data class SongListItem(
+    val id: String,
+    val iconUrl: String,
+    val name: String,
+    val singer: String,
+    val song: List<SongEntity> = listOf(),
+)

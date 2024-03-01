@@ -1,5 +1,6 @@
 package com.mrtckr.livecoding.data.datasource
 
+import com.mrtckr.livecoding.data.datasource.user.UserDataDataSource
 import com.mrtckr.livecoding.data.model.musicplayer.user.UserEntity
 import com.mrtckr.network.JvmUnitTestFakeAssetManager
 import junit.framework.TestCase.assertEquals

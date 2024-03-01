@@ -8,11 +8,12 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.material.Divider
-import androidx.compose.material.Icon
-import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.OpenInNew
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -24,15 +25,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import com.mrtckr.livecoding2.R
 import com.mrtckr.livecoding2.ui.compose.weather.extensions.WeatherDataPrivacyInformation
-import com.mrtckr.livecoding2.ui.compose.weather.util.MyAppTheme
+import com.mrtckr.livecoding2.ui.compose.util.MyAppTheme
 
 @Composable
 fun BottomToolbar(cityName: String) {
     Column {
-        Divider(
-            color = Color.Black,
+        HorizontalDivider(
             thickness = dimensionResource(id = R.dimen.divider_height),
-            startIndent = dimensionResource(id = R.dimen.normal_margin)
+            color = Color.Black
         )
 
         Row {
@@ -57,10 +57,9 @@ fun BottomToolbar(cityName: String) {
             Spacer(modifier = Modifier.width(dimensionResource(id = R.dimen.normal_spacer_size)))
         }
 
-        Divider(
-            color = Color.Black,
+        HorizontalDivider(
             thickness = dimensionResource(id = R.dimen.divider_height),
-            startIndent = dimensionResource(id = R.dimen.normal_margin)
+            color = Color.Black
         )
 
         Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.large_spacer_size)))
@@ -83,6 +82,8 @@ fun BottomToolbar(cityName: String) {
 @Composable
 fun BottomToolbarPreview() {
     MyAppTheme {
-        BottomToolbar("Istanbul")
+        Surface {
+            BottomToolbar("Istanbul")
+        }
     }
 }

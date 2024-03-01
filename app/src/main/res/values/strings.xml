@@ -8,7 +8,7 @@
     <string name="collapsed_current_information" translatable="false">%1$s° | %2$s</string>
 
     <string name="title_weather">Weather</string>
-    <string name="title_dashboard" translatable="false">Dashboard</string>
+    <string name="title_music_player" translatable="false">Music Player</string>
     <string name="title_notifications" translatable="false">Notifications</string>
     <string name="viewing_distance">VIEWING DISTANCE</string>
     <string name="uv_index">UV INDEX</string>

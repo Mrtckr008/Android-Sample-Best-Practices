@@ -11,13 +11,14 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import com.mrtckr.livecoding2.R
+import com.mrtckr.livecoding2.ui.compose.util.Constants
 
 @Composable
 fun TemperatureBarChart(
+    modifier: Modifier = Modifier,
     filledFraction: Pair<Float, Float> = 0.3f to 0.6f,
     fillColor: Color = Color.Cyan,
     emptyColor: Color = Color.DarkGray,
-    modifier: Modifier = Modifier
 ) {
     Box(
         modifier = Modifier
