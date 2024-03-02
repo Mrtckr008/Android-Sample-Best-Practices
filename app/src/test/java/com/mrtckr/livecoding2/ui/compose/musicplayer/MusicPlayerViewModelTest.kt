@@ -1,6 +1,6 @@
 package com.mrtckr.livecoding2.ui.compose.musicplayer
 
-import com.mrtckr.livecoding.data.datasource.musicplayer.PlaylistListService
+import com.mrtckr.livecoding.data.datasource.musicplayer.PlaylistListRepository
 import com.mrtckr.livecoding.data.model.musicplayer.PlaylistListEntity
 import com.mrtckr.livecoding.data.testing.songListItem
 import com.mrtckr.livecoding.domain.entity.user.User
@@ -11,14 +11,12 @@ import io.mockk.mockk
 import io.mockk.verify
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.cancel
+import kotlinx.coroutines.cancelAndJoin
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.take
-import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.runBlockingTest
-import kotlinx.coroutines.test.runBlockingTestOnTestScope
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Rule
@@ -37,7 +35,7 @@ class MusicPlayerViewModelTest {
 
     private val getUserDataUseCase: GetUserDataUseCase = mockk()
 
-    private val playlistListService: PlaylistListService = mockk()
+    private val playlistListService: PlaylistListRepository = mockk()
 
     @Before
     fun setUp() {
@@ -70,29 +68,30 @@ class MusicPlayerViewModelTest {
 
     @Test
     fun `userData emits Success state with correct data`() = runBlockingTest {
-        val emission = viewModel.userData.take(1).toList().first()
+        val emission = viewModel.userData.first()
         assertTrue(emission is UserDataUiState.Success && emission.userData.name == "Murat Cakir")
     }
 
     @Test
     fun `songListData emits Success state with correct data`() = runBlockingTest {
-        val emission = viewModel.songListData.first() // Directly taking the first emission
-
-        assert(emission is SongListDataUiState.Success) { "Emission is not of type Success" }
+        val emission = viewModel.songListData.first()
+        assertTrue(emission is SongListDataUiState.Success && emission.playlistListEntity.playlistList.isNotEmpty())
     }
+
 
     @Test
     fun `songListData emits Success state with correct data with collectLatest`() =
-        runBlockingTestOnTestScope {
+        runBlockingTest {
             val job = launch {
                 viewModel.songListData.collectLatest { songListDataState ->
                     if (songListDataState is SongListDataUiState.Success) {
                         assertTrue(songListDataState.playlistListEntity.playlistList.isNotEmpty())
-                        cancel()
+                        this.cancel()
                     }
                 }
             }
             job.join()
+            job.cancelAndJoin()
         }
 
     @Test

@@ -2,7 +2,7 @@ package com.mrtckr.livecoding2.ui.compose.musicplayer
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.mrtckr.livecoding.data.datasource.musicplayer.PlaylistListService
+import com.mrtckr.livecoding.data.datasource.musicplayer.PlaylistListRepository
 import com.mrtckr.livecoding.data.model.musicplayer.PlaylistListEntity
 import com.mrtckr.livecoding.domain.entity.user.User
 import com.mrtckr.livecoding.domain.usecase.GetUserDataUseCase
@@ -17,7 +17,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MusicPlayerViewModel @Inject constructor(
     getUserDataUseCase: GetUserDataUseCase,
-    private val playlistListService: PlaylistListService,
+    private val playlistListService: PlaylistListRepository,
 ) : ViewModel() {
 
     val userData: StateFlow<UserDataUiState> =

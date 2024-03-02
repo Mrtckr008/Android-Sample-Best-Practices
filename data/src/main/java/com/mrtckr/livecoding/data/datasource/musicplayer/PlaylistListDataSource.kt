@@ -8,7 +8,7 @@ import java.io.IOException
 import javax.inject.Inject
 
 class PlaylistListDataSource @Inject constructor(private val dataStore: DataStore<PlaylistListEntity>) :
-    PlaylistListService {
+    PlaylistListRepository {
 
     override val songData: Flow<PlaylistListEntity>
         get() = dataStore.data.catch { exception ->

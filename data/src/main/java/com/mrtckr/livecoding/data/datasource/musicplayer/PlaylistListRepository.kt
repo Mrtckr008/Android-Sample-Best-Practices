@@ -3,7 +3,7 @@ package com.mrtckr.livecoding.data.datasource.musicplayer
 import com.mrtckr.livecoding.data.model.musicplayer.PlaylistListEntity
 import kotlinx.coroutines.flow.Flow
 
-interface PlaylistListService {
+interface PlaylistListRepository {
 
     val songData: Flow<PlaylistListEntity>
 

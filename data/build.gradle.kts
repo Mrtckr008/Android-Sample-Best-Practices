@@ -50,6 +50,7 @@ dependencies {
     implementation(libs.bundles.retrofit)
     implementation(libs.bundles.hilt)
     implementation(libs.bundles.datastore)
+    implementation(libs.hilt.android.testing)
     kapt(libs.bundles.hiltKapt)
     annotationProcessor(libs.hiltCompiler)
     testImplementation(libs.bundles.testing)

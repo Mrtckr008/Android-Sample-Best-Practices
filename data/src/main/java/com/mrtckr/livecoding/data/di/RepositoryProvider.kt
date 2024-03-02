@@ -3,7 +3,7 @@ package com.mrtckr.livecoding.data.di
 import com.mrtckr.livecoding.data.UserDataSourceImpl
 import com.mrtckr.livecoding.data.WeatherDataSourceImpl
 import com.mrtckr.livecoding.data.datasource.musicplayer.PlaylistListDataSource
-import com.mrtckr.livecoding.data.datasource.musicplayer.PlaylistListService
+import com.mrtckr.livecoding.data.datasource.musicplayer.PlaylistListRepository
 import com.mrtckr.livecoding.data.datasource.user.UserDataDataSource
 import com.mrtckr.livecoding.data.datasource.user.UserService
 import com.mrtckr.livecoding.data.datasource.weather.WeatherDataSource
@@ -32,5 +32,5 @@ abstract class RepositoryProvider {
     abstract fun bindIUserData(userDataDataSource: UserDataDataSource): UserService
 
     @Binds
-    abstract fun bindMusicPlayerService(musicPlayerDataSource: PlaylistListDataSource): PlaylistListService
+    abstract fun bindMusicPlayerService(musicPlayerDataSource: PlaylistListDataSource): PlaylistListRepository
 }
