@@ -1,4 +1,4 @@
-package com.mrtckr.livecoding2.ui.compose.util
+package com.mrtckr.livecoding2.ui.compose.common
 
 import android.content.Context
 

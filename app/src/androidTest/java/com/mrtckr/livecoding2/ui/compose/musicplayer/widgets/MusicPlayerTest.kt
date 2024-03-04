@@ -22,7 +22,12 @@ class MusicPlayerTest {
     @Test
     fun musicPlayer_displaysLoadingScreen_whenPlayListDataIsLoading() {
         composeTestRule.setContent {
-            MusicPlayer(playListData = SongListDataUiState.Loading)
+            MusicPlayer(
+                playListData = SongListDataUiState.Loading,
+                navigateToPlaylistDetailWithId = {
+                    it
+                }
+            )
         }
 
         composeTestRule
@@ -39,7 +44,12 @@ class MusicPlayerTest {
         )
 
         composeTestRule.setContent {
-            MusicPlayer(playListData = testPlayListData)
+            MusicPlayer(
+                playListData = testPlayListData,
+                navigateToPlaylistDetailWithId = {
+
+                }
+            )
         }
 
         composeTestRule

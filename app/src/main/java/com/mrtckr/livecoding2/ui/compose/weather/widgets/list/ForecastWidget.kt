@@ -31,8 +31,8 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import com.mrtckr.livecoding.domain.entity.weather.WeatherData
 import com.mrtckr.livecoding2.R
-import com.mrtckr.livecoding2.ui.compose.util.Constants
-import com.mrtckr.livecoding2.ui.compose.util.pxToDp
+import com.mrtckr.livecoding2.ui.compose.common.Constants
+import com.mrtckr.livecoding2.ui.compose.common.pxToDp
 
 @Composable
 fun ForecastWidget(

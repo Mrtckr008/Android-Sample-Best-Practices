@@ -1,4 +1,4 @@
-package com.mrtckr.livecoding2.ui.compose.common
+package com.mrtckr.livecoding2.ui.compose.common.widgets
 
 import androidx.annotation.StringRes
 import androidx.compose.material.icons.Icons

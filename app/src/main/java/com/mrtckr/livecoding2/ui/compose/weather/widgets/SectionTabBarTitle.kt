@@ -22,7 +22,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import com.mrtckr.livecoding2.R
-import com.mrtckr.livecoding2.ui.compose.util.Constants
+import com.mrtckr.livecoding2.ui.compose.common.Constants
 
 @Composable
 fun SectionTabBarTitle(

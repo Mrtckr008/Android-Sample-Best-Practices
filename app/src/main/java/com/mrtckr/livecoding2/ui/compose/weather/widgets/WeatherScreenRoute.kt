@@ -34,10 +34,10 @@ import com.mrtckr.livecoding.domain.entity.weather.OverlapCurrentInformationWidg
 import com.mrtckr.livecoding.domain.entity.weather.WeatherData
 import com.mrtckr.livecoding.domain.testing.mockWeatherData
 import com.mrtckr.livecoding2.R
-import com.mrtckr.livecoding2.ui.compose.common.LoadingScreen
-import com.mrtckr.livecoding2.ui.compose.util.Constants
-import com.mrtckr.livecoding2.ui.compose.util.Constants.SCROLLABLE_WIDGET_TOP_POINT
-import com.mrtckr.livecoding2.ui.compose.util.MyAppTheme
+import com.mrtckr.livecoding2.ui.compose.common.widgets.LoadingScreen
+import com.mrtckr.livecoding2.ui.compose.common.Constants
+import com.mrtckr.livecoding2.ui.compose.common.Constants.SCROLLABLE_WIDGET_TOP_POINT
+import com.mrtckr.livecoding2.ui.compose.common.theme.MyAppTheme
 import com.mrtckr.livecoding2.ui.compose.weather.WeatherComposeViewModel
 import com.mrtckr.livecoding2.ui.compose.weather.extensions.VideoPlayerBackground
 import com.mrtckr.livecoding2.ui.compose.weather.extensions.WeatherMapBox

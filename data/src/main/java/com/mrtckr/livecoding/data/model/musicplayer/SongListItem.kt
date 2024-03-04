@@ -8,5 +8,4 @@ data class SongListItem(
     val iconUrl: String,
     val name: String,
     val singer: String,
-    val song: List<SongEntity> = listOf(),
 )

@@ -11,16 +11,15 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.mrtckr.livecoding.domain.entity.user.User
-import com.mrtckr.livecoding2.ui.compose.common.DynamicAsyncImage
-import com.mrtckr.livecoding2.ui.compose.common.LoadingScreen
+import com.mrtckr.livecoding2.ui.compose.common.widgets.DynamicAsyncImage
+import com.mrtckr.livecoding2.ui.compose.common.widgets.LoadingScreen
 import com.mrtckr.livecoding2.ui.compose.musicplayer.UserDataUiState
 import com.mrtckr.livecoding2.ui.compose.musicplayer.extension.OvalTextSurface
-import com.mrtckr.livecoding2.ui.compose.util.Constants.CATEGORIES
-import com.mrtckr.livecoding2.ui.compose.util.MyAppTheme
+import com.mrtckr.livecoding2.ui.compose.common.Constants.CATEGORIES
+import com.mrtckr.livecoding2.ui.compose.common.theme.MyAppTheme
 import kotlin.random.Random
 
 @Composable

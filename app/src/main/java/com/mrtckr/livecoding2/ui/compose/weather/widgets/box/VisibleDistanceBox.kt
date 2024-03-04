@@ -27,8 +27,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import com.mrtckr.livecoding.domain.entity.weather.ViewingDistance
 import com.mrtckr.livecoding2.R
-import com.mrtckr.livecoding2.ui.compose.util.Constants.INFORMATION_BOX_ALPHA
-import com.mrtckr.livecoding2.ui.compose.util.MyAppTheme
+import com.mrtckr.livecoding2.ui.compose.common.Constants.INFORMATION_BOX_ALPHA
+import com.mrtckr.livecoding2.ui.compose.common.theme.MyAppTheme
 
 @Composable
 fun VisibleDistanceBox(viewingDistance: ViewingDistance?, modifier: Modifier = Modifier) {

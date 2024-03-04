@@ -1,4 +1,4 @@
-package com.mrtckr.livecoding2.ui.compose.common
+package com.mrtckr.livecoding2.ui.compose.common.widgets
 
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
@@ -13,7 +13,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.mrtckr.livecoding2.ui.compose.util.MyAppTheme
+import com.mrtckr.livecoding2.ui.compose.common.theme.MyAppTheme
 
 @Composable
 fun BottomNavigationBar(navController: NavController) {

@@ -1,4 +1,4 @@
-package com.mrtckr.livecoding2.ui.compose.common
+package com.mrtckr.livecoding2.ui.compose.common.widgets
 
 import android.annotation.SuppressLint
 import androidx.compose.material3.Scaffold

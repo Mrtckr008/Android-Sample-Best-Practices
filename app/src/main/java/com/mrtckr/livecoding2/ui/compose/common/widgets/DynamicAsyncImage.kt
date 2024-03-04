@@ -1,4 +1,4 @@
-package com.mrtckr.livecoding2.ui.compose.common
+package com.mrtckr.livecoding2.ui.compose.common.widgets
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
@@ -27,7 +27,7 @@ import coil.compose.AsyncImagePainter.State.Error
 import coil.compose.AsyncImagePainter.State.Loading
 import coil.compose.rememberAsyncImagePainter
 import com.mrtckr.livecoding2.R
-import com.mrtckr.livecoding2.ui.compose.util.LocalTintTheme
+import com.mrtckr.livecoding2.ui.compose.common.theme.LocalTintTheme
 
 @Composable
 fun DynamicAsyncImage(

@@ -30,7 +30,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.mrtckr.livecoding2.R
-import com.mrtckr.livecoding2.ui.compose.util.pxToDp
+import com.mrtckr.livecoding2.ui.compose.common.pxToDp
 
 @Composable
 fun WeatherMapBox(weatherMapLowerPartBounds: MutableState<Float?>) {

@@ -25,7 +25,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import com.mrtckr.livecoding2.R
 import com.mrtckr.livecoding2.ui.compose.weather.extensions.WeatherDataPrivacyInformation
-import com.mrtckr.livecoding2.ui.compose.util.MyAppTheme
+import com.mrtckr.livecoding2.ui.compose.common.theme.MyAppTheme
 
 @Composable
 fun BottomToolbar(cityName: String) {

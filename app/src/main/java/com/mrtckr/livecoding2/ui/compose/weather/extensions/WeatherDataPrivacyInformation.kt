@@ -13,7 +13,7 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import com.mrtckr.livecoding2.R
-import com.mrtckr.livecoding2.ui.compose.util.Constants
+import com.mrtckr.livecoding2.ui.compose.common.Constants
 
 @Preview
 @Composable

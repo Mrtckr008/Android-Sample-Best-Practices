@@ -26,10 +26,10 @@ import com.mrtckr.livecoding.domain.entity.weather.UVIndex
 import com.mrtckr.livecoding.domain.entity.weather.ViewingDistance
 import com.mrtckr.livecoding.domain.entity.weather.WeatherData
 import com.mrtckr.livecoding2.R
-import com.mrtckr.livecoding2.ui.compose.util.Constants.CURRENT_INFORMATION_WIDGET_TRANSLATION_Y
-import com.mrtckr.livecoding2.ui.compose.util.Constants.INVISIBLE_ALPHA
-import com.mrtckr.livecoding2.ui.compose.util.Constants.VISIBLE_ALPHA
-import com.mrtckr.livecoding2.ui.compose.util.MyAppTheme
+import com.mrtckr.livecoding2.ui.compose.common.Constants.CURRENT_INFORMATION_WIDGET_TRANSLATION_Y
+import com.mrtckr.livecoding2.ui.compose.common.Constants.INVISIBLE_ALPHA
+import com.mrtckr.livecoding2.ui.compose.common.Constants.VISIBLE_ALPHA
+import com.mrtckr.livecoding2.ui.compose.common.theme.MyAppTheme
 
 @Composable
 fun CurrentInformationWidget(

@@ -11,7 +11,7 @@ import androidx.compose.ui.test.performClick
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.mrtckr.livecoding.domain.entity.user.User
 import com.mrtckr.livecoding2.ui.compose.musicplayer.UserDataUiState
-import com.mrtckr.livecoding2.ui.compose.util.Constants.CATEGORIES
+import com.mrtckr.livecoding2.ui.compose.common.Constants.CATEGORIES
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith

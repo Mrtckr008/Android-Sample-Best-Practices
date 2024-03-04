@@ -17,16 +17,19 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.mrtckr.livecoding.data.testing.songListItem
-import com.mrtckr.livecoding2.ui.compose.common.LoadingScreen
+import com.mrtckr.livecoding2.ui.compose.common.Constants.GRID_LIKED_LIST
+import com.mrtckr.livecoding2.ui.compose.common.Constants.HORIZONTAL_PLAYLIST
+import com.mrtckr.livecoding2.ui.compose.common.theme.MyAppTheme
+import com.mrtckr.livecoding2.ui.compose.common.widgets.LoadingScreen
 import com.mrtckr.livecoding2.ui.compose.musicplayer.MusicPlayerViewModel
 import com.mrtckr.livecoding2.ui.compose.musicplayer.SongListDataUiState
 import com.mrtckr.livecoding2.ui.compose.musicplayer.UserDataUiState
-import com.mrtckr.livecoding2.ui.compose.util.Constants.GRID_LIKED_LIST
-import com.mrtckr.livecoding2.ui.compose.util.Constants.HORIZONTAL_PLAYLIST
-import com.mrtckr.livecoding2.ui.compose.util.MyAppTheme
 
 @Composable
-fun MusicPlayerRoute(viewModel: MusicPlayerViewModel = hiltViewModel()) {
+fun MusicPlayerRoute(
+    viewModel: MusicPlayerViewModel = hiltViewModel(),
+    navigateToPlaylistDetail: (String) -> Unit
+) {
     val userData by viewModel.userData.collectAsStateWithLifecycle()
     val playListData by viewModel.songListData.collectAsStateWithLifecycle()
 
@@ -43,15 +46,19 @@ fun MusicPlayerRoute(viewModel: MusicPlayerViewModel = hiltViewModel()) {
             color = MaterialTheme.colorScheme.background,
             modifier = Modifier
                 .fillMaxSize()
-                .padding(paddingValues).testTag("MusicPlayerSurface")
+                .padding(paddingValues)
+                .testTag("MusicPlayerSurface")
         ) {
-            MusicPlayer(playListData)
+            MusicPlayer(playListData, navigateToPlaylistDetail)
         }
     }
 }
 
 @Composable
-fun MusicPlayer(playListData: SongListDataUiState) {
+fun MusicPlayer(
+    playListData: SongListDataUiState,
+    navigateToPlaylistDetailWithId: (String) -> Unit
+) {
     LazyColumn(
         modifier = Modifier.padding(start = 16.dp, end = 16.dp, bottom = 80.dp)
     ) {
@@ -59,8 +66,17 @@ fun MusicPlayer(playListData: SongListDataUiState) {
             is SongListDataUiState.Success -> {
                 items(playListData.playlistListEntity.playlistList) { playlist ->
                     when (playlist.type) {
-                        HORIZONTAL_PLAYLIST -> HorizontalPlayListWidget(playlistListEntity = playlist)
-                        GRID_LIKED_LIST -> PlaylistListWidget(playlistListEntity = playlist)
+                        HORIZONTAL_PLAYLIST -> HorizontalPlayListWidget(
+                            playlistListEntity = playlist,
+                            onClick = { playlistData ->
+                                navigateToPlaylistDetailWithId(playlistData.id)
+                            })
+
+                        GRID_LIKED_LIST -> PlaylistListWidget(
+                            playlistListEntity = playlist,
+                            onClick = { playlistData ->
+                                navigateToPlaylistDetailWithId(playlistData.id)
+                            })
                     }
                 }
             }
@@ -76,6 +92,11 @@ fun MusicPlayer(playListData: SongListDataUiState) {
 @Composable
 fun MusicPlayerPortraitTabletPreview() {
     MyAppTheme {
-        MusicPlayer(playListData = SongListDataUiState.Success(songListItem))
+        MusicPlayer(
+            playListData = SongListDataUiState.Success(songListItem),
+            navigateToPlaylistDetailWithId = {
+
+            }
+        )
     }
 }

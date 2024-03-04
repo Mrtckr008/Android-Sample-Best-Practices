@@ -1,4 +1,4 @@
-package com.mrtckr.livecoding2.ui.compose.util
+package com.mrtckr.livecoding2.ui.compose.common.theme
 
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.staticCompositionLocalOf

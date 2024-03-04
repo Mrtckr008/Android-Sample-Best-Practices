@@ -23,8 +23,8 @@ import com.mrtckr.livecoding.domain.entity.weather.Forecast
 import com.mrtckr.livecoding.domain.entity.weather.WeatherData
 import com.mrtckr.livecoding.domain.entity.weather.WeatherStatus
 import com.mrtckr.livecoding2.R
-import com.mrtckr.livecoding2.ui.compose.util.Constants
-import com.mrtckr.livecoding2.ui.compose.util.MyAppTheme
+import com.mrtckr.livecoding2.ui.compose.common.Constants
+import com.mrtckr.livecoding2.ui.compose.common.theme.MyAppTheme
 import com.mrtckr.livecoding2.ui.compose.weather.extensions.IconByStatus
 import com.mrtckr.livecoding2.ui.compose.weather.extensions.TemperatureBarChart
 

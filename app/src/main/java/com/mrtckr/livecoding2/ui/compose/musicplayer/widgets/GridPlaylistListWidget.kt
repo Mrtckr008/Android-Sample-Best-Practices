@@ -1,6 +1,7 @@
 package com.mrtckr.livecoding2.ui.compose.musicplayer.widgets
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -23,23 +24,29 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.mrtckr.livecoding.data.model.musicplayer.PlayListDataEntity
+import com.mrtckr.livecoding.data.model.musicplayer.PlaylistEntity
 import com.mrtckr.livecoding.data.testing.songListItem
-import com.mrtckr.livecoding2.ui.compose.common.DynamicAsyncImage
-import com.mrtckr.livecoding2.ui.compose.util.MyAppTheme
+import com.mrtckr.livecoding2.ui.compose.common.theme.MyAppTheme
+import com.mrtckr.livecoding2.ui.compose.common.widgets.DynamicAsyncImage
 
 @Composable
-fun PlaylistListWidget(playlistListEntity: PlayListDataEntity) {
+fun PlaylistListWidget(playlistListEntity: PlayListDataEntity, onClick: (PlaylistEntity) -> Unit) {
     LazyVerticalGrid(
         columns = GridCells.Fixed(2),
         horizontalArrangement = Arrangement.spacedBy(8.dp),
         verticalArrangement = Arrangement.spacedBy(4.dp),
         modifier = Modifier
             .padding(vertical = 8.dp)
-            .height(250.dp).testTag("PlaylistListWidget")
+            .height(250.dp)
+            .testTag("PlaylistListWidget")
     ) {
         items(items = playlistListEntity.playlistList) { playlistData ->
             Surface(
-                modifier = Modifier.padding(top = 4.dp, bottom = 4.dp),
+                modifier = Modifier
+                    .padding(top = 4.dp, bottom = 4.dp)
+                    .clickable {
+                        onClick(playlistData)
+                    },
                 shape = RoundedCornerShape(8.dp),
                 color = MaterialTheme.colorScheme.onSurface,
             ) {
@@ -73,7 +80,7 @@ fun PlaylistListWidget(playlistListEntity: PlayListDataEntity) {
 fun PlaylistListWidgetPreview() {
     MyAppTheme {
         Surface {
-            PlaylistListWidget(songListItem.playlistList[0])
+            PlaylistListWidget(songListItem.playlistList[0], {})
         }
     }
 }
