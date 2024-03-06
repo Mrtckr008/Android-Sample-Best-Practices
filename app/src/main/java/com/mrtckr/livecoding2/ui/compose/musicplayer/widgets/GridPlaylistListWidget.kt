@@ -36,7 +36,7 @@ fun PlaylistListWidget(playlistListEntity: PlayListDataEntity, onClick: (Playlis
         horizontalArrangement = Arrangement.spacedBy(8.dp),
         verticalArrangement = Arrangement.spacedBy(4.dp),
         modifier = Modifier
-            .padding(vertical = 8.dp)
+            .padding(vertical = 8.dp, horizontal = 16.dp)
             .height(250.dp)
             .testTag("PlaylistListWidget")
     ) {

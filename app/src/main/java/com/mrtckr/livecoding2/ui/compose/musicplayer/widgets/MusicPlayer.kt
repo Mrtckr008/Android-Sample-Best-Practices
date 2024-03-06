@@ -60,7 +60,7 @@ fun MusicPlayer(
     navigateToPlaylistDetailWithId: (String) -> Unit
 ) {
     LazyColumn(
-        modifier = Modifier.padding(start = 16.dp, end = 16.dp, bottom = 80.dp)
+        modifier = Modifier.padding(bottom = 80.dp)
     ) {
         when (playListData) {
             is SongListDataUiState.Success -> {
