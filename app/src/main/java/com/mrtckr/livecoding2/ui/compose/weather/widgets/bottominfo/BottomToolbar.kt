@@ -23,16 +23,16 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
+import com.mrtckr.livecoding.domain.testing.mockWeatherData
 import com.mrtckr.livecoding2.R
-import com.mrtckr.livecoding2.ui.compose.weather.extensions.WeatherDataPrivacyInformation
 import com.mrtckr.livecoding2.ui.compose.common.theme.MyAppTheme
+import com.mrtckr.livecoding2.ui.compose.weather.extensions.WeatherDataPrivacyInformation
 
 @Composable
 fun BottomToolbar(cityName: String) {
     Column {
         HorizontalDivider(
-            thickness = dimensionResource(id = R.dimen.divider_height),
-            color = Color.Black
+            thickness = dimensionResource(id = R.dimen.divider_height), color = Color.Black
         )
 
         Row {
@@ -58,8 +58,7 @@ fun BottomToolbar(cityName: String) {
         }
 
         HorizontalDivider(
-            thickness = dimensionResource(id = R.dimen.divider_height),
-            color = Color.Black
+            thickness = dimensionResource(id = R.dimen.divider_height), color = Color.Black
         )
 
         Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.large_spacer_size)))
@@ -83,7 +82,7 @@ fun BottomToolbar(cityName: String) {
 fun BottomToolbarPreview() {
     MyAppTheme {
         Surface {
-            BottomToolbar("Istanbul")
+            BottomToolbar(mockWeatherData.cityName)
         }
     }
 }

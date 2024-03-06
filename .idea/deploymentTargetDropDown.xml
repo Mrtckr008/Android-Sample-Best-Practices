@@ -2,6 +2,9 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
+      <entry key="NavigationTest">
+        <State />
+      </entry>
       <entry key="app">
         <State>
           <targetSelectedWithDropDown>
@@ -15,8 +18,11 @@
               </deviceKey>
             </Target>
           </targetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-02-24T09:28:22.165468Z" />
+          <timeTargetWasSelectedWithDropDown value="2024-03-05T20:46:15.314344Z" />
         </State>
+      </entry>
+      <entry key="navigateToMusicPlayerAndMusicDetail()">
+        <State />
       </entry>
     </value>
   </component>

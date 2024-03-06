@@ -28,7 +28,7 @@ class WeatherScreenTest {
             WeatherScreen(weatherData = mockWeatherData, context = LocalContext.current)
         }
 
-        composeTestRule.onNodeWithText("Istanbul").assertExists()
+        composeTestRule.onNodeWithText(mockWeatherData.cityName).assertExists()
         composeTestRule.onNodeWithText("Cloudy").assertExists()
     }
 

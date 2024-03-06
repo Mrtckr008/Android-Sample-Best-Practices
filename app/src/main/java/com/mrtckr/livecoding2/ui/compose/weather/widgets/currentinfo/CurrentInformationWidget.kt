@@ -25,6 +25,7 @@ import com.mrtckr.livecoding.domain.entity.weather.RainfallForecast
 import com.mrtckr.livecoding.domain.entity.weather.UVIndex
 import com.mrtckr.livecoding.domain.entity.weather.ViewingDistance
 import com.mrtckr.livecoding.domain.entity.weather.WeatherData
+import com.mrtckr.livecoding.domain.testing.mockWeatherData
 import com.mrtckr.livecoding2.R
 import com.mrtckr.livecoding2.ui.compose.common.Constants.CURRENT_INFORMATION_WIDGET_TRANSLATION_Y
 import com.mrtckr.livecoding2.ui.compose.common.Constants.INVISIBLE_ALPHA
@@ -154,7 +155,7 @@ fun CurrentInformationWidgetExpandedPreview() {
         Surface {
             CurrentInformationWidget(
                 weatherData = WeatherData(
-                    cityName = "Istanbul",
+                    cityName = mockWeatherData.cityName,
                     description = "Cloudy",
                     forecast = arrayListOf(),
                     forecastHours = arrayListOf(),

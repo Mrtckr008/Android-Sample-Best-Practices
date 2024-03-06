@@ -16,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.mrtckr.livecoding2.ui.compose.common.theme.MyAppTheme
@@ -46,6 +47,7 @@ fun ActionButtonsBar(listIconUrl: String) {
             modifier = Modifier
                 .width(40.dp)
                 .align(Alignment.CenterVertically)
+                .testTag("DownloadIcon")
         )
         Icon(
             imageVector = Icons.Filled.SettingsEthernet,
@@ -63,13 +65,15 @@ fun ActionButtonsBar(listIconUrl: String) {
             modifier = Modifier
                 .width(40.dp)
                 .align(Alignment.CenterVertically)
+                .testTag("ShuffleIcon")
         )
         Icon(
             imageVector = Icons.Filled.PlayCircle,
             tint = Color.White,
             modifier = Modifier
                 .size(50.dp)
-                .align(Alignment.CenterVertically),
+                .align(Alignment.CenterVertically)
+                .testTag("PlayIcon"),
             contentDescription = null
         )
     }

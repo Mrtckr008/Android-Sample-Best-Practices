@@ -22,7 +22,9 @@ class PlaylistListWidgetTest {
         val testPlaylist = songListItem.playlistList[0]
 
         composeTestRule.setContent {
-            PlaylistListWidget(playlistListEntity = testPlaylist)
+            PlaylistListWidget(playlistListEntity = testPlaylist) {
+
+            }
         }
 
         composeTestRule.onNodeWithTag("PlaylistListWidget").assertIsDisplayed()

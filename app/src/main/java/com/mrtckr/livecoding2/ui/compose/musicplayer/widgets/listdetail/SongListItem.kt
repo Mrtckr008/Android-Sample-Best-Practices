@@ -15,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
@@ -27,7 +28,7 @@ import com.mrtckr.livecoding2.ui.compose.common.theme.MyAppTheme
 import com.mrtckr.livecoding2.ui.compose.common.widgets.DynamicAsyncImage
 
 @Composable
-fun SongItem(song: SongListItem) {
+fun SongListItem(song: SongListItem) {
     Column {
         Row(
             modifier = Modifier
@@ -50,12 +51,13 @@ fun SongItem(song: SongListItem) {
                     overflow = TextOverflow.Ellipsis,
                     modifier = Modifier
                         .padding(start = 8.dp)
-                        .fillMaxWidth(),
+                        .fillMaxWidth()
+                        .testTag("ListSongName"),
                     color = Color.LightGray,
                     fontSize = 15.sp
                 )
                 Text(
-                    text = song.name,
+                    text = song.singer,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
                     modifier = Modifier
@@ -81,7 +83,7 @@ fun SongItemListPreview() {
     MyAppTheme {
         LazyColumn {
             items(songListItem.playlistList[1].playlistList[0].songList) { song ->
-                SongItem(song = song)
+                SongListItem(song = song)
             }
         }
     }

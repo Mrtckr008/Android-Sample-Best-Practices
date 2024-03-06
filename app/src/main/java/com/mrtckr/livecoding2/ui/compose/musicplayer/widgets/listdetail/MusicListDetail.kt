@@ -25,12 +25,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.mrtckr.livecoding.data.model.musicplayer.PlaylistEntity
 import com.mrtckr.livecoding.data.testing.songListItem
 import com.mrtckr.livecoding2.ui.compose.common.Constants.ALPHA_SCALE_RATIO
 import com.mrtckr.livecoding2.ui.compose.common.Constants.ANIMATION_DURATION
@@ -52,20 +54,35 @@ import com.mrtckr.livecoding2.ui.compose.musicplayer.SongListDataUiState
 import com.mrtckr.livecoding2.ui.compose.musicplayer.UserDataUiState
 
 @Composable
-fun MusicListDetail(
+fun MusicListDetailRoute(
     songListId: String,
     navController: NavHostController,
     viewModel: MusicPlayerViewModel = hiltViewModel()
 ) {
-    val context = LocalContext.current
-
     val userUIStateData by viewModel.userData.collectAsStateWithLifecycle()
     val playListUIStateData by viewModel.songListData.collectAsStateWithLifecycle()
 
-    val scrollableWidgetBounds = remember { mutableStateOf<Float?>(null) }
-    val scrollableWidgetTopPoint = scrollableWidgetBounds.value ?: DEFAULT_VALUE
+    if (playListUIStateData is SongListDataUiState.Loading || userUIStateData is UserDataUiState.Loading) {
+        LoadingScreen()
+        return
+    }
 
-    val imageSize = remember { mutableStateOf(LIST_DETAIL_IMAGE_SIZE.dp) }
+    val userFullName = (userUIStateData as UserDataUiState.Success).userData.name
+
+    val playlistData =
+        (playListUIStateData as SongListDataUiState.Success).playlistListEntity.playlistList.first { playEntity ->
+            playEntity.playlistList.any { it.id == songListId }
+        }.playlistList.first { it.id == songListId }
+
+    MusicPlayerDetailList(playlistData, userFullName, navController)
+}
+
+@Composable
+fun MusicPlayerDetailList(
+    playlistEntity: PlaylistEntity, userFullName: String, navController: NavHostController
+) {
+    val context = LocalContext.current
+
     val imageAlpha = remember { mutableFloatStateOf(VISIBLE_ALPHA) }
 
     val animatedAlpha by animateFloatAsState(
@@ -73,6 +90,16 @@ fun MusicListDetail(
         animationSpec = tween(durationMillis = ANIMATION_DURATION),
         label = ""
     )
+
+    val scrollableWidgetBounds = remember { mutableStateOf<Float?>(null) }
+    val scrollableWidgetTopPoint = scrollableWidgetBounds.value ?: DEFAULT_VALUE
+
+    val imageSize = remember { mutableStateOf(LIST_DETAIL_IMAGE_SIZE.dp) }
+
+    val colorAffectBottom =
+        (scrollableWidgetTopPoint * IMAGE_SIZE_SCALE_FACTOR_RATIO).coerceAtLeast(
+            BACKGROUND_COLOR_AFFECT_MIN_VALUE
+        )
 
     LaunchedEffect(scrollableWidgetTopPoint) {
         when {
@@ -96,23 +123,6 @@ fun MusicListDetail(
         }
     }
 
-    if (playListUIStateData is SongListDataUiState.Loading || userUIStateData is UserDataUiState.Loading) {
-        LoadingScreen()
-        return
-    }
-
-    val playlistData =
-        (playListUIStateData as SongListDataUiState.Success).playlistListEntity.playlistList.first { playEntity ->
-            playEntity.playlistList.any { it.id == songListId }
-        }.playlistList.first { it.id == songListId }
-
-    val userData = (userUIStateData as UserDataUiState.Success).userData
-
-    val colorAffectBottom =
-        (scrollableWidgetTopPoint * IMAGE_SIZE_SCALE_FACTOR_RATIO).coerceAtLeast(
-            BACKGROUND_COLOR_AFFECT_MIN_VALUE
-        )
-
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -129,13 +139,14 @@ fun MusicListDetail(
     ) {
         Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxWidth()) {
             DynamicAsyncImage(
-                imageUrl = playlistData.iconUrl,
+                imageUrl = playlistEntity.iconUrl,
                 contentDescription = null,
                 modifier = Modifier
                     .padding(top = 6.dp)
                     .size(imageSize.value)
                     .align(Alignment.Center)
                     .alpha(imageAlpha.floatValue)
+                    .testTag("MusicListImage")
             )
         }
         LazyColumn(
@@ -147,21 +158,20 @@ fun MusicListDetail(
             item {
                 Spacer(modifier = Modifier.height(230.dp))
                 InformationBar(
-                    listTitle = playlistData.title,
-                    userFullName = userData.name,
+                    listTitle = playlistEntity.title,
+                    userFullName = userFullName,
                     context = context,
                     scrollableWidgetBounds = scrollableWidgetBounds
                 )
-                ActionButtonsBar(listIconUrl = playlistData.iconUrl)
+                ActionButtonsBar(listIconUrl = playlistEntity.iconUrl)
             }
-            items(playlistData.songList) { songEntity ->
-                SongItem(song = songEntity)
+            items(playlistEntity.songList) { songEntity ->
+                SongListItem(song = songEntity)
             }
         }
         TopToolbar(
             navController = navController,
-            title = playlistData.title,
-            imageSize = imageAlpha.floatValue,
+            title = playlistEntity.title,
             animatedAlpha = animatedAlpha
         )
     }
@@ -172,7 +182,7 @@ fun MusicListDetail(
 fun MusicListDetailPreview() {
     MyAppTheme {
         Surface {
-            MusicListDetail(
+            MusicListDetailRoute(
                 songListId = songListItem.playlistList.get(1).playlistList[1].id,
                 navController = rememberNavController()
             )

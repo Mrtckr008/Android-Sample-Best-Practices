@@ -44,13 +44,16 @@ class WeatherComposeViewModelTest {
     }
 
     @Test
-    fun `getWeatherState emits Success state with correct data`() = runBlockingTest() {
-        val cityName = "Istanbul"
+    fun `getWeatherState emits Success state with correct data`() = runBlockingTest {
         val mockWeatherData = mockWeatherData
 
-        `when`(getWeatherMockDataUseCase(cityName)).thenReturn(flow { emit(mockWeatherData) })
+        `when`(getWeatherMockDataUseCase(mockWeatherData.cityName)).thenReturn(flow {
+            emit(
+                mockWeatherData
+            )
+        })
 
-        viewModel.updateWeatherState("Istanbul")
+        viewModel.updateWeatherState(mockWeatherData.cityName)
         val weatherStateFlow = viewModel.weatherState
 
         weatherStateFlow.test {

@@ -34,10 +34,10 @@ import com.mrtckr.livecoding.domain.entity.weather.OverlapCurrentInformationWidg
 import com.mrtckr.livecoding.domain.entity.weather.WeatherData
 import com.mrtckr.livecoding.domain.testing.mockWeatherData
 import com.mrtckr.livecoding2.R
-import com.mrtckr.livecoding2.ui.compose.common.widgets.LoadingScreen
 import com.mrtckr.livecoding2.ui.compose.common.Constants
 import com.mrtckr.livecoding2.ui.compose.common.Constants.SCROLLABLE_WIDGET_TOP_POINT
 import com.mrtckr.livecoding2.ui.compose.common.theme.MyAppTheme
+import com.mrtckr.livecoding2.ui.compose.common.widgets.LoadingScreen
 import com.mrtckr.livecoding2.ui.compose.weather.WeatherComposeViewModel
 import com.mrtckr.livecoding2.ui.compose.weather.extensions.VideoPlayerBackground
 import com.mrtckr.livecoding2.ui.compose.weather.extensions.WeatherMapBox
@@ -46,8 +46,6 @@ import com.mrtckr.livecoding2.ui.compose.weather.widgets.box.WeatherInformationB
 import com.mrtckr.livecoding2.ui.compose.weather.widgets.currentinfo.CurrentInformationWidget
 import com.mrtckr.livecoding2.ui.compose.weather.widgets.list.ForecastHourlyWidget
 import com.mrtckr.livecoding2.ui.compose.weather.widgets.list.ForecastWidget
-
-private const val sampleCityName = "Istanbul"
 
 @Composable
 fun WeatherScreenRoute(viewModel: WeatherComposeViewModel = hiltViewModel()) {
@@ -59,7 +57,7 @@ fun WeatherScreenRoute(viewModel: WeatherComposeViewModel = hiltViewModel()) {
         VideoPlayerBackground(videoResId = R.raw.sunny_background)
 
         LaunchedEffect(Unit) {
-            viewModel.updateWeatherState(sampleCityName)
+            viewModel.updateWeatherState(mockWeatherData.cityName)
         }
 
         val weatherUIState by viewModel.weatherState.collectAsStateWithLifecycle()
@@ -131,7 +129,7 @@ fun WeatherScreen(
             Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.weekly_forecast_and_map_between_space)))
             WeatherMapBox(weatherMapLowerPartBounds)
             WeatherInformationBox(weatherData)
-            BottomToolbar(cityName = sampleCityName)
+            BottomToolbar(cityName = mockWeatherData.cityName)
             Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.parent_widget_bottom_space)))
         }
     }

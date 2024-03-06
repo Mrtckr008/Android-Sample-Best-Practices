@@ -18,6 +18,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.boundsInRoot
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -39,7 +40,7 @@ fun InformationBar(
             .onGloballyPositioned { coordinates ->
                 val toDp = pxToDp(context = context, coordinates.boundsInRoot().top)
                 scrollableWidgetBounds.value = toDp
-            })
+            }.testTag("ListTitleText"))
     Row {
         Icon(
             imageVector = Icons.Filled.LibraryMusic, tint = Color.White, contentDescription = null
@@ -51,6 +52,7 @@ fun InformationBar(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(start = 8.dp)
+                .testTag("InformationBarOfUser")
         )
     }
     Text(

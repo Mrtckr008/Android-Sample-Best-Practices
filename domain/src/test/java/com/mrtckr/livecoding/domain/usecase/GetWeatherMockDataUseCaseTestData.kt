@@ -1,13 +1,17 @@
 package com.mrtckr.livecoding.domain.usecase
 
-import com.mrtckr.livecoding.domain.entity.weather.WeatherData
 import com.mrtckr.livecoding.domain.entity.user.User
+import com.mrtckr.livecoding.domain.entity.weather.WeatherData
 import com.mrtckr.livecoding.domain.repository.WeatherRepository
 import com.mrtckr.livecoding.domain.testing.mockWeatherData
 import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.assertTrue
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Test
@@ -32,7 +36,7 @@ class GetWeatherMockDataUseCaseTestData {
 
     @Test
     fun `invoke returns success result when repository call is successfully`() = runTest {
-        val cityName = "Istanbul"
+        val cityName = mockWeatherData.cityName
         val expectedResult = mockWeatherData
 
         `when`(weatherTransaction.getWeatherLocalDataByName(cityName)).thenReturn(flow {

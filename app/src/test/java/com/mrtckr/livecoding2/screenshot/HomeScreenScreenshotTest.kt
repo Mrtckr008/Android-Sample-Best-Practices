@@ -27,8 +27,7 @@ class HomeScreenScreenshotTest {
 
     @get:Rule
     val paparazzi = Paparazzi(
-        renderingMode = SessionParams.RenderingMode.SHRINK,
-        deviceConfig = DeviceConfig.PIXEL_5
+        renderingMode = SessionParams.RenderingMode.SHRINK, deviceConfig = DeviceConfig.PIXEL_5
     )
 
     @Test
@@ -65,9 +64,7 @@ class HomeScreenScreenshotTest {
             MyAppTheme {
                 CurrentInformationWidget(
                     mockWeatherData, OverlapCurrentInformationWidget(
-                        overlapTemperature = true,
-                        overlapDescription = true,
-                        overlapCityName = true
+                        overlapTemperature = true, overlapDescription = true, overlapCityName = true
                     )
                 )
             }
@@ -120,7 +117,7 @@ class HomeScreenScreenshotTest {
         paparazzi.snapshot {
             MyAppTheme {
                 BottomToolbar(
-                    "Istanbul"
+                    mockWeatherData.cityName
                 )
             }
         }

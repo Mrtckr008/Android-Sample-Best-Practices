@@ -71,23 +71,27 @@ class HomeViewModelTest {
 
     @Test
     fun `getWeatherData sets weatherData as Loading before api call`() {
-        homeViewModel.getCapitalWeatherData("Istanbul")
+        homeViewModel.getCapitalWeatherData(mockWeatherData.cityName)
         assertTrue(homeViewModel.weatherData.value is ResultData.Loading)
     }
 
     @Test
     fun `combinedWeatherFlow emits correct combined results`() = runBlockingTest {
         val weatherDataResult = ResultData.Success(
-            mockWeatherData.copy(cityName = "Istanbul")
+            mockWeatherData.copy(cityName = mockWeatherData.cityName)
         )
         val capitalWeatherResultData = ResultData.Success(
             mockWeatherData.copy(cityName = "Ankara")
         )
 
-        `when`(getWeatherByNameUseCase.invoke("Istanbul")).thenReturn(flowOf(weatherDataResult))
+        `when`(getWeatherByNameUseCase.invoke(mockWeatherData.cityName)).thenReturn(
+            flowOf(
+                weatherDataResult
+            )
+        )
         `when`(getWeatherByNameUseCase.invoke("Ankara")).thenReturn(flowOf(capitalWeatherResultData))
 
-        homeViewModel.getWeatherData("Istanbul")
+        homeViewModel.getWeatherData(mockWeatherData.cityName)
         homeViewModel.getCapitalWeatherData("Ankara")
 
         advanceUntilIdle()
@@ -108,12 +112,16 @@ class HomeViewModelTest {
     fun `getSecondCityWeatherData posts weather data to liveData on success`() = runBlockingTest {
         val successResult = ResultData.Success(mockWeatherData)
 
-        `when`(getWeatherByNameUseCase.invoke("Istanbul")).thenReturn(flowOf(successResult))
+        `when`(getWeatherByNameUseCase.invoke(mockWeatherData.cityName)).thenReturn(
+            flowOf(
+                successResult
+            )
+        )
 
         val observer: Observer<ResultData<WeatherData>> = mock()
         homeViewModel.weatherDataDataLiveData.observeForever(observer)
 
-        homeViewModel.getSecondCityWeatherData("Istanbul")
+        homeViewModel.getSecondCityWeatherData(mockWeatherData.cityName)
 
         verify(observer).onChanged(successResult)
 

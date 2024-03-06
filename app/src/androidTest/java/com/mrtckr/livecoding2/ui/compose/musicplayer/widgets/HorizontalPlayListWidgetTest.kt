@@ -20,7 +20,9 @@ class HorizontalPlayListWidgetTest {
         val testPlaylist = songListItem.playlistList[1]
 
         composeTestRule.setContent {
-            HorizontalPlayListWidget(playlistListEntity = testPlaylist)
+            HorizontalPlayListWidget(playlistListEntity = testPlaylist) {
+
+            }
         }
 
         composeTestRule.onNodeWithText("Eric Clapton, Albert Collins, The Rolling Stone")

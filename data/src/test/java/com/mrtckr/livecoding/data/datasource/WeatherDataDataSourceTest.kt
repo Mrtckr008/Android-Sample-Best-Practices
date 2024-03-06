@@ -45,7 +45,7 @@ class WeatherDataDataSourceTest {
 
     @Test
     fun `getWeatherByName emits Success when api call is successful`() = runTest {
-        val cityName = "Istanbul"
+        val cityName = com.mrtckr.livecoding.domain.testing.mockWeatherData.cityName
         val fakeResponse = Response.success(
             mockWeatherData
         )
@@ -65,8 +65,12 @@ class WeatherDataDataSourceTest {
             404, ResponseBody.create(MediaType.get("multipart/mixed"), "error")
         )
 
-        `when`(weatherApi.getWeatherByName("Istanbul")).thenReturn(fakeResponse)
-        val result = weatherDataSource.getWeatherByName("Istanbul").first()
+        `when`(weatherApi.getWeatherByName(com.mrtckr.livecoding.domain.testing.mockWeatherData.cityName)).thenReturn(
+            fakeResponse
+        )
+        val result =
+            weatherDataSource.getWeatherByName(com.mrtckr.livecoding.domain.testing.mockWeatherData.cityName)
+                .first()
 
         assertTrue(result is ResultData.Error)
     }

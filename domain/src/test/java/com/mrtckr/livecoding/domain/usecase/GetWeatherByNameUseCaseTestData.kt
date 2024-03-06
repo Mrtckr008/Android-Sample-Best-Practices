@@ -32,7 +32,7 @@ class GetWeatherByNameUseCaseTestData {
 
     @Test
     fun `invoke returns success result when repository call is successfully`() = runTest {
-        val cityName = "Istanbul"
+        val cityName = mockWeatherData.cityName
         val expectedResult = ResultData.Success(
             mockWeatherData
         )

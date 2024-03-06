@@ -17,6 +17,8 @@ object Constants {
     const val FORECAST_DIVIDER_ALPHA = 0.7f
     const val GRID_LIKED_LIST = "GridLikedList"
     const val HORIZONTAL_PLAYLIST = "HorizontalPlaylist"
+    const val MUSIC_PLAYER = "Music Player"
+    const val WEATHER = "Weather"
     val RANGE_OF_WEATHER_TEMPERATURE_BAR: Pair<Float, Float> = Pair(-10f, 20f)
     val WEATHER_MAP_TOP_THRESHOLD_RANGE: Pair<Float, Float> = Pair(160f, 220f)
     val FORECAST_TOP_THRESHOLD_RANGE: Pair<Float, Float> = Pair(160f, 180f)

@@ -107,7 +107,7 @@ private val mockForecastHours = arrayListOf(
     )
 )
 
-public val mockWeatherData = WeatherData(
+val mockWeatherData = WeatherData(
     cityName = "Istanbul",
     "Cloudy",
     forecast = mockForecastData,

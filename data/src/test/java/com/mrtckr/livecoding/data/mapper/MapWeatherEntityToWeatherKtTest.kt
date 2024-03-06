@@ -9,13 +9,14 @@ import org.junit.Test
 
 class WeatherDataMappingTest {
 
-    @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun `mapWeatherEntityToWeather maps correctly`() {
         val forecastEntities = mockForecastData
         val weatherEntity = mockWeatherData
 
-        val weather = mapWeatherEntityToWeather(weatherEntity, cityName = "Istanbul")
+        val weather = mapWeatherEntityToWeather(
+            weatherEntity, cityName = com.mrtckr.livecoding.domain.testing.mockWeatherData.cityName
+        )
 
         assertEquals(weatherEntity.temperature, weather.temperature)
         assertEquals(weatherEntity.description, weather.description)
