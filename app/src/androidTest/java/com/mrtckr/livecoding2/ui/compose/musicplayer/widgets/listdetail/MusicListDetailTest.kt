@@ -1,5 +1,7 @@
 package com.mrtckr.livecoding2.ui.compose.musicplayer.widgets.listdetail
 
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.test.isDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onAllNodesWithTag
@@ -28,11 +30,11 @@ class MusicListDetailTest {
         val userFullName = "Murat Cakir"
         composeTestRule.setContent {
             val navController = rememberNavController()
-            MusicPlayerDetailList(
-                playlistEntity = playlistData,
+            MusicPlayerDetailList(playlistEntity = playlistData,
                 userFullName = userFullName,
-                navController = navController
-            )
+                navController = navController,
+                serviceBinder = null,
+                bottomSheetWidgetBounds = remember { mutableStateOf(1f) })
         }
 
         composeTestRule.onAllNodesWithText(playlistData.title).onFirst().assertExists()
@@ -48,11 +50,11 @@ class MusicListDetailTest {
         val userFullName = "Murat Cakir"
         composeTestRule.setContent {
             val navController = rememberNavController()
-            MusicPlayerDetailList(
-                playlistEntity = playlistData,
+            MusicPlayerDetailList(playlistEntity = playlistData,
                 userFullName = userFullName,
-                navController = navController
-            )
+                navController = navController,
+                serviceBinder = null,
+                bottomSheetWidgetBounds = remember { mutableStateOf(1f) })
         }
 
         composeTestRule.onAllNodesWithTag("ListSongName").onLast().performScrollTo()
@@ -65,11 +67,11 @@ class MusicListDetailTest {
         val userFullName = "Murat Cakir"
         composeTestRule.setContent {
             val navController = rememberNavController()
-            MusicPlayerDetailList(
-                playlistEntity = playlistData,
+            MusicPlayerDetailList(playlistEntity = playlistData,
                 userFullName = userFullName,
-                navController = navController
-            )
+                navController = navController,
+                serviceBinder = null,
+                bottomSheetWidgetBounds = remember { mutableStateOf(1f) })
         }
         composeTestRule.onAllNodesWithTag("MusicListImage").onFirst().isDisplayed()
     }

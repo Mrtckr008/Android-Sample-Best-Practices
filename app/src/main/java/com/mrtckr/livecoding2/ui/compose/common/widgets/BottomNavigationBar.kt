@@ -7,6 +7,7 @@ import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -16,20 +17,13 @@ import androidx.navigation.compose.rememberNavController
 import com.mrtckr.livecoding2.ui.compose.common.theme.MyAppTheme
 
 @Composable
-fun BottomNavigationBar(navController: NavController) {
-    val items = listOf(
-        Screen.Home, Screen.MusicPlayer, Screen.Notifications
-    )
-    NavigationBar(
-        containerColor = Color.Black
-    ) {
-        val currentRoute = currentRoute(navController)
+fun BottomNavigationBar(navController: NavController, modifier: Modifier = Modifier) {
+    val items = listOf(Screen.Home, Screen.MusicPlayer, Screen.Notifications)
+    val currentRoute = currentRoute(navController)
+
+    NavigationBar(containerColor = Color.Black, modifier = modifier) {
         items.forEach { screen ->
-            NavigationBarItem(icon = {
-                Icon(
-                    screen.icon, contentDescription = null
-                )
-            },
+            NavigationBarItem(icon = { Icon(screen.icon, contentDescription = null) },
                 label = { Text(stringResource(screen.resourceId)) },
                 selected = currentRoute == screen.route,
                 colors = NavigationBarItemDefaults.colors(
@@ -39,15 +33,17 @@ fun BottomNavigationBar(navController: NavController) {
                     selectedTextColor = Color.White,
                     unselectedTextColor = Color.Gray
                 ),
-                onClick = {
-                    navController.navigate(screen.route) {
-                        launchSingleTop = true
-                        restoreState = true
-                        popUpTo(navController.graph.startDestinationId) {
-                            saveState = true
-                        }
-                    }
-                })
+                onClick = { navigateToScreen(navController, screen) })
+        }
+    }
+}
+
+private fun navigateToScreen(navController: NavController, screen: Screen) {
+    navController.navigate(screen.route) {
+        launchSingleTop = true
+        restoreState = true
+        popUpTo(navController.graph.startDestinationId) {
+            saveState = true
         }
     }
 }
@@ -62,6 +58,6 @@ fun currentRoute(navController: NavController): String? {
 @Composable
 fun BottomNavigationBarPreview() {
     MyAppTheme {
-        BottomNavigationBar(navController = rememberNavController())
+        BottomNavigationBar(navController = rememberNavController(), modifier = Modifier)
     }
 }

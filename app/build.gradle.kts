@@ -60,6 +60,7 @@ dependencies {
     implementation(libs.bundles.hilt)
     implementation(libs.bundles.otherLibraries)
     implementation(libs.bundles.retrofit)
+    implementation(libs.androidx.media3.session)
     kapt(libs.bundles.hiltKapt)
     annotationProcessor(libs.hiltCompiler)
     debugImplementation(libs.composeUiTooling)

@@ -28,11 +28,11 @@ import com.mrtckr.livecoding2.ui.compose.common.theme.MyAppTheme
 import com.mrtckr.livecoding2.ui.compose.common.widgets.DynamicAsyncImage
 
 @Composable
-fun SongListItem(song: SongListItem) {
+fun SongListItemWidget(song: SongListItem) {
     Column {
         Row(
             modifier = Modifier
-                .padding(top = 12.dp)
+                .padding(top = 12.dp, start = 8.dp)
                 .fillMaxWidth()
                 .wrapContentHeight()
         ) {
@@ -74,7 +74,6 @@ fun SongListItem(song: SongListItem) {
             color = Color.DarkGray
         )
     }
-
 }
 
 @Preview
@@ -83,7 +82,7 @@ fun SongItemListPreview() {
     MyAppTheme {
         LazyColumn {
             items(songListItem.playlistList[1].playlistList[0].songList) { song ->
-                SongListItem(song = song)
+                SongListItemWidget(song = song)
             }
         }
     }
