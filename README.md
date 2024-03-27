@@ -24,13 +24,13 @@ We adhere to clean architecture guidelines, structuring our application into mul
 Developed with Jetpack Compose, this is a custom animation created without the use of any external libraries. Designed using modern and flexible Compose APIs, it's perfect for adding a unique and fluid experience to your user interface.
 
 ### Unique Usage for Page 1:
-https://github.com/Mrtckr008/Sample-Android-Clean-Architecture/assets/32914909/f9a66b06-46f4-4a7c-b4da-9d39a49aaea4
+https://github.com/Mrtckr008/Android-Sample-Best-Practices/assets/32914909/66e9a3f4-0e20-4ddc-aa5d-cac8e03544ec
 - Clean Architecture: Demonstrated the use of Clean Architecture in the format of UI - Usecase(domain) - Data.
 - Data Fetching: Provided examples of fetching data from an API and a local JSON file.
 - Common usages
   
 ### Special Usage for Page 2:
-https://github.com/Mrtckr008/Android-Sample-Best-Practices/assets/32914909/c7c213b4-a41b-45f0-a061-758ae5e51f2e
+https://github.com/Mrtckr008/Android-Sample-Best-Practices/assets/32914909/8b40e56b-cc4c-4796-80b4-42b12876141f
 - Clean Architecture without Domain Module: Showed a different usage of Clean Architecture by directly connecting to the data module without a domain module.
 - DataStore Usage: Demonstrated the use of DataStore for managing data.
 - Common usages
