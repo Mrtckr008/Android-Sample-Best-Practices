@@ -24,7 +24,7 @@ fun SongInformationWidget() {
     Row(Modifier.padding(start = 16.dp)) {
         Column(modifier = Modifier.weight(1f)) {
             Text(
-                text = songListItem.playlistList.first().playlistList.first().songList.first().name,
+                text = songListItem.playlistList.first().playlistList.first().songList[3].name,
                 modifier = Modifier
                     .wrapContentWidth()
                     .padding(end = 12.dp),
@@ -32,7 +32,7 @@ fun SongInformationWidget() {
                 color = Color.White
             )
             Text(
-                text = songListItem.playlistList.first().playlistList.first().songList.first().singer,
+                text = songListItem.playlistList.first().playlistList.first().songList[3].singer,
                 modifier = Modifier
                     .wrapContentWidth()
                     .padding(end = 12.dp, top = 6.dp),

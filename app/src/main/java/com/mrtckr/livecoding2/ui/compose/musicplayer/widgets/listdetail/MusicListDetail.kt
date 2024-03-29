@@ -247,9 +247,9 @@ fun MusicPlayerDetailBottomSheet(
             .clickable {
                 coroutineScope.launch { sheetState.show() }
             },
-            imageUrl = playlistEntity.songList.first().iconUrl,
-            title = playlistEntity.songList.first().name,
-            singer = playlistEntity.songList.first().singer,
+            imageUrl = playlistEntity.songList[3].iconUrl,
+            title = playlistEntity.songList[3].name,
+            singer = playlistEntity.songList[3].singer,
             serviceBinder = serviceBinder,
             onPlayPauseClicked = { action ->
                 val intent = Intent(context, MusicPlayerService::class.java).apply {

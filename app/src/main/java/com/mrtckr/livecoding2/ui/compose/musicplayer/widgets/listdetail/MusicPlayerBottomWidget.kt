@@ -1,6 +1,5 @@
 package com.mrtckr.livecoding2.ui.compose.musicplayer.widgets.listdetail
 
-import android.content.Intent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
