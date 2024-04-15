@@ -18,7 +18,7 @@ We adhere to clean architecture guidelines, structuring our application into mul
 - Mockito & JUnit & Mockk & Espresso & Paparazzi: Testing libraries for Unit, UI, Integration & Screenshot tests.
 - TOML Version Catalog: Centralizes and manages library versions across the project, enhancing maintainability and consistency in dependency management.
 - DataStore with Serialization: For efficient and robust data storage and management, providing a reactive and secure way to handle preferences and structured data.
-- Coil: For image loading and caching in Kotlin applications, offering seamless integration with Jetpack Compose.
+- Coil: For image loading and caching in applications, offering seamless integration with Jetpack Compose.
 
 ### Custom Compose Animation
 Developed with Jetpack Compose, this is a custom animation created without the use of any external libraries. Designed using modern and flexible Compose APIs, it's perfect for adding a unique and fluid experience to your user interface.
