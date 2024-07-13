@@ -3,17 +3,12 @@ package com.mrtckr.livecoding2.ui.compose.weather.widgets
 import android.content.Context
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
-import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -22,10 +17,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -46,6 +39,7 @@ import com.mrtckr.livecoding2.ui.compose.weather.widgets.box.WeatherInformationB
 import com.mrtckr.livecoding2.ui.compose.weather.widgets.currentinfo.CurrentInformationWidget
 import com.mrtckr.livecoding2.ui.compose.weather.widgets.list.ForecastHourlyWidget
 import com.mrtckr.livecoding2.ui.compose.weather.widgets.list.ForecastWidget
+import com.mrtckr.scrollboxesanimation.DynamicBoxAnimator
 
 @Composable
 fun WeatherScreenRoute(viewModel: WeatherComposeViewModel = hiltViewModel()) {
@@ -78,7 +72,7 @@ fun WeatherScreenRoute(viewModel: WeatherComposeViewModel = hiltViewModel()) {
 
 @Composable
 fun WeatherScreen(
-    weatherData: WeatherData, context: Context, scrollState: ScrollState = rememberScrollState()
+    weatherData: WeatherData, context: Context
 ) {
     val scrollableWidgetBounds = remember { mutableStateOf<Float?>(null) }
     val forecastWidgetLowerPartBounds = remember { mutableStateOf<Float?>(null) }
@@ -90,49 +84,37 @@ fun WeatherScreen(
 
     val overlapCurrentInformationWidget = calculateOverlap(scrollableWidgetTopPoint)
 
-    val shouldMoveUp = remember { mutableStateOf(false) }
-    val currentInformationWidgetTranslationY =
-        calculateCurrentInformationWidgetTranslationY(shouldMoveUp)
     val currentInformationWidgetAlphaAnimation =
         calculateCurrentInformationWidgetAlphaAnimation(scrollableWidgetTopPoint)
-    Box(
-        Modifier
-            .padding(top = dimensionResource(id = R.dimen.parent_screen_top_padding))
-            .fillMaxWidth()
-            .wrapContentHeight()
-            .graphicsLayer {
-                translationY = currentInformationWidgetTranslationY
-            }) {
-        shouldMoveUp.value = scrollableWidgetTopPoint < SCROLLABLE_WIDGET_TOP_POINT
-        CurrentInformationWidget(weatherData, overlapCurrentInformationWidget)
-        SectionTabBarTitle(
-            currentInformationWidgetAlphaAnimation,
-            weatherMapTop,
-            forecastTop,
-            scrollableWidgetTopPoint
-        )
-    }
 
-    Box(
-        Modifier
-            .padding(top = dimensionResource(id = R.dimen.scrollable_bar_top_padding))
-            .fillMaxWidth()
-            .wrapContentHeight()
-            .verticalScroll(scrollState)
-            .testTag("ScrollableWidgetsBox")
-    ) {
-        Column {
-            Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.scrollable_bar_top_space)))
-            ForecastHourlyWidget(weatherData, scrollableWidgetBounds, context)
-            Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.forecast_widgets_between_space)))
-            ForecastWidget(weatherData, forecastWidgetLowerPartBounds, context)
-            Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.weekly_forecast_and_map_between_space)))
-            WeatherMapBox(weatherMapLowerPartBounds)
-            WeatherInformationBox(weatherData)
-            BottomToolbar(cityName = mockWeatherData.cityName)
-            Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.parent_widget_bottom_space)))
-        }
-    }
+    DynamicBoxAnimator(
+        primaryBoxContent = {
+            CurrentInformationWidget(weatherData, overlapCurrentInformationWidget)
+            SectionTabBarTitle(
+                currentInformationWidgetAlphaAnimation,
+                weatherMapTop,
+                forecastTop,
+                scrollableWidgetTopPoint
+            )
+        },
+        secondaryBoxContent = {
+            Column {
+                ForecastHourlyWidget(weatherData, scrollableWidgetBounds, context)
+                Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.forecast_widgets_between_space)))
+                ForecastWidget(weatherData, forecastWidgetLowerPartBounds, context)
+                Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.weekly_forecast_and_map_between_space)))
+                WeatherMapBox(weatherMapLowerPartBounds)
+                WeatherInformationBox(weatherData)
+                BottomToolbar(cityName = mockWeatherData.cityName)
+                Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.parent_widget_bottom_space)))
+            }
+        },
+        secondaryBoxTopPaddingDp = dimensionResource(id = R.dimen.scrollable_bar_top_padding),
+        secondaryBoxTopSpaceDp = dimensionResource(
+            id = R.dimen.scrollable_bar_top_space
+        ),
+        scrollActivationThreshold = SCROLLABLE_WIDGET_TOP_POINT
+    )
 }
 
 @Composable
@@ -169,7 +151,7 @@ fun calculateOverlap(scrollableWidgetTopPoint: Float): OverlapCurrentInformation
 fun WeatherTabletPreviewLargestSystemFontScreen() {
     MyAppTheme {
         Surface {
-            WeatherScreen(mockWeatherData, LocalContext.current, rememberScrollState())
+            WeatherScreen(mockWeatherData, LocalContext.current)
         }
     }
 }

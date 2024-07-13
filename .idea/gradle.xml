@@ -13,6 +13,7 @@
             <option value="$PROJECT_DIR$/common" />
             <option value="$PROJECT_DIR$/data" />
             <option value="$PROJECT_DIR$/domain" />
+            <option value="$PROJECT_DIR$/dynamicboxanimator" />
             <option value="$PROJECT_DIR$/network" />
           </set>
         </option>

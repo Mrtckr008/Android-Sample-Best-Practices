@@ -43,7 +43,7 @@ fun NavigationGraph(
 }
 
 object Routes {
-    const val HOME = "home"
+    const val HOME = "weather"
     const val MUSIC_PLAYER = "musicPlayer"
     const val NOTIFICATIONS = "notifications"
     const val PLAYLIST_DETAIL = "playlistDetail/{songListId}"

@@ -33,7 +33,15 @@ fun BottomNavigationBar(navController: NavController, modifier: Modifier = Modif
                     selectedTextColor = Color.White,
                     unselectedTextColor = Color.Gray
                 ),
-                onClick = { navigateToScreen(navController, screen) })
+                onClick = {
+                    navController.navigate(screen.route) {
+                        launchSingleTop = true
+                        restoreState = true
+                        popUpTo(navController.graph.startDestinationId) {
+                            saveState = true
+                        }
+                    }
+                })
         }
     }
 }
