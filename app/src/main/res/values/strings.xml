@@ -14,7 +14,7 @@
     <string name="uv_index">UV INDEX</string>
     <string name="rest_of_the_day">Rest of the day</string>
     <string name="rain">RAIN</string>
-    <string name="felt_tempareture">Felt Temperature</string>
+    <string name="felt_temperature">Felt Temperature</string>
     <string name="open_with_map">Open on Map</string>
     <string name="weather">%1$s Weather</string>
     <string name="privacy_information">More about weather data and map data</string>

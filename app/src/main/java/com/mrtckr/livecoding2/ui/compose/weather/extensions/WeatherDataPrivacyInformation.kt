@@ -1,6 +1,7 @@
 package com.mrtckr.livecoding2.ui.compose.weather.extensions
 
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -14,8 +15,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import com.mrtckr.livecoding2.R
 import com.mrtckr.livecoding2.ui.compose.common.Constants
+import com.mrtckr.livecoding2.ui.compose.common.theme.MyAppTheme
 
-@Preview
 @Composable
 fun WeatherDataPrivacyInformation() {
     val fullText = stringResource(R.string.privacy_information)
@@ -53,4 +54,14 @@ fun WeatherDataPrivacyInformation() {
         modifier = Modifier.padding(dimensionResource(id = R.dimen.normal_padding)),
         fontSize = dimensionResource(id = R.dimen.small_normal_text).value.sp
     )
+}
+
+@Preview
+@Composable
+fun PreviewWeatherDataPrivacyInformation() {
+    MyAppTheme {
+        Surface {
+            WeatherDataPrivacyInformation()
+        }
+    }
 }

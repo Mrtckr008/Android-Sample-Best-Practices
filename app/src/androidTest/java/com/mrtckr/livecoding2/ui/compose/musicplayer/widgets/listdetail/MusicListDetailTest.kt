@@ -1,7 +1,8 @@
 package com.mrtckr.livecoding2.ui.compose.musicplayer.widgets.listdetail
 
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.material.ModalBottomSheetValue
+import androidx.compose.material.rememberModalBottomSheetState
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.test.isDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onAllNodesWithTag
@@ -11,7 +12,6 @@ import androidx.compose.ui.test.onLast
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performScrollTo
-import androidx.navigation.compose.rememberNavController
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.mrtckr.livecoding.data.testing.songListItem
 import org.junit.Rule
@@ -29,12 +29,17 @@ class MusicListDetailTest {
         val playlistData = songListItem.playlistList[1].playlistList[1]
         val userFullName = "Murat Cakir"
         composeTestRule.setContent {
-            val navController = rememberNavController()
-            MusicPlayerDetailList(playlistEntity = playlistData,
+            val sheetState = rememberModalBottomSheetState(
+                initialValue = ModalBottomSheetValue.Hidden, skipHalfExpanded = true
+            )
+            val coroutineScope = rememberCoroutineScope()
+            MusicPlayerDetailList(
+                playlistEntity = playlistData,
                 userFullName = userFullName,
-                navController = navController,
                 serviceBinder = null,
-                bottomSheetWidgetBounds = remember { mutableStateOf(1f) })
+                sheetState = sheetState,
+                coroutineScope = coroutineScope
+            )
         }
 
         composeTestRule.onAllNodesWithText(playlistData.title).onFirst().assertExists()
@@ -49,12 +54,17 @@ class MusicListDetailTest {
         val playlistData = songListItem.playlistList[0].playlistList[0]
         val userFullName = "Murat Cakir"
         composeTestRule.setContent {
-            val navController = rememberNavController()
-            MusicPlayerDetailList(playlistEntity = playlistData,
+            val sheetState = rememberModalBottomSheetState(
+                initialValue = ModalBottomSheetValue.Hidden, skipHalfExpanded = true
+            )
+            val coroutineScope = rememberCoroutineScope()
+            MusicPlayerDetailList(
+                playlistEntity = playlistData,
                 userFullName = userFullName,
-                navController = navController,
                 serviceBinder = null,
-                bottomSheetWidgetBounds = remember { mutableStateOf(1f) })
+                sheetState,
+                coroutineScope
+            )
         }
 
         composeTestRule.onAllNodesWithTag("ListSongName").onLast().performScrollTo()
@@ -66,12 +76,17 @@ class MusicListDetailTest {
         val playlistData = songListItem.playlistList[0].playlistList[0]
         val userFullName = "Murat Cakir"
         composeTestRule.setContent {
-            val navController = rememberNavController()
-            MusicPlayerDetailList(playlistEntity = playlistData,
+            val sheetState = rememberModalBottomSheetState(
+                initialValue = ModalBottomSheetValue.Hidden, skipHalfExpanded = true
+            )
+            val coroutineScope = rememberCoroutineScope()
+            MusicPlayerDetailList(
+                playlistEntity = playlistData,
                 userFullName = userFullName,
-                navController = navController,
                 serviceBinder = null,
-                bottomSheetWidgetBounds = remember { mutableStateOf(1f) })
+                sheetState,
+                coroutineScope
+            )
         }
         composeTestRule.onAllNodesWithTag("MusicListImage").onFirst().isDisplayed()
     }

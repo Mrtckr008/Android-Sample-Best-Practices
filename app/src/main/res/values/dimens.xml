@@ -1,7 +1,6 @@
 <resources>
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="current_information_widget_distance_y">50dp</dimen>
-    <dimen name="parent_screen_top_padding">110dp</dimen>
     <dimen name="information_bar_horizontal_padding">@dimen/normal_padding</dimen>
     <dimen name="information_bar_top_padding">60dp</dimen>
     <dimen name="information_bar_text_padding">@dimen/normal_padding</dimen>

@@ -7,10 +7,10 @@ import java.io.InputStream
 
 @VisibleForTesting
 object JvmUnitTestFakeAssetManager : FakeAssetManager {
-    private const val assetsDirectory = "src/main/assets"
+    private const val ASSETS_DIRECTORY = "src/main/assets"
 
     override fun open(fileName: String): InputStream {
-        val file = File(assetsDirectory, fileName)
+        val file = File(ASSETS_DIRECTORY, fileName)
         require(file.exists()) { "Asset file not found: $fileName" }
         return file.inputStream()
     }

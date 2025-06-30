@@ -10,17 +10,21 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.mrtckr.livecoding.data.testing.songListItem
+import com.mrtckr.livecoding2.ui.compose.common.Constants.CATEGORIES
 import com.mrtckr.livecoding2.ui.compose.common.Constants.GRID_LIKED_LIST
 import com.mrtckr.livecoding2.ui.compose.common.Constants.HORIZONTAL_PLAYLIST
 import com.mrtckr.livecoding2.ui.compose.common.theme.MyAppTheme
 import com.mrtckr.livecoding2.ui.compose.common.widgets.LoadingScreen
+import com.mrtckr.livecoding2.ui.compose.common.widgets.Screen
 import com.mrtckr.livecoding2.ui.compose.musicplayer.MusicPlayerViewModel
 import com.mrtckr.livecoding2.ui.compose.musicplayer.SongListDataUiState
 import com.mrtckr.livecoding2.ui.compose.musicplayer.UserDataUiState
@@ -28,10 +32,11 @@ import com.mrtckr.livecoding2.ui.compose.musicplayer.UserDataUiState
 @Composable
 fun MusicPlayerRoute(
     viewModel: MusicPlayerViewModel = hiltViewModel(),
-    navigateToPlaylistDetail: (String) -> Unit
+    onNavigate: (Screen) -> Unit
 ) {
     val userData by viewModel.userData.collectAsStateWithLifecycle()
     val playListData by viewModel.songListData.collectAsStateWithLifecycle()
+    var selectedCategory by rememberSaveable { mutableStateOf(CATEGORIES.first()) }
 
     LaunchedEffect(Unit) {
         viewModel.updateSongList(songListItem)
@@ -39,7 +44,10 @@ fun MusicPlayerRoute(
 
     Scaffold(topBar = {
         if (userData is UserDataUiState.Success) {
-            TopWidgetTopBar(userData as UserDataUiState.Success)
+            TopWidgetTopBar(
+                userData as UserDataUiState.Success,
+                selectedCategory
+            ) { selectedCategory = it }
         }
     }) { paddingValues ->
         Surface(
@@ -49,32 +57,29 @@ fun MusicPlayerRoute(
                 .padding(paddingValues)
                 .testTag("MusicPlayerSurface")
         ) {
-            MusicPlayer(playListData, navigateToPlaylistDetail)
+            MusicPlayer(playListData) {
+                onNavigate(Screen.PlaylistDetail3(it))
+            }
         }
     }
 }
 
 @Composable
 fun MusicPlayer(
-    playListData: SongListDataUiState,
-    navigateToPlaylistDetailWithId: (String) -> Unit
+    playListData: SongListDataUiState, navigateToPlaylistDetailWithId: (String) -> Unit
 ) {
-    LazyColumn(
-        modifier = Modifier.padding(bottom = 80.dp)
-    ) {
+    LazyColumn {
         when (playListData) {
             is SongListDataUiState.Success -> {
                 items(playListData.playlistListEntity.playlistList) { playlist ->
                     when (playlist.type) {
                         HORIZONTAL_PLAYLIST -> HorizontalPlayListWidget(
-                            playlistListEntity = playlist,
-                            onClick = { playlistData ->
+                            playlistListEntity = playlist, onClick = { playlistData ->
                                 navigateToPlaylistDetailWithId(playlistData.id)
                             })
 
                         GRID_LIKED_LIST -> PlaylistListWidget(
-                            playlistListEntity = playlist,
-                            onClick = { playlistData ->
+                            playlistListEntity = playlist, onClick = { playlistData ->
                                 navigateToPlaylistDetailWithId(playlistData.id)
                             })
                     }
@@ -96,7 +101,6 @@ fun MusicPlayerPortraitTabletPreview() {
             playListData = SongListDataUiState.Success(songListItem),
             navigateToPlaylistDetailWithId = {
 
-            }
-        )
+            })
     }
 }

@@ -17,9 +17,12 @@ import androidx.compose.material.icons.filled.CalendarMonth
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -27,12 +30,16 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.boundsInRoot
 import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import com.mrtckr.livecoding.domain.entity.weather.WeatherData
+import com.mrtckr.livecoding.domain.testing.mockWeatherData
 import com.mrtckr.livecoding2.R
 import com.mrtckr.livecoding2.ui.compose.common.Constants
 import com.mrtckr.livecoding2.ui.compose.common.pxToDp
+import com.mrtckr.livecoding2.ui.compose.common.theme.MyAppTheme
 
 @Composable
 fun ForecastWidget(
@@ -73,11 +80,21 @@ fun ForecastWidget(
             }
 
             HorizontalDivider(
-                thickness = dimensionResource(id = R.dimen.divider_height),
-                color = Color.Gray
+                thickness = dimensionResource(id = R.dimen.divider_height), color = Color.Gray
             )
             Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.normal_spacer_size)))
             ForecastDailyList(weatherData = weatherData)
+        }
+    }
+}
+
+@Preview
+@Composable
+fun PreviewForecastWidget() {
+    MyAppTheme {
+        Surface {
+            val scrollableWidgetBounds = remember { mutableStateOf<Float?>(null) }
+            ForecastWidget(mockWeatherData, scrollableWidgetBounds, LocalContext.current)
         }
     }
 }

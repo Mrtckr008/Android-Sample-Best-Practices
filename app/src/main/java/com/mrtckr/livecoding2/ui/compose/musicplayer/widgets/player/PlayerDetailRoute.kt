@@ -16,7 +16,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.ModalBottomSheetState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowDown
@@ -56,8 +55,9 @@ import com.mrtckr.livecoding2.ui.compose.common.widgets.DynamicAsyncImage
 import com.mrtckr.livecoding2.ui.compose.musicplayer.service.MusicPlayerService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
+import kotlinx.serialization.InternalSerializationApi
 
-@OptIn(ExperimentalMaterialApi::class)
+@OptIn(InternalSerializationApi::class)
 @Composable
 fun PlayerDetailRoute(
     songListId: String,
@@ -67,6 +67,8 @@ fun PlayerDetailRoute(
     coroutineScope: CoroutineScope,
     bottomSheetWidgetBounds: MutableState<Float?>
 ) {
+    val playlistData = songListItem.playlistList.firstOrNull { it.playlistList.any { playlist -> playlist.id == songListId } }?.playlistList?.firstOrNull { it.id == songListId }
+
     Log.d(
         "MockUsage",
         "Since the application is a mock application, data is received with the mock, without using the clicked $songListId."
@@ -91,16 +93,15 @@ fun PlayerDetailRoute(
         )) {
         Column {
             PlayerDetailTopToolbar(sheetState, coroutineScope)
-            Spacer(modifier = Modifier.height(12.dp))
             DynamicAsyncImage(
-                imageUrl = songListItem.playlistList.first().playlistList.first().iconUrl,
+                imageUrl = playlistData?.iconUrl ?: "",
                 contentDescription = null,
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(12.dp)
                     .clip(RoundedCornerShape(12.dp))
             )
-            Spacer(modifier = Modifier.height(40.dp))
+            Spacer(modifier = Modifier.height(8.dp))
             SongInformationWidget()
             SliderSeekBar(serviceBinder)
             ActionButtons(serviceBinder)
@@ -108,7 +109,6 @@ fun PlayerDetailRoute(
     }
 }
 
-@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun PlayerDetailTopToolbar(sheetState: ModalBottomSheetState, coroutineScope: CoroutineScope) {
     Row(
@@ -116,7 +116,8 @@ fun PlayerDetailTopToolbar(sheetState: ModalBottomSheetState, coroutineScope: Co
             .fillMaxWidth()
             .height(70.dp)
     ) {
-        Icon(imageVector = Icons.Filled.KeyboardArrowDown,
+        Icon(
+            imageVector = Icons.Filled.KeyboardArrowDown,
             contentDescription = stringResource(id = R.string.content_description),
             tint = Color.White,
             modifier = Modifier
@@ -160,7 +161,7 @@ fun ActionButtons(serviceBinder: MusicPlayerService.MusicServiceBinder?) {
             playerState.value = state
         }
     }
-    Row {
+    Row(modifier = Modifier.height(110.dp), verticalAlignment = Alignment.CenterVertically) {
         Icon(
             imageVector = Icons.Filled.Shuffle,
             contentDescription = stringResource(id = R.string.content_description),
@@ -223,7 +224,8 @@ fun SongInformationWidgetPreview() {
 fun AnimatedPlayPauseIconPreview() {
     val context = LocalContext.current
     MyAppTheme {
-        AnimatedPlayPauseIcon(playerState = remember { mutableStateOf(MediaPlayerState.STOPPED) },
+        AnimatedPlayPauseIcon(
+            playerState = remember { mutableStateOf(MediaPlayerState.STOPPED) },
             onPlayPauseClicked = { action ->
                 val intent = Intent(context, MusicPlayerService::class.java).apply {
                     this.action = action

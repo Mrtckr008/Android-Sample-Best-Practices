@@ -9,12 +9,16 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.tooling.preview.Preview
 import com.mrtckr.livecoding.domain.entity.weather.WeatherData
+import com.mrtckr.livecoding.domain.testing.mockWeatherData
 import com.mrtckr.livecoding2.R
+import com.mrtckr.livecoding2.ui.compose.common.theme.MyAppTheme
 
 @Composable
 fun WeatherInformationBox(weatherData: WeatherData) {
@@ -71,6 +75,16 @@ fun WeatherInformationBox(weatherData: WeatherData) {
                     .background(MaterialTheme.colorScheme.onSurface)
                     .padding(dimensionResource(id = R.dimen.normal_padding))
             )
+        }
+    }
+}
+
+@Preview
+@Composable
+fun PreviewWeatherInformationBox() {
+    MyAppTheme {
+        Surface {
+            WeatherInformationBox(mockWeatherData)
         }
     }
 }

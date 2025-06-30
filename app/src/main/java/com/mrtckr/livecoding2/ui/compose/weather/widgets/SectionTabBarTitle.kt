@@ -12,6 +12,7 @@ import androidx.compose.material.icons.filled.Umbrella
 import androidx.compose.material.icons.filled.WatchLater
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -21,8 +22,10 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import com.mrtckr.livecoding2.R
 import com.mrtckr.livecoding2.ui.compose.common.Constants
+import com.mrtckr.livecoding2.ui.compose.common.theme.MyAppTheme
 
 @Composable
 fun SectionTabBarTitle(
@@ -81,6 +84,16 @@ fun SectionTabBarTitle(
                     .fillMaxWidth()
                     .padding(dimensionResource(id = R.dimen.information_bar_text_padding))
             )
+        }
+    }
+}
+
+@Preview
+@Composable
+fun PreviewSectionTabBarTitle() {
+    MyAppTheme {
+        Surface {
+            SectionTabBarTitle(1f, 1f, 10f, 100f)
         }
     }
 }

@@ -2,16 +2,22 @@ package com.mrtckr.livecoding2.ui.compose.weather.extensions
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.tooling.preview.Preview
 import com.mrtckr.livecoding2.R
 import com.mrtckr.livecoding2.ui.compose.common.Constants
+import com.mrtckr.livecoding2.ui.compose.common.theme.MyAppTheme
 
 @Composable
 fun TemperatureBarChart(
@@ -40,6 +46,24 @@ fun TemperatureBarChart(
                 color = fillColor,
                 topLeft = Offset(filledWidthStart, Constants.DEFAULT_VALUE),
                 size = Size(filledWidthEnd - filledWidthStart, barHeight)
+            )
+        }
+    }
+}
+
+@Preview
+@Composable
+fun TemperatureBarChartPreview() {
+    MyAppTheme {
+        Surface {
+            TemperatureBarChart(
+                fillColor = Color.Cyan,
+                emptyColor = MaterialTheme.colorScheme.onSurface,
+                modifier = Modifier
+                    .padding(horizontal = dimensionResource(id = R.dimen.normal_padding))
+                    .height(dimensionResource(id = R.dimen.forecast_daily_chart_height))
+                    .fillMaxWidth(),
+                filledFraction = Pair(0.2f, 0.7f)
             )
         }
     }

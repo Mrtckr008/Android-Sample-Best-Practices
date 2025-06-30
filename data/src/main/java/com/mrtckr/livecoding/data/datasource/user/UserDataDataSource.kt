@@ -1,5 +1,6 @@
 package com.mrtckr.livecoding.data.datasource.user
 
+import android.annotation.SuppressLint
 import com.mrtckr.common.network.AppDispatchers
 import com.mrtckr.common.network.Dispatcher
 import com.mrtckr.livecoding.data.model.musicplayer.user.UserEntity
@@ -14,7 +15,7 @@ import javax.inject.Inject
 
 class UserDataDataSource @Inject constructor(
     private val networkJson: Json,
-    private val assets: FakeAssetManager = JvmUnitTestFakeAssetManager,
+    @SuppressLint("VisibleForTests") private val assets: FakeAssetManager = JvmUnitTestFakeAssetManager,
     @Dispatcher(AppDispatchers.IO) private val ioDispatcher: CoroutineDispatcher
 ) : UserService {
 

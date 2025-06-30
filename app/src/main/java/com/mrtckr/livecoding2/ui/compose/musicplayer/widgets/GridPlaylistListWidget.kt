@@ -80,7 +80,7 @@ fun PlaylistListWidget(playlistListEntity: PlayListDataEntity, onClick: (Playlis
 fun PlaylistListWidgetPreview() {
     MyAppTheme {
         Surface {
-            PlaylistListWidget(songListItem.playlistList[0], {})
+            PlaylistListWidget(songListItem.playlistList[0]) {}
         }
     }
 }

@@ -1,6 +1,7 @@
 package com.mrtckr.livecoding2.ui.compose.weather.widgets.list
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyRow
@@ -16,9 +17,10 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.Wallpapers
+import androidx.compose.ui.unit.dp
+import com.mrtckr.livecoding.domain.testing.mockWeatherData
 import com.mrtckr.livecoding.domain.entity.weather.ForecastHours
 import com.mrtckr.livecoding.domain.entity.weather.WeatherData
-import com.mrtckr.livecoding.domain.entity.weather.WeatherStatus
 import com.mrtckr.livecoding2.R
 import com.mrtckr.livecoding2.ui.compose.common.Constants
 import com.mrtckr.livecoding2.ui.compose.common.theme.MyAppTheme
@@ -77,12 +79,8 @@ fun ForecastHourlyList(weatherData: WeatherData) {
 @Composable
 fun ForecastHourlyItemSmallDevicePreview() {
     MyAppTheme {
-        Surface {
-            ForecastHourlyItem(
-                ForecastHours(
-                    "23", 12, WeatherStatus.SUNNY
-                )
-            )
+        Surface(modifier = Modifier.height(80.dp)) {
+            ForecastHourlyItem(mockWeatherData.forecastHours[0])
         }
     }
 }

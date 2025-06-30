@@ -1,10 +1,12 @@
 package com.mrtckr.livecoding2.ui.compose.weather.extensions
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.WbCloudy
 import androidx.compose.material.icons.filled.WbSunny
 import androidx.compose.material3.Icon
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -12,8 +14,10 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.tooling.preview.Preview
 import com.mrtckr.livecoding.domain.entity.weather.WeatherStatus
 import com.mrtckr.livecoding2.R
+import com.mrtckr.livecoding2.ui.compose.common.theme.MyAppTheme
 
 @Composable
 fun IconByStatus(status: WeatherStatus, modifier: Modifier) {
@@ -53,6 +57,16 @@ fun IconByStatus(status: WeatherStatus, modifier: Modifier) {
                 tint = Color.White,
                 modifier = modifier.size(dimensionResource(id = R.dimen.weather_status_icon_size))
             )
+        }
+    }
+}
+
+@Preview
+@Composable
+fun IconByStatusPreview() {
+    MyAppTheme {
+        Surface {
+            IconByStatus(WeatherStatus.RAINY, Modifier.background(Color.Black))
         }
     }
 }

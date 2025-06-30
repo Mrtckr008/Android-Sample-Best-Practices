@@ -39,7 +39,7 @@ class HomeScreenScreenshotTest {
                     scrollState.scrollTo(scrollState.maxValue)
                 }
 
-                WeatherScreen(mockWeatherData, LocalContext.current, scrollState)
+                WeatherScreen(mockWeatherData, LocalContext.current)
             }
         }
     }

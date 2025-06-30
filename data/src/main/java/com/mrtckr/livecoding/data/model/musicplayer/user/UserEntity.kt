@@ -1,3 +1,4 @@
+@file:OptIn(kotlinx.serialization.InternalSerializationApi::class)
 package com.mrtckr.livecoding.data.model.musicplayer.user
 
 import kotlinx.serialization.Serializable

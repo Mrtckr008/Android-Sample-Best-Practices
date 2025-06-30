@@ -189,7 +189,7 @@ fun CurrentInformationWidgetPartlyExpandedLongTextTabletPreview() {
         Surface {
             CurrentInformationWidget(
                 weatherData = WeatherData(
-                    cityName = "Looooooooooong Istanbul Istanbul Istanbul Istanbul Istanbul Istanbul",
+                    cityName = "Looooooooooooooong Istanbul Istanbul Istanbul Istanbul Istanbul Istanbul",
                     description = "Cloudy",
                     forecast = arrayListOf(),
                     forecastHours = arrayListOf(),

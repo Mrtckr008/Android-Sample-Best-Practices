@@ -6,33 +6,32 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.mrtckr.livecoding.domain.entity.user.User
+import com.mrtckr.livecoding2.ui.compose.common.Constants.CATEGORIES
+import com.mrtckr.livecoding2.ui.compose.common.theme.MyAppTheme
 import com.mrtckr.livecoding2.ui.compose.common.widgets.DynamicAsyncImage
 import com.mrtckr.livecoding2.ui.compose.common.widgets.LoadingScreen
 import com.mrtckr.livecoding2.ui.compose.musicplayer.UserDataUiState
 import com.mrtckr.livecoding2.ui.compose.musicplayer.extension.OvalTextSurface
-import com.mrtckr.livecoding2.ui.compose.common.Constants.CATEGORIES
-import com.mrtckr.livecoding2.ui.compose.common.theme.MyAppTheme
 import kotlin.random.Random
 
 @Composable
-fun TopWidgetTopBar(userData: UserDataUiState) {
-    val selectedCategory = rememberSaveable { mutableStateOf(CATEGORIES.first()) }
-
+fun TopWidgetTopBar(
+    userData: UserDataUiState, selectedCategory: String, onCategoryChange: (String) -> Unit
+) {
     when (userData) {
         is UserDataUiState.Success -> {
             Row(
                 modifier = Modifier
                     .padding(top = 16.dp, start = 16.dp, end = 16.dp)
-                    .fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically
+                    .fillMaxWidth()
+                    .selectableGroup(), verticalAlignment = Alignment.CenterVertically
             ) {
                 DynamicAsyncImage(
                     imageUrl = userData.userData.iconUrl,
@@ -45,9 +44,8 @@ fun TopWidgetTopBar(userData: UserDataUiState) {
                 CATEGORIES.forEach { category ->
                     OvalTextSurface(
                         text = category,
-                        isSelected = selectedCategory.value == category,
-                        onClick = { selectedCategory.value = category }
-                    )
+                        isSelected = (selectedCategory == category),
+                        onClick = { onCategoryChange(category) })
                     Spacer(Modifier.width(8.dp))
                 }
             }
@@ -71,7 +69,9 @@ fun TopWidgetTopBarPreview() {
                     favoriteList = listOf(),
                     name = "Murat Cakir"
                 )
-            )
-        )
+            ), selectedCategory = CATEGORIES.first()
+        ) {
+
+        }
     }
 }

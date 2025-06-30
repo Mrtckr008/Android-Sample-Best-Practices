@@ -76,6 +76,6 @@ fun HorizontalPlayListWidget(
 @Composable
 fun HorizontalPlayListWidgetPreview() {
     MyAppTheme {
-        HorizontalPlayListWidget(songListItem.playlistList[1], { })
+        HorizontalPlayListWidget(songListItem.playlistList[1]) { }
     }
 }

@@ -2,30 +2,30 @@ package com.mrtckr.livecoding2.ui.weather
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
+import androidx.lifecycle.viewModelScope
 import com.mrtckr.livecoding.domain.entity.ResultData
 import com.mrtckr.livecoding.domain.entity.weather.WeatherData
 import com.mrtckr.livecoding.domain.testing.mockWeatherData
 import com.mrtckr.livecoding.domain.usecase.GetWeatherByNameUseCase
-import com.mrtckr.livecoding2.MainCoroutineRule
+import com.mrtckr.livecoding2.MainDispatcherRule
 import com.mrtckr.livecoding2.ui.legacy.home.HomeViewModel
 import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.assertTrue
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.take
 import kotlinx.coroutines.flow.toList
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.test.advanceUntilIdle
-import kotlinx.coroutines.test.runBlockingTest
-import org.junit.Before
+import kotlinx.coroutines.test.runCurrent
+import kotlinx.coroutines.test.runTest
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito.mock
 import org.mockito.Mockito.verify
-import org.mockito.Mockito.`when`
 import org.mockito.junit.MockitoJUnitRunner
+import org.mockito.kotlin.whenever
 
 @ExperimentalCoroutinesApi
 @RunWith(MockitoJUnitRunner::class)
@@ -35,96 +35,104 @@ class HomeViewModelTest {
     val instantExecutorRule = InstantTaskExecutorRule()
 
     @get:Rule
-    val coroutinesRule = MainCoroutineRule()
+    val coroutinesRule = MainDispatcherRule()
 
     @Mock
     private lateinit var getWeatherByNameUseCase: GetWeatherByNameUseCase
-    private lateinit var homeViewModel: HomeViewModel
-
-    @Before
-    fun setup() {
-        homeViewModel = HomeViewModel(getWeatherByNameUseCase)
-    }
 
     @Test
-    fun `getWeatherData updates weatherData state correctly on success`() = runBlockingTest {
-        val cityName = "barcelona"
-        val weatherDataResult = ResultData.Success(
-            mockWeatherData
-        )
+    fun `getWeatherData updates weatherData state correctly on success`() =
+        runTest(coroutinesRule.dispatcher) {
+            val cityName = "barcelona"
+            val expected = ResultData.Success(mockWeatherData)
+            val viewModel = HomeViewModel(getWeatherByNameUseCase)
 
-        `when`(getWeatherByNameUseCase.invoke(cityName)).thenReturn((flow { emit(weatherDataResult) }))
-        homeViewModel.getWeatherData(cityName)
+            whenever(getWeatherByNameUseCase.invoke(cityName)).thenReturn(flowOf(expected))
 
-        assertEquals(weatherDataResult, homeViewModel.weatherData.value)
-    }
+            viewModel.getWeatherData(cityName)
+
+            runCurrent()
+
+            assertEquals(expected, viewModel.weatherData.value)
+
+            viewModel.viewModelScope.cancel()
+        }
 
     @Test
-    fun `getWeatherData updates weatherData state correctly on error`() = runBlockingTest {
-        val cityName = "new york"
-        val weatherResult = ResultData.Error(Exception("test error"))
+    fun `getWeatherData updates weatherData on error`() = runTest(coroutinesRule.dispatcher) {
 
-        `when`(getWeatherByNameUseCase.invoke(cityName)).thenReturn(flowOf(weatherResult))
-        homeViewModel.getWeatherData(cityName)
-        assertEquals(weatherResult, homeViewModel.weatherData.value)
+        val city = "new york"
+        val expected = ResultData.Error(Exception("test error"))
+
+        whenever(getWeatherByNameUseCase.invoke(city)).thenReturn(flowOf(expected))
+
+        val viewModel = HomeViewModel(getWeatherByNameUseCase)
+
+        viewModel.getWeatherData(city)
+
+        runCurrent()
+
+        assertEquals(expected, viewModel.weatherData.value)
+
+        viewModel.viewModelScope.cancel()
     }
 
     @Test
     fun `getWeatherData sets weatherData as Loading before api call`() {
-        homeViewModel.getCapitalWeatherData(mockWeatherData.cityName)
-        assertTrue(homeViewModel.weatherData.value is ResultData.Loading)
+        val viewModel = HomeViewModel(getWeatherByNameUseCase)
+        viewModel.getCapitalWeatherData(mockWeatherData.cityName)
+        assertTrue(viewModel.weatherData.value is ResultData.Loading)
+        viewModel.viewModelScope.cancel()
     }
 
     @Test
-    fun `combinedWeatherFlow emits correct combined results`() = runBlockingTest {
-        val weatherDataResult = ResultData.Success(
-            mockWeatherData.copy(cityName = mockWeatherData.cityName)
-        )
-        val capitalWeatherResultData = ResultData.Success(
-            mockWeatherData.copy(cityName = "Ankara")
-        )
+    fun `combinedWeatherFlow emits correct combined results`() =
+        runTest(coroutinesRule.dispatcher) {
 
-        `when`(getWeatherByNameUseCase.invoke(mockWeatherData.cityName)).thenReturn(
-            flowOf(
-                weatherDataResult
-            )
-        )
-        `when`(getWeatherByNameUseCase.invoke("Ankara")).thenReturn(flowOf(capitalWeatherResultData))
+            val istanbul = ResultData.Success(mockWeatherData)
+            val ankara = ResultData.Success(mockWeatherData.copy(cityName = "Ankara"))
 
-        homeViewModel.getWeatherData(mockWeatherData.cityName)
-        homeViewModel.getCapitalWeatherData("Ankara")
+            whenever(getWeatherByNameUseCase.invoke("Istanbul")).thenReturn(flowOf(istanbul))
+            whenever(getWeatherByNameUseCase.invoke("Ankara")).thenReturn(flowOf(ankara))
 
-        advanceUntilIdle()
+            val vm = HomeViewModel(getWeatherByNameUseCase)
 
-        val combinedResults =
-            mutableListOf<Pair<ResultData<WeatherData>, ResultData<WeatherData>>>()
-        val job = launch {
-            homeViewModel.combinedWeatherFlow.toList(combinedResults)
+            vm.getWeatherData("Istanbul")
+            vm.getCapitalWeatherData("Ankara")
+
+            runCurrent()
+
+            val results = vm.combinedWeatherFlow.take(1).toList()
+
+            assertEquals(listOf(istanbul to ankara), results)
+
+            vm.viewModelScope.cancel()
         }
 
-        advanceUntilIdle()
-        job.cancel()
-
-        assertTrue(combinedResults.isNotEmpty())
-    }
-
     @Test
-    fun `getSecondCityWeatherData posts weather data to liveData on success`() = runBlockingTest {
-        val successResult = ResultData.Success(mockWeatherData)
+    fun `getSecondCityWeatherData posts weather data to liveData on success`() =
+        runTest(coroutinesRule.dispatcher) {
 
-        `when`(getWeatherByNameUseCase.invoke(mockWeatherData.cityName)).thenReturn(
-            flowOf(
-                successResult
+            val expected = ResultData.Success(mockWeatherData)
+
+            whenever(getWeatherByNameUseCase.invoke(mockWeatherData.cityName)).thenReturn(
+                flowOf(
+                    expected
+                )
             )
-        )
 
-        val observer: Observer<ResultData<WeatherData>> = mock()
-        homeViewModel.weatherDataDataLiveData.observeForever(observer)
+            val viewModel = HomeViewModel(getWeatherByNameUseCase)
 
-        homeViewModel.getSecondCityWeatherData(mockWeatherData.cityName)
+            val observer: Observer<ResultData<WeatherData>> = mock()
+            viewModel.weatherDataDataLiveData.observeForever(observer)
 
-        verify(observer).onChanged(successResult)
+            viewModel.getSecondCityWeatherData(mockWeatherData.cityName)
 
-        homeViewModel.weatherDataDataLiveData.removeObserver(observer)
-    }
+            runCurrent()
+
+            verify(observer).onChanged(expected)
+
+            viewModel.weatherDataDataLiveData.removeObserver(observer)
+            viewModel.viewModelScope.cancel()
+        }
 }

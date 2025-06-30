@@ -83,6 +83,6 @@ private fun PlayButton(onClick: () -> Unit) {
 @Composable
 fun ActionButtonsBarTabletPreview() {
     MyAppTheme {
-        ActionButtonsBar("example", { })
+        ActionButtonsBar("example") { }
     }
 }

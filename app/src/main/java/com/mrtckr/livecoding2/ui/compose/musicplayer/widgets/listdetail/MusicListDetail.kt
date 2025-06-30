@@ -2,7 +2,6 @@ package com.mrtckr.livecoding2.ui.compose.musicplayer.widgets.listdetail
 
 import android.content.Context
 import android.content.Intent
-import androidx.activity.compose.BackHandler
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
@@ -17,8 +16,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.ModalBottomSheetLayout
+import androidx.compose.material.ModalBottomSheetState
 import androidx.compose.material.ModalBottomSheetValue
 import androidx.compose.material.rememberModalBottomSheetState
 import androidx.compose.material3.MaterialTheme
@@ -27,6 +25,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -41,8 +40,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
 import com.mrtckr.livecoding.data.model.musicplayer.PlaylistEntity
 import com.mrtckr.livecoding.data.testing.songListItem
 import com.mrtckr.livecoding2.ui.compose.common.Constants.DEFAULT_VALUE
@@ -62,16 +59,18 @@ import com.mrtckr.livecoding2.ui.compose.musicplayer.widgets.listdetail.MusicPla
 import com.mrtckr.livecoding2.ui.compose.musicplayer.widgets.listdetail.MusicPlayerConst.IMAGE_SIZE_SCALE_FACTOR_RATIO
 import com.mrtckr.livecoding2.ui.compose.musicplayer.widgets.listdetail.MusicPlayerConst.LIST_DETAIL_IMAGE_SIZE
 import com.mrtckr.livecoding2.ui.compose.musicplayer.widgets.listdetail.MusicPlayerConst.THRESHOLD_OF_SCALE_ANIMATION
-import com.mrtckr.livecoding2.ui.compose.musicplayer.widgets.player.PlayerDetailRoute
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
+import kotlinx.serialization.InternalSerializationApi
 
+@OptIn(InternalSerializationApi::class)
 @Composable
 fun MusicListDetailRoute(
     songListId: String,
-    navController: NavHostController,
     viewModel: MusicPlayerViewModel = hiltViewModel(),
     serviceBinder: MusicPlayerService.MusicServiceBinder?,
-    bottomSheetWidgetBounds: MutableState<Float?>,
+    sheetState: ModalBottomSheetState,
+    coroutineScope: CoroutineScope
 ) {
     val userUIStateData by viewModel.userData.collectAsStateWithLifecycle()
     val playListUIStateData by viewModel.songListData.collectAsStateWithLifecycle()
@@ -91,9 +90,9 @@ fun MusicListDetailRoute(
                 MusicPlayerDetailList(
                     playlistData,
                     userFullName,
-                    navController,
                     serviceBinder,
-                    bottomSheetWidgetBounds
+                    sheetState,
+                    coroutineScope
                 )
             } else {
                 ErrorScreen("Playlist not found")
@@ -111,9 +110,9 @@ fun MusicListDetailRoute(
 fun MusicPlayerDetailList(
     playlistEntity: PlaylistEntity,
     userFullName: String,
-    navController: NavHostController,
     serviceBinder: MusicPlayerService.MusicServiceBinder?,
-    bottomSheetWidgetBounds: MutableState<Float?>,
+    sheetState: ModalBottomSheetState,
+    coroutineScope: CoroutineScope
 ) {
     val context = LocalContext.current
 
@@ -121,13 +120,13 @@ fun MusicPlayerDetailList(
     val scrollableWidgetTopPoint = scrollableWidgetBounds.value ?: DEFAULT_VALUE
 
     val (imageSize, imageAlpha) = remember {
-        mutableStateOf(LIST_DETAIL_IMAGE_SIZE.dp) to mutableStateOf(
+        mutableStateOf(LIST_DETAIL_IMAGE_SIZE.dp) to mutableFloatStateOf(
             VISIBLE_ALPHA
         )
     }
 
     val animatedAlpha by animateFloatAsState(
-        targetValue = if (imageAlpha.value == INVISIBLE_ALPHA) VISIBLE_ALPHA else INVISIBLE_ALPHA,
+        targetValue = if (imageAlpha.floatValue == INVISIBLE_ALPHA) VISIBLE_ALPHA else INVISIBLE_ALPHA,
         animationSpec = tween(durationMillis = ANIMATION_DURATION)
     )
 
@@ -141,7 +140,7 @@ fun MusicPlayerDetailList(
             ((THRESHOLD_OF_SCALE_ANIMATION - scrollableWidgetTopPoint).coerceAtLeast(0f)) / THRESHOLD_OF_SCALE_ANIMATION
         imageSize.value =
             (LIST_DETAIL_IMAGE_SIZE - LIST_DETAIL_IMAGE_SIZE * scaleFactor * IMAGE_SIZE_SCALE_FACTOR_RATIO).dp
-        imageAlpha.value = (VISIBLE_ALPHA - scaleFactor).coerceAtLeast(INVISIBLE_ALPHA)
+        imageAlpha.floatValue = (VISIBLE_ALPHA - scaleFactor).coerceAtLeast(INVISIBLE_ALPHA)
     }
 
     Box(
@@ -169,15 +168,14 @@ fun MusicPlayerDetailList(
         )
         SongList(playlistEntity, userFullName, scrollableWidgetBounds)
         TopToolbar(
-            navController = navController,
-            title = playlistEntity.title,
-            animatedAlpha = animatedAlpha
+            title = playlistEntity.title, animatedAlpha = animatedAlpha
         )
         MusicPlayerDetailBottomSheet(
             serviceBinder = serviceBinder,
-            bottomSheetWidgetBounds = bottomSheetWidgetBounds,
             modifier = Modifier.align(Alignment.BottomCenter),
-            playlistEntity = playlistEntity
+            playlistEntity = playlistEntity,
+            sheetState = sheetState,
+            coroutineScope = coroutineScope
         )
     }
 }
@@ -215,54 +213,35 @@ fun SongList(
     }
 }
 
-@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun MusicPlayerDetailBottomSheet(
     serviceBinder: MusicPlayerService.MusicServiceBinder?,
-    bottomSheetWidgetBounds: MutableState<Float?>,
     playlistEntity: PlaylistEntity,
-    modifier: Modifier = Modifier
+    sheetState: ModalBottomSheetState,
+    coroutineScope: CoroutineScope,
+    modifier: Modifier = Modifier,
 ) {
-    val sheetState = rememberModalBottomSheetState(
-        initialValue = ModalBottomSheetValue.Hidden, skipHalfExpanded = true
-    )
-    val coroutineScope = rememberCoroutineScope()
     val context: Context = LocalContext.current
 
-    ModalBottomSheetLayout(sheetState = sheetState, sheetContent = {
-        PlayerDetailRoute(
-            songListId = "",
-            serviceBinder = serviceBinder,
-            sheetState = sheetState,
-            coroutineScope = coroutineScope,
-            bottomSheetWidgetBounds = bottomSheetWidgetBounds
-        )
-    }) {
-        MusicPlayerBottomWidget(modifier = modifier
+    MusicPlayerBottomWidget(
+        modifier = modifier
             .fillMaxWidth()
-            .padding(bottom = 80.dp, start = 8.dp, end = 8.dp)
             .height(65.dp)
             .clip(RoundedCornerShape(8.dp))
             .background(MaterialTheme.colorScheme.onTertiary)
             .clickable {
                 coroutineScope.launch { sheetState.show() }
             },
-            imageUrl = playlistEntity.songList[3].iconUrl,
-            title = playlistEntity.songList[3].name,
-            singer = playlistEntity.songList[3].singer,
-            serviceBinder = serviceBinder,
-            onPlayPauseClicked = { action ->
-                val intent = Intent(context, MusicPlayerService::class.java).apply {
-                    this.action = action
-                }
-                context.startService(intent)
-            })
-    }
-    BackHandler(enabled = sheetState.isVisible) {
-        coroutineScope.launch {
-            sheetState.hide()
-        }
-    }
+        imageUrl = playlistEntity.songList[0].iconUrl,
+        title = playlistEntity.songList[0].name,
+        singer = playlistEntity.songList[0].singer,
+        serviceBinder = serviceBinder,
+        onPlayPauseClicked = { action ->
+            val intent = Intent(context, MusicPlayerService::class.java).apply {
+                this.action = action
+            }
+            context.startService(intent)
+        })
 }
 
 object MusicPlayerConst {
@@ -278,12 +257,16 @@ object MusicPlayerConst {
 fun MusicListDetailPreview() {
     MyAppTheme {
         Surface {
+            val sheetState = rememberModalBottomSheetState(
+                initialValue = ModalBottomSheetValue.Hidden, skipHalfExpanded = true
+            )
+            val coroutineScope = rememberCoroutineScope()
             MusicPlayerDetailList(
                 playlistEntity = songListItem.playlistList[1].playlistList[1],
                 userFullName = "MM",
-                navController = rememberNavController(),
                 serviceBinder = null,
-                bottomSheetWidgetBounds = remember { mutableStateOf(1f) },
+                coroutineScope = coroutineScope,
+                sheetState = sheetState
             )
         }
     }

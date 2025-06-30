@@ -46,7 +46,7 @@ class MusicPlayerService : Service() {
             IntentFilter(ACTION_NOTIFICATION_DISMISSED),
             RECEIVER_NOT_EXPORTED
         )
-        notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {

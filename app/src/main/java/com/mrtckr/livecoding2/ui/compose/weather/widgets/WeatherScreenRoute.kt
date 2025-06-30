@@ -21,6 +21,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.mrtckr.livecoding.domain.entity.weather.OverlapCurrentInformationWidget
@@ -46,7 +47,7 @@ fun WeatherScreenRoute(viewModel: WeatherComposeViewModel = hiltViewModel()) {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .padding(bottom = dimensionResource(id = R.dimen.xxlarge_spacer_size))
+            .padding(bottom = 0.dp)
     ) {
         VideoPlayerBackground(videoResId = R.raw.sunny_background)
 

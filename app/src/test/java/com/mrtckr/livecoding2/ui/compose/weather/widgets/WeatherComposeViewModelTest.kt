@@ -1,30 +1,35 @@
 package com.mrtckr.livecoding2.ui.compose.weather.widgets
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.lifecycle.viewModelScope
 import app.cash.turbine.test
 import com.mrtckr.livecoding.domain.testing.mockWeatherData
 import com.mrtckr.livecoding.domain.usecase.GetWeatherMockDataUseCase
+import com.mrtckr.livecoding2.MainDispatcherRule
 import com.mrtckr.livecoding2.ui.compose.weather.WeatherComposeViewModel
 import junit.framework.TestCase.assertEquals
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.resetMain
-import kotlinx.coroutines.test.runBlockingTest
-import kotlinx.coroutines.test.setMain
+import kotlinx.coroutines.test.runCurrent
+import kotlinx.coroutines.test.runTest
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.mockito.Mock
-import org.mockito.Mockito.`when`
 import org.mockito.MockitoAnnotations
+import org.mockito.kotlin.whenever
 
 @ExperimentalCoroutinesApi
 class WeatherComposeViewModelTest {
 
     @get:Rule
-    var instantTaskExecutorRule = InstantTaskExecutorRule()
+    val mainDispatcherRule = MainDispatcherRule()
+    @get:Rule
+    val instantTaskExecutorRule = InstantTaskExecutorRule()
 
     @Mock
     private lateinit var getWeatherMockDataUseCase: GetWeatherMockDataUseCase
@@ -34,8 +39,11 @@ class WeatherComposeViewModelTest {
     @Before
     fun setUp() {
         MockitoAnnotations.openMocks(this)
-        Dispatchers.setMain(Dispatchers.Unconfined)
-        viewModel = WeatherComposeViewModel(getWeatherMockDataUseCase)
+        whenever(getWeatherMockDataUseCase.invoke(mockWeatherData.cityName)).thenReturn(
+            flowOf(
+                mockWeatherData
+            )
+        )
     }
 
     @After
@@ -44,27 +52,23 @@ class WeatherComposeViewModelTest {
     }
 
     @Test
-    fun `getWeatherState emits Success state with correct data`() = runBlockingTest {
-        val mockWeatherData = mockWeatherData
-
-        `when`(getWeatherMockDataUseCase(mockWeatherData.cityName)).thenReturn(flow {
-            emit(
-                mockWeatherData
-            )
-        })
-
-        viewModel.updateWeatherState(mockWeatherData.cityName)
-        val weatherStateFlow = viewModel.weatherState
-
-        weatherStateFlow.test {
-            val emission = awaitItem()
-            assert(emission is WeatherDataUiState.Success && emission.weatherData == mockWeatherData)
-            cancelAndIgnoreRemainingEvents()
-        }
+    fun `weatherState initially Loading`() = runTest {
+        viewModel = WeatherComposeViewModel(getWeatherMockDataUseCase)
+        assertEquals(WeatherDataUiState.Loading, viewModel.weatherState.value)
     }
 
     @Test
-    fun `getWeatherState emits Loading state initially`() = runBlockingTest {
-        assertEquals(WeatherDataUiState.Loading, viewModel.weatherState.value)
+    fun `weatherState emits Success after update`() = runTest(mainDispatcherRule.dispatcher) {
+        viewModel = WeatherComposeViewModel(getWeatherMockDataUseCase)
+
+        viewModel.updateWeatherState(mockWeatherData.cityName)
+
+        runCurrent()
+
+        viewModel.weatherState.test {
+            assertEquals(WeatherDataUiState.Success(mockWeatherData), awaitItem())
+            cancelAndIgnoreRemainingEvents()
+        }
+        viewModel.viewModelScope.cancel()
     }
 }

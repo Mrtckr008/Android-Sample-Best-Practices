@@ -10,7 +10,7 @@ plugins {
 
 android {
     namespace = "com.mrtckr.livecoding.data"
-    compileSdk = 34
+    compileSdk = 36
 
     defaultConfig {
         minSdk = 24
@@ -18,13 +18,13 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
         val options = this as KotlinJvmOptions
-        options.jvmTarget = "1.8"
+        options.jvmTarget = "11"
     }
     hilt {
         enableAggregatingTask = true
@@ -34,8 +34,10 @@ android {
             isIncludeAndroidResources = true
         }
     }
-    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-        kotlinOptions.jvmTarget = "1.8"
+    tasks.withType<Test>().configureEach {
+        jvmArgs(
+            "-XX:+EnableDynamicAgentLoading",
+        )
     }
     buildFeatures {
         buildConfig = true

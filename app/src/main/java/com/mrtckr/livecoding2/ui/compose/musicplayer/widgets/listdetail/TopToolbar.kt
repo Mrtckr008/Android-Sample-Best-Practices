@@ -19,17 +19,17 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
+import androidx.navigationevent.compose.LocalNavigationEventDispatcherOwner
 import com.mrtckr.livecoding2.ui.compose.common.theme.MyAppTheme
 
 @Composable
 fun TopToolbar(
-    navController: NavHostController, title: String, animatedAlpha: Float
+    title: String, animatedAlpha: Float
 ) {
+    val dispatcher = LocalNavigationEventDispatcherOwner.current?.navigationEventDispatcher
     Row {
         IconButton(onClick = {
-            navController.popBackStack()
+            dispatcher?.dispatchOnCompleted()
         }) {
             Icon(
                 Icons.Filled.ArrowBackIosNew,
@@ -60,7 +60,7 @@ fun TopToolbar(
 fun TopToolbarPreview() {
     MyAppTheme {
         Surface {
-            TopToolbar(rememberNavController(), "Pink Floyd", 1f)
+            TopToolbar("Pink Floyd", 1f)
         }
     }
 }

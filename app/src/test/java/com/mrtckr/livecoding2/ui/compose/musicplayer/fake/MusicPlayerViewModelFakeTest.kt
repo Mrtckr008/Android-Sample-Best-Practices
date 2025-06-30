@@ -3,18 +3,16 @@ package com.mrtckr.livecoding2.ui.compose.musicplayer.fake
 import com.mrtckr.livecoding.data.datasource.musicplayer.fake.FakePlaylistListDataSource
 import com.mrtckr.livecoding.data.model.musicplayer.PlaylistListEntity
 import com.mrtckr.livecoding.data.testing.songListItem
-import com.mrtckr.livecoding2.MainCoroutineRule
+import com.mrtckr.livecoding2.MainDispatcherRule
 import com.mrtckr.livecoding2.ui.compose.musicplayer.MusicPlayerViewModel
 import com.mrtckr.livecoding2.ui.compose.musicplayer.SongListDataUiState
 import junit.framework.TestCase.assertTrue
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.cancel
-import kotlinx.coroutines.cancelAndJoin
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.test.runBlockingTest
-import org.junit.Assert
+import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -26,45 +24,53 @@ import org.mockito.Mockito.mock
 @RunWith(JUnit4::class)
 class MusicPlayerViewModelFakeTest {
 
-    @get:Rule
-    var coroutinesTestRule = MainCoroutineRule()
+    @Rule
+    @JvmField
+    val mainDispatcherRule = MainDispatcherRule()
 
-    private lateinit var viewModel: MusicPlayerViewModel
     private lateinit var fakeDataSource: FakePlaylistListDataSource
 
     @Before
-    fun setUp() {
+    fun setupDataSource() {
         fakeDataSource = FakePlaylistListDataSource()
-        viewModel = MusicPlayerViewModel(mock(), fakeDataSource)
     }
 
     @Test
-    fun `songListData emits Success state with empty list when updated with empty data`() = runBlockingTest {
+    fun `songListData emits Success with empty list`() = runTest(mainDispatcherRule.dispatcher) {
         fakeDataSource.updateSongListData(PlaylistListEntity(emptyList()))
-        val state = viewModel.songListData.first()
-        assertTrue(state is SongListDataUiState.Success && state.playlistListEntity.playlistList.isEmpty())
+        val viewModel = MusicPlayerViewModel(mock(), fakeDataSource)
+        val state = viewModel.songListData.first { it is SongListDataUiState.Success }
+
+        assertTrue(
+            (state as SongListDataUiState.Success).playlistListEntity.playlistList.isEmpty()
+        )
     }
 
     @Test
-    fun `songListData emits Success state with correct data with collectLatest`() =
-        runBlockingTest {
-            val job = launch {
-                viewModel.songListData.collectLatest { songListDataState ->
-                    if (songListDataState is SongListDataUiState.Success) {
-                        Assert.assertTrue(songListDataState.playlistListEntity.playlistList.isNotEmpty())
-                        this.cancel()
-                    }
+    fun `songListData emits Success state with correct data`() = runTest {
+        val viewModel = MusicPlayerViewModel(mock(), fakeDataSource)
+
+        val job = launch {
+            viewModel.songListData.collectLatest { state ->
+                if (state is SongListDataUiState.Success) {
+                    assertTrue(state.playlistListEntity.playlistList.isNotEmpty())
+                    cancel()
                 }
             }
-            job.join()
-            job.cancelAndJoin()
         }
 
-    @Test
-    fun `songListData is updated when updateSongListData is called`() = runBlockingTest {
-        val testPlaylist = PlaylistListEntity(songListItem.playlistList)
-        fakeDataSource.updateSongListData(testPlaylist)
-        val state = viewModel.songListData.first()
-        assertTrue(state is SongListDataUiState.Success && state.playlistListEntity == testPlaylist)
+        job.join()
     }
+
+    @Test
+    fun `songListData is updated when updateSongListData is called`() =
+        runTest(mainDispatcherRule.dispatcher) {
+            val viewModel = MusicPlayerViewModel(mock(), fakeDataSource)
+            val testPlaylist = PlaylistListEntity(songListItem.playlistList)
+            fakeDataSource.updateSongListData(testPlaylist)
+            val state = viewModel.songListData.first {
+                it is SongListDataUiState.Success
+            }
+            assertTrue(state is SongListDataUiState.Success && state.playlistListEntity == testPlaylist)
+        }
 }

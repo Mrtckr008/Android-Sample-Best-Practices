@@ -1,3 +1,4 @@
+@file:OptIn(kotlinx.serialization.InternalSerializationApi::class)
 package com.mrtckr.livecoding.data.model.weather
 
 import com.mrtckr.livecoding.domain.entity.weather.WeatherStatus
