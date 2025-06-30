@@ -58,7 +58,7 @@ fun MusicPlayerRoute(
                 .testTag("MusicPlayerSurface")
         ) {
             MusicPlayer(playListData) {
-                onNavigate(Screen.PlaylistDetail3(it))
+                onNavigate(Screen.PlaylistDetail(it))
             }
         }
     }

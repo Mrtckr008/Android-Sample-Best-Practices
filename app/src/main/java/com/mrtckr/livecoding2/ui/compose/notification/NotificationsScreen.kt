@@ -44,7 +44,7 @@ fun NotificationsScreen() {
                 })
         }
         .pointerInput(Unit) {
-            detectDragGestures { change, dragAmount ->
+            detectDragGestures { _, dragAmount ->
                 val newX = (offset.x + dragAmount.x).coerceIn(0f, screenWidth - 2 * radius)
                 val newY = (offset.y + dragAmount.y).coerceIn(0f, screenHeight - 2 * radius)
                 offset = Offset(newX, newY)

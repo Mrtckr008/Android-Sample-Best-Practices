@@ -48,7 +48,7 @@ fun MainScreen(
         musicPlayerBottomSheetTopPoint.value?.let { top -> max((-top / 1.5f) + 300, 0f) } ?: 0f
     val selectedSongListId = remember { mutableStateOf<String?>(null) }
 
-    val backStack = remember { mutableStateListOf<Screen>(Screen.Home3) }
+    val backStack = remember { mutableStateListOf<Screen>(Screen.Weather) }
 
     Box(Modifier.fillMaxSize()) {
         ModalBottomSheetLayout(
@@ -83,12 +83,12 @@ fun MainScreen(
                             backStack.removeLastOrNull()
                         }
                     }, entryProvider = entryProvider {
-                        entry<Screen.Home3> { WeatherScreenRoute() }
-                        entry<Screen.MusicPlayer3> {
+                        entry<Screen.Weather> { WeatherScreenRoute() }
+                        entry<Screen.MusicPlayer> {
                             MusicPlayerRoute { screen -> backStack.add(screen) }
                         }
-                        entry<Screen.Notifications3> { NotificationsScreen() }
-                        entry<Screen.PlaylistDetail3> { entry ->
+                        entry<Screen.Notifications> { NotificationsScreen() }
+                        entry<Screen.PlaylistDetail> { entry ->
                             selectedSongListId.value = entry.songListId
                             MusicListDetailRoute(
                                 songListId = entry.songListId,

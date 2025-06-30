@@ -11,20 +11,17 @@ import com.mrtckr.livecoding2.R
 import kotlinx.serialization.Serializable
 
 @Serializable
-sealed class Screen(val route: String, @StringRes val resourceId: Int, val icon: ImageVector) :
-    NavKey {
+sealed class Screen(@StringRes val resourceId: Int, val icon: ImageVector) : NavKey {
     @Serializable
-    object Home3 : Screen("Weather", R.string.title_weather, Icons.Filled.Cloud)
+    object Weather : Screen(R.string.title_weather, Icons.Filled.Cloud)
 
     @Serializable
-    object MusicPlayer3 :
-        Screen("MusicPlayer", R.string.title_music_player, Icons.Filled.LibraryMusic)
+    object MusicPlayer : Screen(R.string.title_music_player, Icons.Filled.LibraryMusic)
 
     @Serializable
-    object Notifications3 :
-        Screen("notifications", R.string.title_notifications, Icons.Filled.Notifications)
+    object Notifications : Screen(R.string.title_notifications, Icons.Filled.Notifications)
 
     @Serializable
-    data class PlaylistDetail3(val songListId: String) :
-        Screen("MusicPlayer", R.string.title_music_player, Icons.Filled.LibraryMusic)
+    data class PlaylistDetail(val songListId: String) :
+        Screen(R.string.title_music_player, Icons.Filled.LibraryMusic)
 }

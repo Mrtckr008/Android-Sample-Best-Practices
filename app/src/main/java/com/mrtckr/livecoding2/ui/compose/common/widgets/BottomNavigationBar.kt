@@ -19,7 +19,7 @@ import com.mrtckr.livecoding2.ui.compose.common.theme.MyAppTheme
 fun BottomNavigationBar(backStack: SnapshotStateList<Screen>, modifier: Modifier = Modifier) {
     val current = backStack.lastOrNull()
     NavigationBar(containerColor = Color.Black, modifier = modifier) {
-        listOf(Screen.Home3, Screen.MusicPlayer3, Screen.Notifications3).forEach { screen ->
+        listOf(Screen.Weather, Screen.MusicPlayer, Screen.Notifications).forEach { screen ->
             NavigationBarItem(
                 icon = { Icon(screen.icon, contentDescription = null) },
                 label = { Text(stringResource(screen.resourceId)) },
@@ -40,7 +40,7 @@ fun BottomNavigationBar(backStack: SnapshotStateList<Screen>, modifier: Modifier
 @Preview
 @Composable
 fun BottomNavigationBarPreview() {
-    val backStack = remember { mutableStateListOf<Screen>(Screen.Home3) }
+    val backStack = remember { mutableStateListOf<Screen>(Screen.Weather) }
     MyAppTheme {
         BottomNavigationBar(backStack = backStack)
     }

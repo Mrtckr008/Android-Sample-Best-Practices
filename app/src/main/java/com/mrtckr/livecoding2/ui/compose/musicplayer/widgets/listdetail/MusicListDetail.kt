@@ -163,7 +163,7 @@ fun MusicPlayerDetailList(
                 .padding(top = 6.dp)
                 .size(imageSize.value)
                 .align(Alignment.TopCenter)
-                .alpha(imageAlpha.value)
+                .alpha(imageAlpha.floatValue)
                 .testTag("MusicListImage")
         )
         SongList(playlistEntity, userFullName, scrollableWidgetBounds)

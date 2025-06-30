@@ -154,7 +154,7 @@ class HomeFragment @Inject constructor() : Fragment() {
             }
 
             is ResultData.Error -> {
-                val exception = weatherData.exception
+                weatherData.exception
                 // TODO:
             }
 
@@ -169,7 +169,7 @@ class HomeFragment @Inject constructor() : Fragment() {
             }
 
             is ResultData.Error -> {
-                val exception = capitalWeatherDataData.exception
+                capitalWeatherDataData.exception
                 // TODO:
             }
 
