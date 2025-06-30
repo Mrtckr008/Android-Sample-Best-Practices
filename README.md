@@ -1,4 +1,4 @@
-## Comprehensive Android Development Guide: Clean architecture, MVVM, UI & Unit & Screenshot Test, Libraries (LiveData, StateFlow, Retrofit, Hilt, Coroutine, Compose, DataStore, Test Libraries and more)
+## Comprehensive Android Development Guide: Clean architecture, MVVM, UI & Unit & Screenshot Test, Libraries (Compose Navigation 3, LiveData, StateFlow, Retrofit, Hilt, Coroutine, Compose, DataStore, Test Libraries and more)
 
 I created different mini-apps for each item in the bottom navigation. Each mini-app shows a different way to use popular libraries, structures and best practices in Android development. This project is great for learning because it covers many important variable approaches that Android developers use.
 
@@ -8,7 +8,7 @@ We adhere to clean architecture guidelines, structuring our application into mul
 
 ### Key Libraries
 
-- Jetpack Compose & Material3 & Compose Navigation: For building modern UIs with a focus on material design principles.
+- Jetpack Compose & Material3 & Compose Navigation 3: For building modern UIs with a focus on material design principles.
 - Dagger-Hilt: Dependency injection framework for Android, simplifying the provision of dependencies across the application.
 - Retrofit & Gson: Networking and JSON serialization/deserialization for API communication.
 - Jetpack Navigation: For handling in-app navigation in a modular and scalable way.
