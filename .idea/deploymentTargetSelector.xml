@@ -4,7 +4,7 @@
     <selectionStates>
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2025-06-30T15:25:10.980965Z">
+        <DropdownSelection timestamp="2025-07-02T19:06:32.464033Z">
           <Target type="DEFAULT_BOOT">
             <handle>
               <DeviceId pluginId="PhysicalDevice" identifier="serial=R5CT34AC8AX" />
@@ -16,7 +16,7 @@
       <SelectionState runConfigName="Tests in 'com.mrtckr.livecoding2'">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="All Tests">
+      <SelectionState runConfigName="musicListDetailScreen_DisplayedCorrectly()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>

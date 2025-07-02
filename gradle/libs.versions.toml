@@ -7,12 +7,11 @@ googleMaterial = "1.12.0"
 androidxConstraintLayout = "2.2.1"
 androidxLifecycle = "2.9.1"
 androidxComposeMaterial3 = "1.3.2"
-daggerHiltAndroidCompiler = "2.50"
 androidxNavigation = "2.9.0"
 junit = "4.13.2"
 androidxTestJunit = "1.2.1"
 androidxEspressoCore = "3.6.1"
-daggerHilt = "2.50"
+daggerHilt = "2.56"
 hiltCommon = "1.2.0"
 hiltNavigationFragment = "1.2.0"
 hiltWork = "1.2.0"
@@ -22,7 +21,7 @@ workRuntimeKtx = "2.10.2"
 mockitoCore = "5.7.0"
 mockitoInline = "4.10.0"
 mockitoKotlin = "5.2.1"
-kotlinxCoroutinesTest = "1.10.2"
+kotlinxCoroutinesTest = "1.7.3"
 androidxCoreTesting = "2.2.0"
 compose = "1.7.8"
 exoplayer = "2.19.1"
@@ -33,9 +32,8 @@ composeNavHilt = "1.2.0"
 retrofit = "2.11.0"
 gson = "2.11.0"
 gradle = "8.10.1"
-kotlin-gradle = "1.9.22"
+kotlin-gradle = "2.1.10"
 kotlin-kapt = "8.2"
-hiltPlugin = "2.50"
 composeLifecycle = "2.9.1"
 kotlinxSerializationJson = "1.6.0"
 jetbrainsSerialization = "1.9.20"
@@ -44,7 +42,8 @@ paparazzi = "1.3.1"
 media3Session = "1.7.1"
 googleTruth = "1.4.4"
 navigation3 = "1.0.0-alpha04"
-activityCompose = "1.12.0-alpha03"
+activityCompose = "1.9.3"
+ksp = "2.1.10-1.0.31"
 
 [libraries]
 
@@ -57,7 +56,7 @@ androidxConstraintLayout = { module = "androidx.constraintlayout:constraintlayou
 androidxLifecycleLivedataKtx = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "androidxLifecycle" }
 androidxLifecycleViewmodelKtx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "androidxLifecycle" }
 androidxComposeMaterial3 = { module = "androidx.compose.material3:material3", version.ref = "androidxComposeMaterial3" }
-daggerHiltAndroidCompiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "daggerHiltAndroidCompiler" }
+daggerHiltAndroidCompiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "daggerHilt" }
 androidxNavigationFragmentKtx = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "androidxNavigation" }
 androidxNavigationUiKtx = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "androidxNavigation" }
 junit = { module = "junit:junit", version.ref = "junit" }
@@ -166,9 +165,10 @@ datastore = ["androidx-datastore",
 [plugins]
 android-application = { id = "com.android.application", version.ref = "gradle" }
 android-library = { id = "com.android.library", version.ref = "gradle" }
-hilt = { id = "com.google.dagger.hilt.android", version.ref = "hiltPlugin" }
+hilt = { id = "com.google.dagger.hilt.android", version.ref = "daggerHilt" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin-gradle" }
 kotlin-kapt = { id = "kotlin-kapt", version.ref = "kotlin-kapt" }
 plugin-serializaton = { id = "plugin.serialization", version.ref = "kotlinxSerializationJson" }
 jetbrains-plugin-serializaton = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "jetbrainsSerialization" }
 paparazzi = { id = "app.cash.paparazzi", version.ref = "paparazzi" }
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin-gradle" }

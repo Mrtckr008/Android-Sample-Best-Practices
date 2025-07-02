@@ -1,6 +1,5 @@
 package com.mrtckr.livecoding2.ui.compose.musicplayer.widgets.listdetail
 
-import android.content.Context
 import android.content.Intent
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
@@ -11,6 +10,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
@@ -88,11 +88,7 @@ fun MusicListDetailRoute(
 
             if (playlistData != null) {
                 MusicPlayerDetailList(
-                    playlistData,
-                    userFullName,
-                    serviceBinder,
-                    sheetState,
-                    coroutineScope
+                    playlistData, userFullName, serviceBinder, sheetState, coroutineScope
                 )
             } else {
                 ErrorScreen("Playlist not found")
@@ -146,6 +142,7 @@ fun MusicPlayerDetailList(
     Box(
         modifier = Modifier
             .fillMaxSize()
+            .navigationBarsPadding()
             .background(
                 brush = Brush.verticalGradient(
                     colors = listOf(
@@ -170,13 +167,26 @@ fun MusicPlayerDetailList(
         TopToolbar(
             title = playlistEntity.title, animatedAlpha = animatedAlpha
         )
-        MusicPlayerDetailBottomSheet(
+        MusicPlayerBottomWidget(
+            modifier = Modifier
+                .align(Alignment.BottomCenter)
+                .fillMaxWidth()
+                .height(65.dp)
+                .clip(RoundedCornerShape(8.dp))
+                .background(MaterialTheme.colorScheme.onTertiary)
+                .clickable {
+                    coroutineScope.launch { sheetState.show() }
+                },
+            imageUrl = playlistEntity.songList[0].iconUrl,
+            title = playlistEntity.songList[0].name,
+            singer = playlistEntity.songList[0].singer,
             serviceBinder = serviceBinder,
-            modifier = Modifier.align(Alignment.BottomCenter),
-            playlistEntity = playlistEntity,
-            sheetState = sheetState,
-            coroutineScope = coroutineScope
-        )
+            onPlayPauseClicked = { action ->
+                val intent = Intent(context, MusicPlayerService::class.java).apply {
+                    this.action = action
+                }
+                context.startService(intent)
+            })
     }
 }
 
@@ -211,37 +221,6 @@ fun SongList(
             SongListItemWidget(song = songEntity)
         }
     }
-}
-
-@Composable
-fun MusicPlayerDetailBottomSheet(
-    serviceBinder: MusicPlayerService.MusicServiceBinder?,
-    playlistEntity: PlaylistEntity,
-    sheetState: ModalBottomSheetState,
-    coroutineScope: CoroutineScope,
-    modifier: Modifier = Modifier,
-) {
-    val context: Context = LocalContext.current
-
-    MusicPlayerBottomWidget(
-        modifier = modifier
-            .fillMaxWidth()
-            .height(65.dp)
-            .clip(RoundedCornerShape(8.dp))
-            .background(MaterialTheme.colorScheme.onTertiary)
-            .clickable {
-                coroutineScope.launch { sheetState.show() }
-            },
-        imageUrl = playlistEntity.songList[0].iconUrl,
-        title = playlistEntity.songList[0].name,
-        singer = playlistEntity.songList[0].singer,
-        serviceBinder = serviceBinder,
-        onPlayPauseClicked = { action ->
-            val intent = Intent(context, MusicPlayerService::class.java).apply {
-                this.action = action
-            }
-            context.startService(intent)
-        })
 }
 
 object MusicPlayerConst {

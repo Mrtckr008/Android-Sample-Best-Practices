@@ -9,7 +9,6 @@ import com.mrtckr.livecoding.domain.entity.weather.ViewingDistance
 import com.mrtckr.livecoding.domain.entity.weather.WeatherData
 import com.mrtckr.livecoding.domain.entity.weather.WeatherStatus
 
-
 private val mockForecastData = arrayListOf(
     Forecast(
         day = "Today", temperatureMax = 12, temperatureMin = 0, weatherStatus = WeatherStatus.CLOUDY

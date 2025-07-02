@@ -6,4 +6,5 @@ plugins {
     alias(libs.plugins.hilt) apply false
     alias(libs.plugins.jetbrains.plugin.serializaton)
     alias(libs.plugins.paparazzi) apply false
+    alias(libs.plugins.compose.compiler) apply false
 }

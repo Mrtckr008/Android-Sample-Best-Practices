@@ -3,6 +3,7 @@ package com.mrtckr.livecoding2.ui.compose.musicplayer.widgets.listdetail
 import androidx.compose.material.ModalBottomSheetValue
 import androidx.compose.material.rememberModalBottomSheetState
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.isDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onAllNodesWithTag
@@ -26,7 +27,7 @@ class MusicListDetailTest {
 
     @Test
     fun musicListDetailScreen_DisplayedCorrectly() {
-        val playlistData = songListItem.playlistList[1].playlistList[1]
+        val playlistData = songListItem.playlistList[0].playlistList[0]
         val userFullName = "Murat Cakir"
         composeTestRule.setContent {
             val sheetState = rememberModalBottomSheetState(
@@ -43,8 +44,8 @@ class MusicListDetailTest {
         }
 
         composeTestRule.onAllNodesWithText(playlistData.title).onFirst().assertExists()
-        composeTestRule.onNodeWithText(playlistData.songList[0].name).assertExists()
-        composeTestRule.onNodeWithText(playlistData.songList[0].singer).assertExists()
+        composeTestRule.onAllNodesWithText(playlistData.songList[1].name).onFirst().assertIsDisplayed()
+        composeTestRule.onAllNodesWithText(playlistData.songList[1].singer).onFirst().assertIsDisplayed()
         composeTestRule.onNodeWithText("Created by AI for $userFullName").assertExists()
         composeTestRule.onNodeWithTag("BackButton").isDisplayed()
     }
