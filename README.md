@@ -1,4 +1,4 @@
-## Comprehensive Android Development Guide: Clean architecture, MVVM, UI & Unit & Screenshot Test, Libraries (Compose Navigation 3, LiveData, StateFlow, Retrofit, Hilt, Coroutine, Compose, DataStore, Test Libraries and more)
+## Comprehensive Android Development Guide: Clean architecture, MVVM, UI & Unit & Screenshot Test (Compose Preview Screenshot Test and Paparazzi), Libraries (Compose Navigation 3, LiveData, StateFlow, Retrofit, Hilt, Coroutine, Compose, DataStore, Test Libraries and more)
 
 I created different mini-apps for each item in the bottom navigation. Each mini-app shows a different way to use popular libraries, structures and best practices in Android development. This project is great for learning because it covers many important variable approaches that Android developers use.
 
@@ -8,14 +8,14 @@ We adhere to clean architecture guidelines, structuring our application into mul
 
 ### Key Libraries
 
-- Jetpack Compose & Material3 & Compose Navigation 3: For building modern UIs with a focus on material design principles.
+- Jetpack Compose & Material3 & Compose Navigation 3 & Compose Preview Screenshot Test: For building modern UIs with a focus on material design principles.
 - Dagger-Hilt: Dependency injection framework for Android, simplifying the provision of dependencies across the application.
 - Retrofit & Gson: Networking and JSON serialization/deserialization for API communication.
 - Jetpack Navigation: For handling in-app navigation in a modular and scalable way.
 - Coroutines & Flow: For asynchronous programming and reactive data streams.
 - Jetpack Lifecycle, LiveData, ViewModel: Lifecycle-aware components for robust and maintainable MVVM architecture.
 - ExoPlayer: Media playback.
-- Mockito & JUnit & Mockk & Espresso & Paparazzi: Testing libraries for Unit, UI, Integration & Screenshot tests.
+- Mockito & JUnit & Mockk & Espresso & Paparazzi & Compose Preview Screenshot Test: Testing libraries for Unit, UI, Integration & Screenshot tests.
 - TOML Version Catalog: Centralizes and manages library versions across the project, enhancing maintainability and consistency in dependency management.
 - DataStore with Serialization: For efficient and robust data storage and management, providing a reactive and secure way to handle preferences and structured data.
 - Coil: For image loading and caching in applications, offering seamless integration with Jetpack Compose.
