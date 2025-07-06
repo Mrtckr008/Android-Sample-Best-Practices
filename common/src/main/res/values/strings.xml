@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">LiveCoding2</string>
+    <string name="content_description" translatable="false">any content description</string>
+    <string name="rainfall_map">Rainfall Map</string>
+    <string name="forecast_weeks">2 Week Forecast</string>
+    <string name="hourly_forecast">Hourly Forecast</string>
+    <string name="temperature_range">L:%1$s° H:%2$s°</string>
+    <string name="collapsed_current_information" translatable="false">%1$s° | %2$s</string>
+
+    <string name="title_weather">Weather</string>
+    <string name="title_music_player" translatable="false">Music Player</string>
+    <string name="title_notifications" translatable="false">Notifications</string>
+    <string name="viewing_distance">VIEWING DISTANCE</string>
+    <string name="uv_index">UV INDEX</string>
+    <string name="rest_of_the_day">Rest of the day</string>
+    <string name="rain">RAIN</string>
+    <string name="felt_temperature">Felt Temperature</string>
+    <string name="open_with_map">Open on Map</string>
+    <string name="weather">%1$s Weather</string>
+    <string name="privacy_information">More about weather data and map data</string>
+    <string name="first_underlined_text">weather data</string>
+    <string name="second_underlined_part">map data</string>
+    <string name="weekly_forecast_title">2 WEEK FORECAST</string>
+    <string name="hourly_forecast_widget_title">Windy weather is expected as of 11:00.</string>
+    <string name="temperature" translatable="false">%1$s°</string>
+</resources>

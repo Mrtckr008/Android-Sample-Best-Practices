@@ -73,6 +73,8 @@ dependencies {
     implementation(project(":data"))
     implementation(project(":common"))
     implementation(project(":dynamicboxanimator"))
+    implementation(project(":feature:weather"))
+    implementation(project(":feature:musicplayer"))
 }
 
 apply(from = "guava-fix.gradle")

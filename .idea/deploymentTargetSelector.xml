@@ -13,10 +13,16 @@
         </DropdownSelection>
         <DialogSelection />
       </SelectionState>
-      <SelectionState runConfigName="Tests in 'com.mrtckr.livecoding2'">
+      <SelectionState runConfigName="musicplayer">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="musicListDetailScreen_DisplayedCorrectly()">
+      <SelectionState runConfigName="feature.weather">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="feature.musicplayer">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="Tests in 'com.mrtckr.livecoding.feature.musicplayer'">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>

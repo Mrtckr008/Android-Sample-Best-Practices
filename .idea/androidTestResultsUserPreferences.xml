@@ -230,6 +230,19 @@
             </AndroidTestResultsTableState>
           </value>
         </entry>
+        <entry key="-157242236">
+          <value>
+            <AndroidTestResultsTableState>
+              <option name="preferredColumnWidths">
+                <map>
+                  <entry key="Duration" value="90" />
+                  <entry key="Tests" value="360" />
+                  <entry key="samsung SM-S9080" value="120" />
+                </map>
+              </option>
+            </AndroidTestResultsTableState>
+          </value>
+        </entry>
         <entry key="-97778843">
           <value>
             <AndroidTestResultsTableState>
@@ -264,6 +277,7 @@
               <option name="preferredColumnWidths">
                 <map>
                   <entry key="Duration" value="90" />
+                  <entry key="Pixel_2" value="120" />
                   <entry key="Pixel_2_API_34" value="120" />
                   <entry key="Tests" value="360" />
                   <entry key="samsung SM-S9080" value="120" />

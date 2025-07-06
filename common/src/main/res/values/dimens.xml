@@ -1,0 +1,59 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="current_information_widget_distance_y">50dp</dimen>
+    <dimen name="information_bar_horizontal_padding">@dimen/normal_padding</dimen>
+    <dimen name="information_bar_top_padding">60dp</dimen>
+    <dimen name="information_bar_text_padding">@dimen/normal_padding</dimen>
+    <dimen name="information_bar_start_padding">@dimen/normal_padding</dimen>
+    <dimen name="widgets_corner_shape_value">15dp</dimen>
+    <dimen name="scrollable_bar_top_padding">160dp</dimen>
+    <dimen name="scrollable_bar_top_space">150dp</dimen>
+    <dimen name="forecast_widgets_between_space">8dp</dimen>
+    <dimen name="weekly_forecast_and_map_between_space">30dp</dimen>
+    <dimen name="parent_widget_bottom_space">60dp</dimen>
+    <dimen name="current_information_animated_title_text_size">50sp</dimen>
+    <dimen name="current_information_animated_description_text_size">20sp</dimen>
+    <dimen name="current_information_animated_description_bottom_padding">30dp</dimen>
+    <dimen name="weather_information_box_height">150dp</dimen>
+    <dimen name="weather_information_box_corner_shape">10dp</dimen>
+    <dimen name="weather_information_box_icon_size">12dp</dimen>
+    <dimen name="weather_information_box_bottom_spacer">25dp</dimen>
+    <dimen name="bottom_information_bar_icon_size">20dp</dimen>
+    <dimen name="weather_map_box_map_size">350dp</dimen>
+    <dimen name="weather_map_box_icon_size">24dp</dimen>
+    <dimen name="weather_map_box_image_corner_shape">12dp</dimen>
+    <dimen name="weather_bar_chart_height">3dp</dimen>
+    <dimen name="weather_bar_chart_width">100dp</dimen>
+    <dimen name="weather_status_icon_size">25dp</dimen>
+    <dimen name="uv_chart_height">4dp</dimen>
+    <dimen name="hourly_forecast_widget_min_height">150dp</dimen>
+    <dimen name="forecast_widget_min_height">300dp</dimen>
+    <dimen name="forecast_daily_item_height">70dp</dimen>
+    <dimen name="forecast_daily_chart_height">10dp</dimen>
+
+    <dimen name="weather_information_box_description_text_size">18sp</dimen>
+
+    <dimen name="small_spacer_size">4dp</dimen>
+    <dimen name="normal_spacer_size">8dp</dimen>
+    <dimen name="large_spacer_size">16dp</dimen>
+    <dimen name="xlarge_spacer_size">20dp</dimen>
+    <dimen name="xxlarge_spacer_size">40dp</dimen>
+
+
+    <dimen name="divider_height">1dp</dimen>
+
+
+    <dimen name="normal_margin">8dp</dimen>
+
+    <dimen name="small_padding">6dp</dimen>
+    <dimen name="normal_padding">8dp</dimen>
+    <dimen name="big_normal_padding">10dp</dimen>
+
+    <dimen name="small_text">10sp</dimen>
+    <dimen name="small_normal_text">12sp</dimen>
+    <dimen name="normal_text">14sp</dimen>
+    <dimen name="large_text">16sp</dimen>
+    <dimen name="xlarge_text">20sp</dimen>
+    <dimen name="xxlarge_text">24sp</dimen>
+
+</resources>

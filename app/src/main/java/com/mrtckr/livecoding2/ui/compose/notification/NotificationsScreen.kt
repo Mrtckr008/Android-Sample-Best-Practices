@@ -19,7 +19,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalWindowInfo
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.mrtckr.livecoding2.ui.compose.common.dpToPx
+import com.mrtckr.common.ui.dpToPx
 
 @Preview
 @Composable

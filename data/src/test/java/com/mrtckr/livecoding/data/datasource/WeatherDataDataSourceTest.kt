@@ -11,6 +11,7 @@ import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.runTest
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType
+import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.ResponseBody
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
@@ -62,7 +63,7 @@ class WeatherDataDataSourceTest {
     @Test
     fun `getWeatherByName emits failed when api call is failed`() = runTest {
         val fakeResponse = Response.error<WeatherEntity>(
-            404, ResponseBody.create(MediaType.get("multipart/mixed"), "error")
+            404, ResponseBody.create("multipart/mixed".toMediaType(), "error")
         )
 
         `when`(weatherApi.getWeatherByName(com.mrtckr.livecoding.domain.testing.mockWeatherData.cityName)).thenReturn(

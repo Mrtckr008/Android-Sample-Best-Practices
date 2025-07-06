@@ -3,8 +3,8 @@ package com.mrtckr.livecoding2
 import android.app.Application
 import androidx.compose.runtime.MutableState
 import androidx.lifecycle.ViewModel
-import com.mrtckr.livecoding2.ui.compose.musicplayer.service.MusicPlayerService
-import com.mrtckr.livecoding2.ui.compose.musicplayer.service.MusicServiceConnection
+import com.mrtckr.livecoding.feature.musicplayer.service.MusicPlayerService
+import com.mrtckr.livecoding.feature.musicplayer.service.MusicServiceConnection
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

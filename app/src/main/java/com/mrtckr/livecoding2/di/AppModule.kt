@@ -1,7 +1,7 @@
 package com.mrtckr.livecoding2.di
 
 import android.content.Context
-import com.mrtckr.livecoding2.ui.compose.musicplayer.service.MusicServiceConnection
+import com.mrtckr.livecoding.feature.musicplayer.service.MusicServiceConnection
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

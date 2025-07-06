@@ -13,8 +13,8 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.mrtckr.livecoding.data.testing.songListItem
 import com.mrtckr.livecoding.domain.testing.mockWeatherData
 import com.mrtckr.livecoding2.MainActivity
-import com.mrtckr.livecoding2.ui.compose.common.Constants.MUSIC_PLAYER
-import com.mrtckr.livecoding2.ui.compose.common.Constants.WEATHER
+import com.mrtckr.common.ui.Constants.MUSIC_PLAYER
+import com.mrtckr.common.ui.Constants.WEATHER
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
