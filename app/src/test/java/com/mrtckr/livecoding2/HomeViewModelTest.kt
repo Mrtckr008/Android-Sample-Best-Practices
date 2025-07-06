@@ -7,6 +7,7 @@ import com.mrtckr.livecoding.domain.entity.ResultData
 import com.mrtckr.livecoding.domain.entity.weather.WeatherData
 import com.mrtckr.livecoding.domain.testing.mockWeatherData
 import com.mrtckr.livecoding.domain.usecase.GetWeatherByNameUseCase
+import com.mrtckr.livecoding.testutils.MainDispatcherRule
 import com.mrtckr.livecoding2.ui.legacy.home.HomeViewModel
 import junit.framework.TestCase
 import kotlinx.coroutines.ExperimentalCoroutinesApi

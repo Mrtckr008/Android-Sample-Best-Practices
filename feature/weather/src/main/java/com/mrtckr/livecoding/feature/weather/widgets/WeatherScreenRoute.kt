@@ -119,18 +119,6 @@ fun WeatherScreen(
 }
 
 @Composable
-fun calculateCurrentInformationWidgetTranslationY(shouldMoveUp: MutableState<Boolean>): Float {
-    val currentInformationWidgetDistanceY = with(LocalDensity.current) {
-        dimensionResource(id = R.dimen.current_information_widget_distance_y).toPx()
-    }
-    return animateFloatAsState(
-        targetValue = if (shouldMoveUp.value) -currentInformationWidgetDistanceY else Constants.DEFAULT_VALUE,
-        animationSpec = tween(durationMillis = Constants.CURRENT_INFORMATION_WIDGET_TRANSLATION_Y),
-        label = "CurrentInformationWidgetTranslationY"
-    ).value
-}
-
-@Composable
 fun calculateCurrentInformationWidgetAlphaAnimation(scrollableWidgetTopPoint: Float): Float {
     return animateFloatAsState(
         targetValue = if (scrollableWidgetTopPoint < Constants.CURRENT_INFORMATION_WIDGET_ALPHA_ANIMATION_TOP_THRESHOLD) 1f else Constants.DEFAULT_VALUE,

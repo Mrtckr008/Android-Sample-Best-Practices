@@ -1,4 +1,4 @@
-package com.mrtckr.livecoding.feature.musicplayer
+package com.mrtckr.livecoding.testutils
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi

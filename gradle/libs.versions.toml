@@ -31,7 +31,7 @@ javaxInject = "1"
 composeNavHilt = "1.2.0"
 retrofit = "2.11.0"
 gson = "2.11.0"
-gradle = "8.10.1"
+agp = "8.10.1"
 kotlin-gradle = "2.1.10"
 kotlin-kapt = "8.2"
 composeLifecycle = "2.9.1"
@@ -44,6 +44,8 @@ googleTruth = "1.4.4"
 navigation3 = "1.0.0-alpha04"
 activityCompose = "1.9.3"
 ksp = "2.1.10-1.0.31"
+composeScreenshot = "0.0.1-alpha10"
+toolchain = "0.8.0"
 
 [libraries]
 
@@ -104,6 +106,7 @@ androidx-navigation3-ui = { module = "androidx.navigation3:navigation3-ui", vers
 android-activity = { module = "androidx.activity:activity", version.ref = "activityCompose" }
 android-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activityCompose" }
 compose-navigate = { module = "androidx.navigationevent:navigationevent-android", version.ref = "navigation3" }
+screenshot-validation-api = { group = "com.android.tools.screenshot", name = "screenshot-validation-api", version.ref = "composeScreenshot"}
 
 [bundles]
 androidxCore = ["androidxCoreKtx",
@@ -163,8 +166,8 @@ datastore = ["androidx-datastore",
     "kotlinx-collections-immutable"]
 
 [plugins]
-android-application = { id = "com.android.application", version.ref = "gradle" }
-android-library = { id = "com.android.library", version.ref = "gradle" }
+android-application = { id = "com.android.application", version.ref = "agp" }
+android-library = { id = "com.android.library", version.ref = "agp" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "daggerHilt" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin-gradle" }
 kotlin-kapt = { id = "kotlin-kapt", version.ref = "kotlin-kapt" }
@@ -172,3 +175,5 @@ plugin-serializaton = { id = "plugin.serialization", version.ref = "kotlinxSeria
 jetbrains-plugin-serializaton = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "jetbrainsSerialization" }
 paparazzi = { id = "app.cash.paparazzi", version.ref = "paparazzi" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin-gradle" }
+compose-screenshot = { id = "com.android.compose.screenshot", version.ref = "composeScreenshot"}
+toolchains = { id = "org.gradle.toolchains.foojay-resolver-convention", version.ref = "toolchain"}

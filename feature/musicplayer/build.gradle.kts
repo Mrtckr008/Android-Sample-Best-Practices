@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.hilt)
     id(libs.plugins.kotlin.kapt.get().pluginId)
     alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.compose.screenshot)
     kotlin(libs.plugins.plugin.serializaton.get().pluginId)
 }
 
@@ -38,6 +39,23 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.8"
     }
+
+    allprojects {
+        java {
+            toolchain {
+                languageVersion.set(JavaLanguageVersion.of(21))
+            }
+        }
+
+        tasks.withType<Test>().configureEach {
+            javaLauncher.set(
+                javaToolchains.launcherFor {
+                    languageVersion.set(JavaLanguageVersion.of(21))
+                }
+            )
+        }
+    }
+    experimentalProperties["android.experimental.enableScreenshotTest"] = true
 }
 
 dependencies {
@@ -45,6 +63,7 @@ dependencies {
     implementation(project(":data"))
     implementation(project(":common"))
     implementation(project(":dynamicboxanimator"))
+    testImplementation(project(":testutils"))
 
     implementation(libs.bundles.androidxCore)
     implementation(libs.bundles.lifecycle)
@@ -61,4 +80,6 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.testManifest)
     testImplementation(libs.bundles.testing)
     androidTestImplementation(libs.bundles.uiTesting)
+    screenshotTestImplementation(libs.composeUiTooling)
+    screenshotTestImplementation(libs.screenshot.validation.api)
 }

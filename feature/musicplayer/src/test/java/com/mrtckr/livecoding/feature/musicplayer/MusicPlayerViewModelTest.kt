@@ -6,6 +6,7 @@ import com.mrtckr.livecoding.data.model.musicplayer.PlaylistListEntity
 import com.mrtckr.livecoding.data.testing.songListItem
 import com.mrtckr.livecoding.domain.entity.user.User
 import com.mrtckr.livecoding.domain.usecase.GetUserDataUseCase
+import com.mrtckr.livecoding.testutils.MainDispatcherRule
 import io.mockk.coEvery
 import io.mockk.coJustRun
 import io.mockk.coVerify

@@ -6,6 +6,7 @@ import app.cash.turbine.test
 import com.mrtckr.livecoding.domain.testing.mockWeatherData
 import com.mrtckr.livecoding.domain.usecase.GetWeatherMockDataUseCase
 import com.mrtckr.livecoding.feature.weather.widgets.WeatherDataUiState
+import com.mrtckr.livecoding.testutils.MainDispatcherRule
 import junit.framework.TestCase.assertEquals
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi

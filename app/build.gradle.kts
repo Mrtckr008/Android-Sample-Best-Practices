@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.hilt)
     alias(libs.plugins.paparazzi)
     alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.compose.screenshot)
     id(libs.plugins.kotlin.kapt.get().pluginId)
 }
 
@@ -50,6 +51,24 @@ android {
             isIncludeAndroidResources = true
         }
     }
+
+    allprojects {
+        java {
+            toolchain {
+                languageVersion.set(JavaLanguageVersion.of(21))
+            }
+        }
+
+        tasks.withType<Test>().configureEach {
+            javaLauncher.set(
+                javaToolchains.launcherFor {
+                    languageVersion.set(JavaLanguageVersion.of(21))
+                }
+            )
+        }
+    }
+
+    experimentalProperties["android.experimental.enableScreenshotTest"] = true
 }
 
 dependencies {
@@ -69,12 +88,16 @@ dependencies {
     testImplementation(libs.bundles.testing)
     androidTestImplementation(libs.bundles.uiTesting)
 
+    screenshotTestImplementation(libs.composeUiTooling)
+    screenshotTestImplementation(libs.screenshot.validation.api)
+
     implementation(project(":domain"))
     implementation(project(":data"))
     implementation(project(":common"))
     implementation(project(":dynamicboxanimator"))
     implementation(project(":feature:weather"))
     implementation(project(":feature:musicplayer"))
+    testImplementation(project(":testutils"))
 }
 
 apply(from = "guava-fix.gradle")

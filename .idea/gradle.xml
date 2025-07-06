@@ -6,7 +6,7 @@
       <GradleProjectSettings>
         <option name="testRunner" value="CHOOSE_PER_TEST" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="gradleJvm" value="#GRADLE_LOCAL_JAVA_HOME" />
+        <option name="gradleJvm" value="#JAVA_HOME" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
@@ -19,10 +19,10 @@
             <option value="$PROJECT_DIR$/feature/musicplayer" />
             <option value="$PROJECT_DIR$/feature/weather" />
             <option value="$PROJECT_DIR$/network" />
+            <option value="$PROJECT_DIR$/testutils" />
           </set>
         </option>
       </GradleProjectSettings>
     </option>
-    <option name="offlineMode" value="true" />
   </component>
 </project>

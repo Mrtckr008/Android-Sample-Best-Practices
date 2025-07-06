@@ -45,6 +45,7 @@ dependencies {
     implementation(project(":data"))
     implementation(project(":common"))
     implementation(project(":dynamicboxanimator"))
+    testImplementation(project(":testutils"))
 
     implementation(libs.bundles.androidxCore)
     implementation(libs.bundles.lifecycle)

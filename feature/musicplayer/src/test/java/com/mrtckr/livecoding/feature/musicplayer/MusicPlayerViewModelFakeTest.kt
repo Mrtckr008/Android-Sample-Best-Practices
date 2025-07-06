@@ -3,6 +3,7 @@ package com.mrtckr.livecoding.feature.musicplayer
 import com.mrtckr.livecoding.data.datasource.musicplayer.fake.FakePlaylistListDataSource
 import com.mrtckr.livecoding.data.model.musicplayer.PlaylistListEntity
 import com.mrtckr.livecoding.data.testing.songListItem
+import com.mrtckr.livecoding.testutils.MainDispatcherRule
 import junit.framework.TestCase.assertTrue
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.cancel
