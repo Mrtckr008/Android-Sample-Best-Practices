@@ -1,5 +1,6 @@
 package com.mrtckr.livecoding.feature.musicplayer.widgets.player
 
+import android.content.Intent
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
@@ -14,10 +15,15 @@ import androidx.compose.material.icons.filled.PlayCircle
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.mrtckr.common.ui.theme.MyAppTheme
 import com.mrtckr.livecoding.domain.entity.musicplayer.MediaPlayerState
 import com.mrtckr.livecoding.feature.musicplayer.service.MusicPlayerService
 
@@ -61,5 +67,22 @@ fun AnimatedPlayPauseIcon(
                     }
                     onPlayPauseClicked(action)
                 })
+    }
+}
+
+
+@Preview(device = "id:pixel_5")
+@Composable
+fun AnimatedPlayPauseIconPreview() {
+    val context = LocalContext.current
+    MyAppTheme {
+        AnimatedPlayPauseIcon(
+            playerState = remember { mutableStateOf(MediaPlayerState.STOPPED) },
+            onPlayPauseClicked = { action ->
+                val intent = Intent(context, MusicPlayerService::class.java).apply {
+                    this.action = action
+                }
+                context.startService(intent)
+            })
     }
 }

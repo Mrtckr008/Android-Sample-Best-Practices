@@ -213,38 +213,6 @@ fun ActionButtons(serviceBinder: MusicPlayerService.MusicServiceBinder?) {
 
 @Preview(device = "id:pixel_5")
 @Composable
-fun SongInformationWidgetPreview() {
-    MyAppTheme {
-        SongInformationWidget()
-    }
-}
-
-@Preview(device = "id:pixel_5")
-@Composable
-fun AnimatedPlayPauseIconPreview() {
-    val context = LocalContext.current
-    MyAppTheme {
-        AnimatedPlayPauseIcon(
-            playerState = remember { mutableStateOf(MediaPlayerState.STOPPED) },
-            onPlayPauseClicked = { action ->
-                val intent = Intent(context, MusicPlayerService::class.java).apply {
-                    this.action = action
-                }
-                context.startService(intent)
-            })
-    }
-}
-
-@Preview(device = "id:pixel_5")
-@Composable
-fun SliderSeekBarPreview() {
-    MyAppTheme {
-        SliderSeekBar(null)
-    }
-}
-
-@Preview(device = "id:pixel_5")
-@Composable
 fun ActionButtonsPreview() {
     MyAppTheme {
         ActionButtons(null)

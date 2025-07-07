@@ -13,9 +13,11 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.mrtckr.common.ui.formatTime
+import com.mrtckr.common.ui.theme.MyAppTheme
 import com.mrtckr.livecoding.feature.musicplayer.service.MusicPlayerService
 import kotlinx.coroutines.launch
 
@@ -61,3 +63,12 @@ fun SliderSeekBar(serviceBinder: MusicPlayerService.MusicServiceBinder?) {
         }
     }
 }
+
+@Preview(device = "id:pixel_5")
+@Composable
+fun SliderSeekBarPreview() {
+    MyAppTheme {
+        SliderSeekBar(null)
+    }
+}
+

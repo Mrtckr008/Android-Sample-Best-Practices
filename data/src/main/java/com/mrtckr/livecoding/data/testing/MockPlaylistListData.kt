@@ -1318,3 +1318,30 @@ val songListItem = PlaylistListEntity(
         )
     )
 )
+
+val songListErrorItem = PlaylistListEntity(
+    playlistList = listOf(
+        PlayListDataEntity(
+            title = "Unknown", type = "GridLikedList", playlistList = listOf(
+                PlaylistEntity(
+                    id = Random.nextInt(0, Int.MAX_VALUE).toString(),
+                    iconUrl = "errorurl",
+                    title = "",
+                    songList = listOf(
+                        SongListItem(
+                            name = "Song 1",
+                            iconUrl = "https://i.ibb.co/gRhdcsp/Liked-List.png",
+                            id = Random.nextInt(0, Int.MAX_VALUE).toString(),
+                            singer = "Singer 1"
+                        ), SongListItem(
+                            name = "Song 2",
+                            iconUrl = "https://i.ibb.co/gRhdcsp/Liked-List.png",
+                            id = Random.nextInt(0, Int.MAX_VALUE).toString(),
+                            singer = "Singer 2"
+                        )
+                    )
+                )
+            )
+        )
+    )
+)
