@@ -21,13 +21,32 @@ We adhere to clean architecture guidelines, structuring our application into mul
 - Coil: For image loading and caching in applications, offering seamless integration with Jetpack Compose.
 - Kover: Kotlin code coverage tool used to generate detailed test coverage reports. It helps monitor the effectiveness of tests and improve code quality.
 
-### Generate Code Coverage Report
+### Code Coverage Report
 
 To generate a Kotlin code coverage report using [Kover](https://github.com/Kotlin/kotlinx-kover), run the following command:
 
 ```bash
 ./gradlew koverHtmlReport
 ```
+
+### Compose Screenshot Testing
+
+Compose Preview Screenshot Tests are used to verify UI consistency and detect unexpected layout changes during development.
+
+To update the baseline screenshots and verify them for a specific module (e.g., musicplayer), run the following commands:
+
+```bash
+./gradlew :feature:musicplayer:updateDebugScreenshotTest
+
+## After development to verify
+./gradlew :feature:musicplayer:verifyDebugScreenshotTest
+```
+
+The generated screenshots can be found under:
+```bash
+feature/musicplayer/build/outputs/screenshotTest-results/preview
+```
+
 ### Screenshot
 <img width="1491" height="557" alt="Screenshot 2025-07-14 at 23 59 03" src="https://github.com/user-attachments/assets/d6b8af33-3bf0-43e5-909b-3059606c6e97" width="100%" />
 
