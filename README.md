@@ -29,7 +29,7 @@ To generate a Kotlin code coverage report using [Kover](https://github.com/Kotli
 ./gradlew koverHtmlReport
 ```
 
-### Screenshot
+### Screenshot (e.g., data)
 <img width="1491" height="557" alt="Screenshot 2025-07-14 at 23 59 03" src="https://github.com/user-attachments/assets/d6b8af33-3bf0-43e5-909b-3059606c6e97" width="100%" />
 
 
