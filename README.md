@@ -19,6 +19,18 @@ We adhere to clean architecture guidelines, structuring our application into mul
 - TOML Version Catalog: Centralizes and manages library versions across the project, enhancing maintainability and consistency in dependency management.
 - DataStore with Serialization: For efficient and robust data storage and management, providing a reactive and secure way to handle preferences and structured data.
 - Coil: For image loading and caching in applications, offering seamless integration with Jetpack Compose.
+- Kover: Kotlin code coverage tool used to generate detailed test coverage reports. It helps monitor the effectiveness of tests and improve code quality.
+
+### Generate Code Coverage Report
+
+To generate a Kotlin code coverage report using [Kover](https://github.com/Kotlin/kotlinx-kover), run the following command:
+
+```bash
+./gradlew koverHtmlReport
+```
+### Screenshot
+<img width="1491" height="557" alt="Screenshot 2025-07-14 at 23 59 03" src="https://github.com/user-attachments/assets/d6b8af33-3bf0-43e5-909b-3059606c6e97" width="100%" />
+
 
 ### Custom Compose Animation
 Developed with Jetpack Compose, this is a custom animation created without the use of any external libraries. Designed using modern and flexible Compose APIs, it's perfect for adding a unique and fluid experience to your user interface.
