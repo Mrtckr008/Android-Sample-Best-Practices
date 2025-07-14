@@ -29,6 +29,10 @@ To generate a Kotlin code coverage report using [Kover](https://github.com/Kotli
 ./gradlew koverHtmlReport
 ```
 
+### Screenshot
+<img width="1491" height="557" alt="Screenshot 2025-07-14 at 23 59 03" src="https://github.com/user-attachments/assets/d6b8af33-3bf0-43e5-909b-3059606c6e97" width="100%" />
+
+
 ### Compose Screenshot Testing
 
 Compose Preview Screenshot Tests are used to verify UI consistency and detect unexpected layout changes during development.
@@ -46,9 +50,6 @@ The generated screenshots can be found under:
 ```bash
 feature/musicplayer/build/outputs/screenshotTest-results/preview
 ```
-
-### Screenshot
-<img width="1491" height="557" alt="Screenshot 2025-07-14 at 23 59 03" src="https://github.com/user-attachments/assets/d6b8af33-3bf0-43e5-909b-3059606c6e97" width="100%" />
 
 ### Custom Compose Animation
 **dynamicboxanimator** library module is developed with Jetpack Compose, this is a custom animation created without the use of any external libraries. Designed using modern and flexible Compose APIs.
