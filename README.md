@@ -31,9 +31,8 @@ To generate a Kotlin code coverage report using [Kover](https://github.com/Kotli
 ### Screenshot
 <img width="1491" height="557" alt="Screenshot 2025-07-14 at 23 59 03" src="https://github.com/user-attachments/assets/d6b8af33-3bf0-43e5-909b-3059606c6e97" width="100%" />
 
-
 ### Custom Compose Animation
-Developed with Jetpack Compose, this is a custom animation created without the use of any external libraries. Designed using modern and flexible Compose APIs, it's perfect for adding a unique and fluid experience to your user interface.
+**dynamicboxanimator** library module is developed with Jetpack Compose, this is a custom animation created without the use of any external libraries. Designed using modern and flexible Compose APIs.
 
 ### Unique Usage for Page 1:
 https://github.com/Mrtckr008/Android-Sample-Best-Practices/assets/32914909/66e9a3f4-0e20-4ddc-aa5d-cac8e03544ec
