@@ -14,3 +14,9 @@
 .cxx
 local.properties
 /.idea/inspectionProfiles/Project_Default.xml
+.idea/deploymentTargetSelector.xml
+.idea/AndroidProjectSystem.xml
+.idea/gradle.xml
+.idea/androidTestResultsUserPreferences.xml
+.idea/*.xml
+.idea/codeStyles/**/*.xml

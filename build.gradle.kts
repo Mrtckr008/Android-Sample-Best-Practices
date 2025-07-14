@@ -8,12 +8,21 @@ plugins {
     alias(libs.plugins.compose.compiler) apply false
     alias(libs.plugins.compose.screenshot)
     alias(libs.plugins.toolchains) apply false
-    id("org.jetbrains.kotlinx.kover") apply false
+    alias(libs.plugins.kover) apply false
 }
 
+val koverPluginId    = libs.plugins.kover.get().pluginId
+val androidPluginIds = listOf(
+    "com.android.application",
+    "com.android.library",
+    "org.jetbrains.kotlin.jvm",
+    "org.jetbrains.kotlin.android"
+)
+
 subprojects {
-    plugins.withId("com.android.application")    { apply(plugin = "org.jetbrains.kotlinx.kover") }
-    plugins.withId("com.android.library")        { apply(plugin = "org.jetbrains.kotlinx.kover") }
-    plugins.withId("org.jetbrains.kotlin.jvm")   { apply(plugin = "org.jetbrains.kotlinx.kover") }
-    plugins.withId("org.jetbrains.kotlin.android"){ apply(plugin = "org.jetbrains.kotlinx.kover") }
+    androidPluginIds.forEach { target ->
+        pluginManager.withPlugin(target) {
+            apply(plugin = koverPluginId)
+        }
+    }
 }
