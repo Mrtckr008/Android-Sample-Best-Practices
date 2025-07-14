@@ -22,9 +22,6 @@
       <SelectionState runConfigName="feature.musicplayer">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="Tests in 'com.mrtckr.livecoding.feature.musicplayer'">
-        <option name="selectionMode" value="DROPDOWN" />
-      </SelectionState>
     </selectionStates>
   </component>
 </project>

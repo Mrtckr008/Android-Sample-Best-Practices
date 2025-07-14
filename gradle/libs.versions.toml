@@ -107,6 +107,7 @@ android-activity = { module = "androidx.activity:activity", version.ref = "activ
 android-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activityCompose" }
 compose-navigate = { module = "androidx.navigationevent:navigationevent-android", version.ref = "navigation3" }
 screenshot-validation-api = { group = "com.android.tools.screenshot", name = "screenshot-validation-api", version.ref = "composeScreenshot"}
+kover-gradle = { module = "org.jetbrains.kotlinx:kover-gradle-plugin", version = "0.9.0" }
 
 [bundles]
 androidxCore = ["androidxCoreKtx",
