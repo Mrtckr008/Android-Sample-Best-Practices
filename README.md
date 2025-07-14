@@ -14,7 +14,7 @@ We adhere to clean architecture guidelines, structuring our application into mul
 - Jetpack Navigation: For handling in-app navigation in a modular and scalable way.
 - Coroutines & Flow: For asynchronous programming and reactive data streams.
 - Jetpack Lifecycle, LiveData, ViewModel: Lifecycle-aware components for robust and maintainable MVVM architecture.
-- ExoPlayer: Media playback.
+- ExoPlayer-Compose: Media playback.
 - Mockito & JUnit & Mockk & Espresso & Paparazzi & Compose Preview Screenshot Test: Testing libraries for Unit, UI, Integration & Screenshot tests.
 - TOML Version Catalog: Centralizes and manages library versions across the project, enhancing maintainability and consistency in dependency management.
 - DataStore with Serialization: For efficient and robust data storage and management, providing a reactive and secure way to handle preferences and structured data.
